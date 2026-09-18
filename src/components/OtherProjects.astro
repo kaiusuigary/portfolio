@@ -1,0 +1,30 @@
+---
+import { otherProjects } from "../data/otherProjects.js";
+---
+
+<section id="other" class="section">
+  <div class="sticker" style="top:24px;right:4%;transform:rotate(-7deg);">MORE WORK</div>
+  <div class="wrap">
+    <div class="eyebrow">More Work</div>
+    <h2 class="disp" style="font-size:clamp(32px,4vw,46px);font-weight:800;color:var(--ink);">MY OTHER PROJECTS</h2>
+    <p style="font-size:13.5px;line-height:1.8;color:var(--ink-faint);max-width:720px;margin-top:20px;">
+      ※守秘義務の都合上、実際の企業名・製品名・ビジュアル・テキストの一部はダミーで構成しています。<br />
+      Due to confidentiality agreements, some company names, product visuals, and texts are replaced with placeholders or dummy content.
+    </p>
+
+    <div class="projects-grid" style="margin-top:44px;">
+      {
+        otherProjects.map((p) => (
+          <a href={`/projects/${p.slug}`} class="project-card" style="padding:14px;display:block;">
+            <img
+              src={p.src}
+              style="width:100%;display:block;aspect-ratio:4/5;object-fit:cover;border-radius:16px;"
+              alt={p.alt}
+            />
+            <div style="padding:14px 4px 4px 4px;font-size:12.5px;font-weight:600;color:var(--ink-soft);">{p.label}</div>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,136 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Contact from "../../components/Contact.astro";
+import { otherProjects } from "../../data/otherProjects.js";
+
+export function getStaticPaths() {
+  return otherProjects.map((p) => ({
+    params: { slug: p.slug },
+    props: { project: p },
+  }));
+}
+
+const { project } = Astro.props;
+const linkHref = project.liveUrl || project.fullImage;
+---
+
+<Layout title={`${project.label} — Kai Usui Portfolio`} description={project.concept}>
+  <div style="min-height:100vh;position:relative;background:#eef4fb;">
+    <div style="position:sticky;top:18px;z-index:30;display:flex;justify-content:center;padding:0 20px;">
+      <div
+        class="glass nav-bar"
+        style="width:100%;max-width:1400px;border-radius:999px;padding:10px 12px 10px 26px;box-shadow:0 14px 30px -10px rgba(16,27,52,.22);display:flex;align-items:center;justify-content:space-between;"
+      >
+        <a href="/" style="display:flex;align-items:baseline;gap:8px;color:var(--ink);">
+          <span class="disp" style="font-weight:800;font-size:18px;letter-spacing:.02em;">KAI USUI</span>
+          <span style="font-size:12.5px;color:var(--ink-faint);">Portfolio</span>
+        </a>
+        <div style="display:flex;align-items:center;gap:30px;font-family:'Sora',sans-serif;font-weight:600;font-size:13.5px;">
+          <a href="/#about" style="color:var(--ink-soft);">About</a>
+          <a href="/#works" style="color:var(--ink-soft);">Works</a>
+          <a href="/#other" style="color:var(--ink-soft);">Other Projects</a>
+          <a href="/#contact" class="btn" style="padding:11px 22px;font-size:13px;">Contact</a>
+        </div>
+      </div>
+    </div>
+
+    <section class="section" style="padding-top:80px;padding-bottom:50px;position:relative;">
+      <div
+        class="ghost"
+        style="position:absolute;top:20px;left:50%;transform:translateX(-50%);font-size:clamp(60px,10vw,150px);z-index:0;opacity:.7;white-space:nowrap;"
+      >
+        MY WORKS
+      </div>
+      <div class="wrap" style="position:relative;z-index:1;">
+        <div style="text-align:center;">
+          <div class="eyebrow" style="justify-content:center;">Portfolio</div>
+          <h1 class="disp" style="font-size:clamp(34px,4.6vw,52px);font-weight:800;color:var(--ink);">CASE {project.caseNumber}</h1>
+          <a href="/#other" style="font-size:13.5px;color:var(--accent-2);display:inline-block;margin-top:10px;">← Back to home</a>
+        </div>
+
+        <div class="case-media-grid" style="margin-top:56px;">
+          {
+            linkHref ? (
+              <a
+                href={linkHref}
+                target="_blank"
+                rel="noopener"
+                class="shot-panel lightbox-trigger"
+                style="display:flex;align-items:center;justify-content:center;"
+              >
+                <img
+                  src={project.src}
+                  alt={project.alt}
+                  style="width:100%;object-fit:cover;border-radius:10px;aspect-ratio:4/5;"
+                />
+                <span class="expand-icon">
+                  {project.liveUrl ? (
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                      <path
+                        d="M7 17L17 7M17 7H9M17 7V15"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  ) : (
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                      <path
+                        d="M9 3H3v6M15 3h6v6M9 21H3v-6M15 21h6v-6"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  )}
+                </span>
+              </a>
+            ) : (
+              <div class="shot-panel" style="display:flex;align-items:center;justify-content:center;">
+                <img
+                  src={project.src}
+                  alt={project.alt}
+                  style="width:100%;object-fit:cover;border-radius:10px;aspect-ratio:4/5;"
+                />
+              </div>
+            )
+          }
+          <div>
+            <h2 class="disp case-title-lg" style="font-size:clamp(22px,2.4vw,30px);">{project.label}</h2>
+            <hr class="divider" style="margin:24px 0;max-width:120px;" />
+            <div class="meta-label">期間</div>
+            <p class="meta-value">{project.period}</p>
+            <div class="meta-label">チーム構成</div>
+            <p class="meta-value">{project.team}</p>
+            {project.liveUrl && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener"
+                class="btn-ghost"
+                style="font-size:13px;padding:10px 20px;margin-top:14px;display:inline-flex;"
+              >
+                {project.linkLabel || "Live サイトを見る ↗"}
+              </a>
+            )}
+
+            <h3 class="detail-heading" style="margin-top:32px;font-size:18px;">CONCEPT</h3>
+            <p class="detail-text" style="margin-top:12px;">{project.concept}</p>
+
+            <h3 class="detail-heading" style="margin-top:32px;font-size:18px;">KEYWORD</h3>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;">
+              {project.keywords.map((k) => <span class="pill">{k}</span>)}
+            </div>
+
+            <h3 class="detail-heading" style="margin-top:32px;font-size:18px;">使用ツール・技術</h3>
+            <p class="detail-text" style="white-space:pre-line;margin-top:12px;">{project.tools}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <Contact />
+  </div>
+</Layout>

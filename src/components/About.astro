@@ -1,0 +1,113 @@
+---
+const floatingTools = [
+  {
+    src: "/images/ps-tool.png",
+    alt: "Photoshop",
+    glow: "49,168,255",
+    rot: 8,
+    size: "clamp(90px,11vw,160px)",
+    pos: "top:90px;right:7%;",
+  },
+  {
+    src: "/images/ai-tool.png",
+    alt: "Illustrator",
+    glow: "255,154,0",
+    rot: -12,
+    size: "clamp(90px,9vw,150px)",
+    pos: "bottom:200px;left:2%;",
+  },
+  {
+    src: "/images/af-tool.png",
+    alt: "After Effects",
+    glow: "153,102,255",
+    rot: 7,
+    size: "clamp(70px,8vw,120px)",
+    pos: "bottom:60px;left:6%;",
+  },
+  {
+    src: "/images/an-tool.png",
+    alt: "Animate",
+    glow: "125,90,255",
+    rot: -8,
+    size: "clamp(80px,9vw,140px)",
+    pos: "top:38%;right:2%;",
+  },
+  {
+    src: "/images/xd-tool.png",
+    alt: "Adobe XD",
+    glow: "255,61,246",
+    rot: -5,
+    size: "clamp(70px,9vw,130px)",
+    pos: "top:120px;left:6%;",
+  },
+  {
+    src: "/images/figma-tool.svg",
+    alt: "Figma",
+    glow: "162,89,255",
+    rot: 10,
+    size: "clamp(80px,9vw,140px)",
+    pos: "bottom:20px;right:3%;",
+    glass: true,
+  },
+];
+
+const tools = [
+  { src: "/images/tools-outline/ps-outline.svg", alt: "Photoshop" },
+  { src: "/images/tools-outline/ai-outline.svg", alt: "Illustrator" },
+  { src: "/images/tools-outline/ae-outline.svg", alt: "After Effects" },
+  { src: "/images/tools-outline/an-outline.svg", alt: "Animate" },
+  { src: "/images/tools-outline/xd-outline.svg", alt: "Adobe XD" },
+  { src: "/images/tools-outline/figma-outline.svg", alt: "Figma" },
+];
+---
+
+<section id="about" class="section">
+  {
+    floatingTools.map((tool) => (
+      <div
+        class={`tool-icon${tool.glass ? " tool-icon--glass" : ""}`}
+        style={`position:absolute;${tool.pos}--glow:${tool.glow};--rot:${tool.rot}deg;z-index:1;`}
+      >
+        <img src={tool.src} alt={tool.alt} style={`width:${tool.size};height:${tool.size};`} />
+      </div>
+    ))
+  }
+  <div class="wrap" style="position:relative;z-index:2;">
+    <div class="eyebrow">About Me</div>
+    <h2 class="disp" style="font-size:clamp(32px,4vw,46px);font-weight:800;max-width:640px;color:var(--ink);">
+      香港生まれ、日本育ちの<br />マルチリンガルUI/UXデザイナー
+    </h2>
+
+    <div class="grid-2" style="margin-top:48px;">
+      <div class="about-card" style="display:flex;flex-direction:column;gap:20px;font-size:15.5px;line-height:1.9;color:var(--ink-soft);">
+        <p style="margin:0;">
+          香港出身。2015年にワーキングホリデーで来日し、現在は日本国籍を取得。広東語（母語）、日本語、英語、中国語を操るマルチリンガルです。香港で約2年間のWebデザイナー経験を経て、現在は関西を拠点に東京の企業へフルリモート勤務しています。
+        </p>
+        <p style="margin:0;">
+          Web・アプリのメインUI/UXデザイナーとして約14年のキャリアを持ち、特に多言語展開や大規模WEBサイトのデザイン・構築に強みがあります。前職の株式会社ミツエーリンクスでは約7年間、大手企業の日本国内およびグローバルサイトのUI/UX改善や多言語対応を担当し、CV率や売上向上に貢献しました。
+        </p>
+      </div>
+      <div class="about-card" style="display:flex;flex-direction:column;gap:20px;font-size:15.5px;line-height:1.9;color:var(--ink-soft);">
+        <p style="margin:0;">
+          現職のミライズエネチェンジ株式会社では、自社サービスの各種イベントサイト制作をはじめ、新規事業「EV PLUS」の立ち上げにおけるアートディレクション（ビジュアル方針の策定）や、アプリのUIUXデザインおよび継続的な改善まで、メインデザイナーとして幅広く携わっています。
+        </p>
+        <p style="margin:0;">
+          画面デザインにとどまらず、ビジュアルの方向性策定やチームマネジメント、改善提案まで柔軟に対応できる点、そして多文化理解に基づいた国際的な視点が強みです。
+        </p>
+      </div>
+    </div>
+
+    <div style="font-family:'Sora',sans-serif;font-weight:700;font-size:12.5px;letter-spacing:.14em;color:var(--ink-faint);margin-top:56px;">
+      TOOLS I USE
+    </div>
+    <div class="tools-row">
+      {
+        tools.map((tool) => (
+          <div class="tool-box">
+            <img src={tool.src} alt={tool.alt} />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
