@@ -1,0 +1,152 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Contact from "../../components/Contact.astro";
+import ToolStickers from "../../components/ToolStickers.astro";
+import { otherProjects } from "../../data/otherProjects.js";
+
+const project = otherProjects.find((p) => p.slug === "ev-life-support-program");
+---
+
+<Layout title={`${project.label} — Kai Usui Portfolio`} description={project.concept}>
+  <div style="min-height:100vh;position:relative;background:#eef4fb;">
+    <div style="position:sticky;top:18px;z-index:30;display:flex;justify-content:center;padding:0 20px;">
+      <div
+        class="glass nav-bar"
+        style="width:100%;max-width:1400px;border-radius:999px;padding:10px 12px 10px 26px;box-shadow:0 14px 30px -10px rgba(16,27,52,.22);display:flex;align-items:center;justify-content:space-between;"
+      >
+        <a href="/" style="display:flex;align-items:baseline;gap:8px;color:var(--ink);">
+          <span class="disp" style="font-weight:800;font-size:18px;letter-spacing:.02em;">KAI USUI</span>
+          <span style="font-size:12.5px;color:var(--ink-faint);">Portfolio</span>
+        </a>
+        <div style="display:flex;align-items:center;gap:30px;font-family:'Sora',sans-serif;font-weight:600;font-size:13.5px;">
+          <a href="/#about" style="color:var(--ink-soft);">About</a>
+          <a href="/#works" style="color:var(--ink-soft);">Works</a>
+          <a href="/#other" style="color:var(--ink-soft);">Other Projects</a>
+          <a href="/#contact" class="btn" style="padding:11px 22px;font-size:13px;">Contact</a>
+        </div>
+      </div>
+    </div>
+
+    <section class="section" style="padding-top:80px;padding-bottom:50px;position:relative;">
+      <ToolStickers tools={"Figma（UIデザイン） Illustrator・Photoshop（イラスト）"} />
+      <div
+        class="ghost"
+        style="position:absolute;top:20px;left:50%;transform:translateX(-50%);font-size:clamp(60px,10vw,150px);z-index:0;opacity:.7;white-space:nowrap;"
+      >
+        MY WORKS
+      </div>
+      <div class="wrap" style="position:relative;z-index:1;">
+        <div style="text-align:center;">
+          <div class="eyebrow" style="justify-content:center;">Portfolio</div>
+          <h1 class="disp" style="font-size:clamp(34px,4.6vw,52px);font-weight:800;color:var(--ink);">CASE {project.caseNumber}</h1>
+          <a href="/#other" style="font-size:13.5px;color:var(--accent-2);display:inline-block;margin-top:10px;">← Back to home</a>
+        </div>
+
+
+        <!-- ============ CASE 10 ============ -->
+        <div style="margin-top:56px;">
+          <div class="case-media-grid">
+            <a
+              href="/images/els-full.jpg"
+              target="_blank"
+              rel="noopener"
+              class="shot-panel lightbox-trigger"
+              style="display:flex;align-items:center;justify-content:center;"
+            >
+              <img src="/images/els-top.jpg" style="width:100%;object-fit:contain;border-radius:10px;" alt="EVライフ応援制度 LP" />
+              <span class="expand-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 3H3v6M15 3h6v6M9 21H3v-6M15 21h6v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </a>
+            <div>
+              <div class="case-num">CASE {project.caseNumber}</div>
+              <h2 class="disp case-title-lg">EVライフ応援制度 — EV新車購入者向け充電クーポンキャンペーンのLP</h2>
+              <hr class="divider" style="margin:24px 0;max-width:120px;" />
+              <div class="meta-label">期間</div>
+              <p class="meta-value">約1ヶ月</p>
+              <div class="meta-label">チーム構成</div>
+              <p class="meta-value">デザイナー1（自身）<br />ディレクター2<br />エンジニア1</p>
+              <a href="https://ev-charge-enechange.jp/for_drivers/campaigns/ev-life-support-program/" target="_blank" rel="noopener" class="btn-ghost" style="font-size:13px;padding:10px 20px;margin-top:8px;display:inline-flex;">Live サイトを見る ↗</a>
+            </div>
+          </div>
+
+          <div class="ghost-mid">DETAILS</div>
+
+          <div class="grid-3 detail-grid">
+            <div>
+              <h4 class="disp detail-heading">背景・課題</h4>
+              <p class="detail-text">2025年10月以降にEV・PHEVの新車を購入した方を対象に、EV充電エネチェンジアプリで使える充電クーポン（300円×6回、合計1,800円分）をプレゼントする「EVライフ応援制度」。納車をお祝いし、外出先での「充電デビュー」を安心して迎えてもらうための取り組みです。特典の内容と、登録情報の入力・エントリー・審査という参加までの流れを、わかりやすく伝えるLPが求められました。</p>
+              <h4 class="disp detail-heading" style="margin-top:32px;">目的・KPI</h4>
+              <ul class="detail-list">
+                <li>EV・PHEVの購入を検討している方の背中を押し、購入へのモチベーションを高める</li>
+                <li>新車購入者にアプリでの充電を始めてもらい、継続的な利用につなげる</li>
+              </ul>
+              <h4 class="disp detail-heading" style="margin-top:32px;">担当範囲</h4>
+              <ul class="detail-list">
+                <li>LP全体のデザイン（PC / SP）</li>
+                <li>イラスト・図版制作</li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="disp detail-heading">アプローチ・工夫点</h4>
+              <p class="detail-text"><b style="color:var(--ink);">1. 「最大1,800円分」が目に飛び込むメインビジュアル</b><br />ブランドカラーのピンクを背景に、特典金額を黄色で大きく配置。まわりに人気のEV車種を並べ、「自分の車も対象だ」と感じてもらえるビジュアルにしました。</p>
+              <p class="detail-text" style="margin-top:14px;"><b style="color:var(--ink);">2. 配布スケジュールをカレンダーで直感的に</b><br />クーポンが届く奇数月をカレンダーのアイコンで並べ、初回配布月と「配布開始月の例」を添えて、いつ受け取れるかを具体的にイメージできるようにしました。</p>
+              <p class="detail-text" style="margin-top:14px;"><b style="color:var(--ink);">3. 迷わずエントリーできる3ステップ</b><br />「登録情報の入力 → エントリー → クーポン受け取り」を縦のタイムラインで見せ、各ステップにアプリ画面やイラストと行動ボタンを配置。読みながらそのまま手続きを進められる構成にしました。</p>
+              <h4 class="disp detail-heading" style="margin-top:32px;">キーワード</h4>
+              <ul class="detail-list">
+                <li>楽しい</li>
+                <li>賑やか</li>
+                <li>わくわく</li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="disp detail-heading">メインカラー</h4>
+              <div class="swatch-row">
+                <div class="swatch"><span style="background:#D11B58;"></span>#D11B58</div>
+                <div class="swatch"><span style="background:#1B4DD2;"></span>#1B4DD2</div>
+                <div class="swatch"><span style="background:#FFD800;"></span>#FFD800</div>
+                <div class="swatch"><span style="background:#333333;"></span>#333333</div>
+                <div class="swatch"><span style="background:#FFD7E3;border:1px solid var(--border);"></span>#FFD7E3</div>
+              </div>
+              <h4 class="disp detail-heading" style="margin-top:32px;">使用ツール・技術</h4>
+              <p class="detail-text">Figma（UIデザイン）<br />Illustrator・Photoshop（イラスト）</p>
+              <h4 class="disp detail-heading" style="margin-top:32px;">成果</h4>
+              <p class="detail-text">制度の開始後、充電の利用が前年同月比で増加。EV充電エネチェンジの充電器を使うユーザーが増え、充電サービスの売上向上にもつながっています。</p>
+            </div>
+          </div>
+
+          <div class="case-showcase-2col">
+            <div>
+              <a href="/images/els-detail01.png" target="_blank" rel="noopener" class="lightbox-trigger" style="display:block;">
+                <img src="/images/els-detail01.png" class="imgbox" alt="特典内容とクーポン配布月" />
+                <span class="expand-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 3H3v6M15 3h6v6M9 21H3v-6M15 21h6v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+              </a>
+              <p class="detail-text" style="margin-top:16px;">特典内容は、300円クーポンの束と「1,800円分」の大きな数字で表現。配布月をカレンダーで並べ、初回配布月と配布開始の例をあわせて示すことで、受け取りまでの流れをイメージしやすくしました。</p>
+            </div>
+            <div>
+              <a href="/images/els-detail02.png" target="_blank" rel="noopener" class="lightbox-trigger" style="display:block;">
+                <img src="/images/els-detail02.png" class="imgbox" alt="エントリー方法の3ステップ" />
+                <span class="expand-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 3H3v6M15 3h6v6M9 21H3v-6M15 21h6v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+              </a>
+              <p class="detail-text" style="margin-top:16px;">エントリー方法は3ステップのタイムラインで紹介。アプリの画面イメージや、エントリー・クーポン受け取りのイラストを添え、各ステップの最後に次の行動へ進むボタンを置きました。</p>
+            </div>
+          </div>
+
+          <div class="case-mockup">
+            <img src="/images/els-thedesign.png" class="no-shadow" alt="THE DESIGN — EVライフ応援制度 LP" />
+          </div>
+
+          <div class="case-cta" style="text-align:center;margin-top:4px;">
+            <a href="#contact" class="btn">Contact Me</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <Contact />
+  </div>
+</Layout>
