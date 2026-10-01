@@ -1,0 +1,27 @@
+---
+// 使用ツール・技術に合わせたサイドのタグ（Works の CASE 01〜07 と同じ配置・角度）
+const { tools } = Astro.props;
+
+const known = [
+  ["Figma", "FIGMA"],
+  ["Illustrator", "ILLUSTRATOR"],
+  ["Photoshop", "PHOTOSHOP"],
+  ["Adobe XD", "ADOBE XD"],
+  ["After Effects", "AFTER EFFECTS"],
+  ["Webflow", "WEBFLOW"],
+];
+// ツール欄に出てくる順に並べる
+const tags = known
+  .map(([name, label]) => ({ label, index: tools.indexOf(name) }))
+  .filter((t) => t.index !== -1)
+  .sort((a, b) => a.index - b.index)
+  .map((t) => t.label);
+
+const slots = [
+  "top:280px;right:2%;transform:rotate(-6deg);",
+  "top:400px;left:3.5%;transform:rotate(5deg);",
+  "top:520px;right:1%;transform:rotate(7deg);",
+];
+---
+
+{tags.slice(0, slots.length).map((label, i) => <div class="sticker" style={slots[i]}>{label}</div>)}

@@ -1,10 +1,11 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Contact from "../../components/Contact.astro";
+import ToolStickers from "../../components/ToolStickers.astro";
 import { otherProjects } from "../../data/otherProjects.js";
 
 export function getStaticPaths() {
-  return otherProjects.map((p) => ({
+  return otherProjects.filter((p) => !p.customPage).map((p) => ({
     params: { slug: p.slug },
     props: { project: p },
   }));
@@ -35,6 +36,7 @@ const linkHref = project.liveUrl || project.fullImage;
     </div>
 
     <section class="section" style="padding-top:80px;padding-bottom:50px;position:relative;">
+      <ToolStickers tools={project.tools} />
       <div
         class="ghost"
         style="position:absolute;top:20px;left:50%;transform:translateX(-50%);font-size:clamp(60px,10vw,150px);z-index:0;opacity:.7;white-space:nowrap;"
