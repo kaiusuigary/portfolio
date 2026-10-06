@@ -1,4 +1,8 @@
 ---
+import { useT } from "../i18n.js";
+
+const { lang = "ja" } = Astro.props;
+const t = useT(lang);
 ---
 
 <section id="contact" class="section" style="padding-bottom:40px;">
@@ -19,10 +23,13 @@
       <div style="position:relative;">
         <div class="eyebrow" style="justify-content:center;">How to find me</div>
         <h2 class="disp" style="font-size:clamp(30px,4.4vw,50px);font-weight:800;color:var(--ink);max-width:640px;margin:0 auto;">
-          お気軽にご連絡ください。
+          {t("お気軽にご連絡ください。", "Feel free to get in touch.")}
         </h2>
         <p style="font-size:15.5px;line-height:1.9;color:var(--ink-soft);max-width:520px;margin:20px auto 0 auto;">
-          これまでの制作実績を詳しくご紹介いたします。ご連絡は下記のメール、またはLinkedInアカウントまでお願いいたします。ありがとうございます。
+          {t(
+            "これまでの制作実績を詳しくご紹介いたします。ご連絡は下記のメール、またはLinkedInアカウントまでお願いいたします。ありがとうございます。",
+            "I’d be happy to walk you through my work in more detail. Please reach out by email or on LinkedIn. Thank you!",
+          )}
         </p>
         <div style="display:flex;gap:16px;justify-content:center;margin-top:40px;flex-wrap:wrap;">
           <a href="mailto:kaijo.gary@gmail.com" class="btn">kaijo.gary@gmail.com</a>

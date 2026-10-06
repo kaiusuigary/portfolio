@@ -1,0 +1,144 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Contact from "../../../components/Contact.astro";
+import ProjectNav from "../../../components/ProjectNav.astro";
+import ToolStickers from "../../../components/ToolStickers.astro";
+import { otherProjects, localize } from "../../../data/otherProjects.js";
+import { langParams, getLang, useT, localePath } from "../../../i18n.js";
+
+export function getStaticPaths() {
+  return langParams.map((params) => ({ params }));
+}
+
+const lang = getLang(Astro.params.lang);
+const t = useT(lang);
+const project = localize(otherProjects.find((p) => p.slug === "ev-life-program"), lang);
+---
+
+<Layout lang={lang} title={`${project.label} — Kai Usui Portfolio`} description={project.concept}>
+  <div style="min-height:100vh;position:relative;background:#eef4fb;">
+    <ProjectNav lang={lang} />
+
+    <section class="section" style="padding-top:80px;padding-bottom:50px;position:relative;">
+      <ToolStickers tools={"Figma（UIデザイン） Illustrator・Photoshop（イラスト）"} />
+      <div
+        class="ghost"
+        style="position:absolute;top:20px;left:50%;transform:translateX(-50%);font-size:clamp(60px,10vw,150px);z-index:0;opacity:.7;white-space:nowrap;"
+      >
+        MY WORKS
+      </div>
+      <div class="wrap" style="position:relative;z-index:1;">
+        <div style="text-align:center;">
+          <div class="eyebrow" style="justify-content:center;">Portfolio</div>
+          <h1 class="disp" style="font-size:clamp(34px,4.6vw,52px);font-weight:800;color:var(--ink);">CASE {project.caseNumber}</h1>
+          <a href={localePath(lang, "/") + "#other"} style="font-size:13.5px;color:var(--accent-2);display:inline-block;margin-top:10px;">← Back to home</a>
+        </div>
+
+
+        <!-- ============ CASE 09 ============ -->
+        <div style="margin-top:56px;">
+          <div class="case-media-grid">
+            <a
+              href="/images/elp-full.jpg"
+              target="_blank"
+              rel="noopener"
+              class="shot-panel lightbox-trigger"
+              style="display:flex;align-items:center;justify-content:center;"
+            >
+              <img src="/images/elp-top.jpg" style="width:100%;object-fit:contain;border-radius:10px;" alt="EV Life Program LP" />
+              <span class="expand-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 3H3v6M15 3h6v6M9 21H3v-6M15 21h6v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </a>
+            <div>
+              <div class="case-num">CASE {project.caseNumber}</div>
+              <h2 class="disp case-title-lg">{t("EV Life Program — ランクアップ型ポイントプログラムのLP", "EV Life Program — LP for a Tiered Points Program")}</h2>
+              <hr class="divider" style="margin:24px 0;max-width:120px;" />
+              <div class="meta-label">{t("期間", "Duration")}</div>
+              <p class="meta-value">{t("約3週間", "About 3 weeks")}</p>
+              <div class="meta-label">{t("チーム構成", "Team")}</div>
+              <p class="meta-value">{t("デザイナー1（自身）", "1 designer (me)")}<br />{t("ディレクター1", "1 director")}<br />{t("エンジニア1", "1 engineer")}</p>
+              <a href="https://ev-charge-enechange.jp/for_drivers/ev-life-program/" target="_blank" rel="noopener" class="btn-ghost" style="font-size:13px;padding:10px 20px;margin-top:8px;display:inline-flex;">{t("Live サイトを見る ↗", "View live site ↗")}</a>
+            </div>
+          </div>
+
+          <div class="ghost-mid">DETAILS</div>
+
+          <div class="grid-3 detail-grid">
+            <div>
+              <h4 class="disp detail-heading">{t("背景・課題", "Background & Challenge")}</h4>
+              <p class="detail-text">{t("EV充電エネチェンジアプリのv4.0「ニコラ」とあわせて始まった「EV Life Program」。アプリで充電や口コミ投稿をするとポイントがたまり、ランクに応じた特典が受けられる新しいプログラムです。初めて知るユーザーにも仕組みとメリットが伝わり、参加登録まで迷わず進めるLPが求められました。", "The “EV Life Program” launched alongside v4.0 “Nikola” of the EV Charge ENECHANGE app. In this new program, users earn points by charging and posting reviews in the app, and receive perks based on their rank. The LP needed to explain how it works and its benefits even to first-time visitors, and guide them smoothly to sign up.")}</p>
+              <h4 class="disp detail-heading" style="margin-top:32px;">{t("目的・KPI", "Goals & KPIs")}</h4>
+              <ul class="detail-list">
+                <li>{t("プログラムの仕組みと特典をわかりやすく伝える", "Clearly explain how the program works and its perks")}</li>
+                <li>{t("アプリからのプログラム参加登録を促進する", "Encourage sign-ups for the program in the app")}</li>
+              </ul>
+              <h4 class="disp detail-heading" style="margin-top:32px;">{t("担当範囲", "My Role")}</h4>
+              <ul class="detail-list">
+                <li>{t("LP全体のデザイン（PC / SP）", "Design of the entire LP (desktop / mobile)")}</li>
+                <li>{t("イラスト・図版制作", "Illustrations and graphics")}</li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="disp detail-heading">{t("アプローチ・工夫点", "Approach")}</h4>
+              <p class="detail-text"><b style="color:var(--ink);">{t("1. 表彰台でランクアップを表現したメインビジュアル", "1. A main visual that shows ranking up on a podium")}</b><br />{t("ENTRY・GOLD・PLATINUMのバッジを表彰台に並べ、頂上にダイヤモンドを配置。「ためるほど上がっていく」プログラムの楽しさを、ひと目で伝えるビジュアルにしました。", "ENTRY, GOLD and PLATINUM badges stand on a podium with a diamond at the top. The visual conveys at a glance the fun of a program where the more you earn, the higher you climb.")}</p>
+              <p class="detail-text" style="margin-top:14px;"><b style="color:var(--ink);">{t("2. 仕組みを3ステップと具体例で", "2. Explaining the system in three steps with concrete examples")}</b><br />{t("「充電・口コミする → ポイントがたまる → ランクアップ・特典ゲット」の3ステップで全体像を示し、「ゴールドまでの道のり」では充電時間や口コミ数の目安を具体的に提示。自分にも届きそうだと感じてもらえる構成にしました。", "Three steps — “charge and post reviews → earn points → rank up and get perks” — show the big picture, and “The road to Gold” gives concrete targets for charging time and number of reviews, so users feel it’s within reach.")}</p>
+              <p class="detail-text" style="margin-top:14px;"><b style="color:var(--ink);">{t("3. ランクごとの色分けと迷わない参加導線", "3. Color-coded ranks and a clear path to joining")}</b><br />{t("ゴールド・プラチナ・ダイヤモンドをそれぞれの色で塗り分けて特典を比較しやすくし、参加方法はアプリ画面を模した4ステップで紹介。最後にアプリへの導線を置き、そのまま登録できる流れにしました。", "Gold, Platinum and Diamond each have their own color to make perks easy to compare, and how to join is shown in four steps modeled on the app screens. A link to the app at the end lets users sign up right away.")}</p>
+              <h4 class="disp detail-heading" style="margin-top:32px;">{t("キーワード", "Keywords")}</h4>
+              <ul class="detail-list">
+                <li>{t("洗練されたデザイン", "Refined design")}</li>
+                <li>{t("高級感", "Premium")}</li>
+                <li>{t("ロイヤリティ", "Loyalty")}</li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="disp detail-heading">{t("メインカラー", "Main Colors")}</h4>
+              <div class="swatch-row">
+                <div class="swatch"><span style="background:#7D1631;"></span>#7D1631</div>
+                <div class="swatch"><span style="background:#CAA25C;"></span>#CAA25C</div>
+                <div class="swatch"><span style="background:#6C5311;"></span>#6C5311</div>
+                <div class="swatch"><span style="background:#0D3569;"></span>#0D3569</div>
+                <div class="swatch"><span style="background:#FFEDCD;border:1px solid var(--border);"></span>#FFEDCD</div>
+              </div>
+              <h4 class="disp detail-heading" style="margin-top:32px;">{t("使用ツール・技術", "Tools & Skills")}</h4>
+              <p class="detail-text">{t("Figma（UIデザイン）", "Figma (UI design)")}<br />{t("Illustrator・Photoshop（イラスト）", "Illustrator, Photoshop (illustrations)")}</p>
+              <h4 class="disp detail-heading" style="margin-top:32px;">{t("成果", "Results")}</h4>
+              <p class="detail-text">{t("ポイントやランクアップを目指して、ユーザーがより積極的に充電するようになり、充電サービスの売上向上につながっています。", "Aiming for points and higher ranks, users now charge more actively, helping increase charging service revenue.")}</p>
+            </div>
+          </div>
+
+          <div class="case-showcase-2col">
+            <div>
+              <a href="/images/elp-detail01.png" target="_blank" rel="noopener" class="lightbox-trigger" style="display:block;">
+                <img src="/images/elp-detail01.png" class="imgbox" alt={t("プログラムの仕組みとランク", "How the program works and its ranks")} />
+                <span class="expand-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 3H3v6M15 3h6v6M9 21H3v-6M15 21h6v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+              </a>
+              <p class="detail-text" style="margin-top:16px;">{t("プログラムの全体像を3ステップのアイコンで紹介し、ランクは積み上がるブロックと右肩上がりの矢印で表現。ゴールド到達までの目安も数字で示し、参加後のイメージを持ちやすくしました。", "The program overview is introduced with three-step icons, and ranks are shown as stacked blocks with a rising arrow. Targets for reaching Gold are given in numbers, helping users picture what joining looks like.")}</p>
+            </div>
+            <div>
+              <a href="/images/elp-detail02.png" target="_blank" rel="noopener" class="lightbox-trigger" style="display:block;">
+                <img src="/images/elp-detail02.png" class="imgbox" alt={t("ランクアップ特典と参加方法", "Rank-up perks and how to join")} />
+                <span class="expand-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 3H3v6M15 3h6v6M9 21H3v-6M15 21h6v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+              </a>
+              <p class="detail-text" style="margin-top:16px;">{t("ランクアップ特典はランクごとの色でカード化して比較しやすく。参加方法はアプリ画面を模した4ステップで見せ、そのままアプリでの登録へつなげています。", "Rank-up perks are shown as cards in each rank’s color for easy comparison. How to join is shown in four steps modeled on the app screens, leading straight to sign-up in the app.")}</p>
+            </div>
+          </div>
+
+          <div class="case-mockup">
+            <img src="/images/elp-thedesign.png" class="no-shadow" alt="THE DESIGN — EV Life Program LP" />
+          </div>
+
+          <div class="case-cta" style="text-align:center;margin-top:4px;">
+            <a href="#contact" class="btn">Contact Me</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <Contact lang={lang} />
+  </div>
+</Layout>

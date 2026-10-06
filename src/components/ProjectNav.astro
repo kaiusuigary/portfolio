@@ -1,0 +1,27 @@
+---
+// プロジェクト詳細ページ共通のナビ（トップページの各セクションへ戻るリンク＋言語切り替え）
+import { useT, localePath, switchPath } from "../i18n.js";
+
+const { lang = "ja" } = Astro.props;
+const t = useT(lang);
+const home = localePath(lang, "/");
+---
+
+<div style="position:sticky;top:18px;z-index:30;display:flex;justify-content:center;padding:0 20px;">
+  <div
+    class="glass nav-bar"
+    style="width:100%;max-width:1400px;border-radius:999px;padding:10px 12px 10px 26px;box-shadow:0 14px 30px -10px rgba(16,27,52,.22);display:flex;align-items:center;justify-content:space-between;"
+  >
+    <a href={home} style="display:flex;align-items:baseline;gap:8px;color:var(--ink);">
+      <span class="disp" style="font-weight:800;font-size:18px;letter-spacing:.02em;">KAI USUI</span>
+      <span style="font-size:12.5px;color:var(--ink-faint);">Portfolio</span>
+    </a>
+    <div class="project-nav-links" style="display:flex;align-items:center;gap:30px;font-family:'Sora',sans-serif;font-weight:600;font-size:13.5px;">
+      <a href={`${home}#about`} class="project-nav-text" style="color:var(--ink-soft);">About</a>
+      <a href={`${home}#works`} class="project-nav-text" style="color:var(--ink-soft);">Works</a>
+      <a href={`${home}#other`} class="project-nav-text" style="color:var(--ink-soft);">Other Projects</a>
+      <a href={switchPath(Astro.url.pathname)} class="lang-switch" hreflang={t("en", "ja")} lang={t("en", "ja")}>{t("EN", "JP")}</a>
+      <a href={`${home}#contact`} class="btn" style="padding:11px 22px;font-size:13px;">Contact</a>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,10 @@
 ---
+import { useT } from "../i18n.js";
+
+const { lang = "ja" } = Astro.props;
+const t = useT(lang);
+const en = lang === "en";
+
 const floatingTools = [
   {
     src: "/images/ps-tool.png",
@@ -75,24 +81,42 @@ const tools = [
   <div class="wrap" style="position:relative;z-index:2;">
     <div class="eyebrow">About Me</div>
     <h2 class="disp" style="font-size:clamp(32px,4vw,46px);font-weight:800;color:var(--ink);">
-      <span style="display:inline-block;">香港生まれ、</span><span style="display:inline-block;">日本在住の</span><br /><span style="display:inline-block;"><span style="display:inline-block;">マルチリンガル</span><span style="display:inline-block;">UI/UXデザイナー</span></span>
+      {
+        en ? (
+          <Fragment>Born in Hong Kong, based in Japan —<br />a multilingual UI/UX designer</Fragment>
+        ) : (
+          <Fragment><span style="display:inline-block;">香港生まれ、</span><span style="display:inline-block;">日本在住の</span><br /><span style="display:inline-block;"><span style="display:inline-block;">マルチリンガル</span><span style="display:inline-block;">UI/UXデザイナー</span></span></Fragment>
+        )
+      }
     </h2>
 
-    <div class="grid-2" style="margin-top:48px;">
+    <div class="grid-2" style="margin-top:48px;column-gap:72px;">
       <div class="about-card" style="display:flex;flex-direction:column;gap:20px;font-size:15.5px;line-height:1.9;color:var(--ink-soft);">
         <p style="margin:0;">
-          香港出身。2015年にワーキングホリデーで来日し、現在は日本国籍を取得。広東語（母語）、日本語、英語、中国語を操るマルチリンガルです。香港で約2年間のWebデザイナー経験を経て、現在は関西を拠点に東京の企業へフルリモート勤務しています。
+          {t(
+            "香港出身。2015年にワーキングホリデーで来日し、現在は日本国籍を取得。広東語（母語）、日本語、英語、中国語を操るマルチリンガルです。香港で約2年間のWebデザイナー経験を経て、現在は関西を拠点に東京の企業へフルリモート勤務しています。",
+            "I’m from Hong Kong. I came to Japan on a working holiday visa in 2015 and have since become a Japanese citizen. I speak Cantonese (native), Japanese, English and Mandarin Chinese. After about two years as a web designer in Hong Kong, I now live in the Kansai region and work fully remotely for a company in Tokyo.",
+          )}
         </p>
         <p style="margin:0;">
-          Web・アプリのメインUI/UXデザイナーとして約13年のキャリアを持ち、特に多言語展開や大規模WEBサイトのデザイン・構築に強みがあります。前職の株式会社ミツエーリンクスでは約7年間、大手企業の日本国内およびグローバルサイトのUI/UX改善や多言語対応を担当し、CV率や売上向上に貢献しました。
+          {t(
+            "Web・アプリのメインUI/UXデザイナーとして約13年のキャリアを持ち、特に多言語展開や大規模WEBサイトのデザイン・構築に強みがあります。前職の株式会社ミツエーリンクスでは約7年間、大手企業の日本国内およびグローバルサイトのUI/UX改善や多言語対応を担当し、CV率や売上向上に貢献しました。",
+            "I have about 13 years of experience as a lead UI/UX designer for websites and apps, with particular strength in multilingual rollouts and the design and build of large-scale websites. At my previous company, Mitsue-Links Co., Ltd., I spent about seven years improving the UI/UX of major corporations’ Japanese and global websites and handling their localization, helping raise conversion rates and sales.",
+          )}
         </p>
       </div>
       <div class="about-card" style="display:flex;flex-direction:column;gap:20px;font-size:15.5px;line-height:1.9;color:var(--ink-soft);">
         <p style="margin:0;">
-          現職のミライズエネチェンジ株式会社では、自社サービスの各種イベントサイト制作をはじめ、新規事業「EV PLUS」の立ち上げにおけるアートディレクション（ビジュアル方針の策定）や、アプリのUIUXデザインおよび継続的な改善まで、メインデザイナーとして幅広く携わっています。
+          {t(
+            "現職のミライズエネチェンジ株式会社では、自社サービスの各種イベントサイト制作をはじめ、新規事業「EV PLUS」の立ち上げにおけるアートディレクション（ビジュアル方針の策定）や、アプリのUIUXデザインおよび継続的な改善まで、メインデザイナーとして幅広く携わっています。",
+            "At my current company, MIRAIZ ENECHANGE Co., Ltd., I work as the lead designer across a wide range of projects: event and campaign sites for our services, art direction (setting the visual direction) for the launch of the new business “EV PLUS”, and the UI/UX design and ongoing improvement of our app.",
+          )}
         </p>
         <p style="margin:0;">
-          画面デザインにとどまらず、ビジュアルの方向性策定やチームマネジメント、改善提案まで柔軟に対応できる点、そして多文化理解に基づいた国際的な視点が強みです。
+          {t(
+            "画面デザインにとどまらず、ビジュアルの方向性策定やチームマネジメント、改善提案まで柔軟に対応できる点、そして多文化理解に基づいた国際的な視点が強みです。",
+            "My strengths go beyond screen design: I’m comfortable setting visual direction, managing a team and proposing improvements, and I bring an international perspective grounded in an understanding of many cultures.",
+          )}
         </p>
       </div>
     </div>

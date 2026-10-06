@@ -1,4 +1,8 @@
 ---
+import { useT } from "../i18n.js";
+
+const { lang = "ja" } = Astro.props;
+const t = useT(lang);
 ---
 
 <section id="home" class="section">
@@ -18,7 +22,7 @@
         Nice to meet you.
       </h1>
       <p class="disp" style="margin:16px 0 0 0;font-size:clamp(16px,2.6vw,19px);font-weight:600;color:var(--ink-soft);">
-        UI / UX Designer — 4カ国語を操るマルチリンガル、13年のキャリア
+        {t("UI / UX Designer — 4カ国語を操るマルチリンガル、13年のキャリア", "UI / UX Designer — Quadrilingual, with 13 years of experience")}
       </p>
       <div style="display:flex;gap:16px;margin-top:26px;flex-wrap:wrap;">
         <a href="#contact" class="btn">
@@ -35,7 +39,7 @@
         </a>
         <a href="#works" class="btn-outline">
           <span class="btn-outline-fill">
-            <span class="btn-outline-text">実績を見る</span>
+            <span class="btn-outline-text">{t("実績を見る", "View My Work")}</span>
           </span>
         </a>
       </div>

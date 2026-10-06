@@ -1,0 +1,144 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Contact from "../../../components/Contact.astro";
+import ProjectNav from "../../../components/ProjectNav.astro";
+import ToolStickers from "../../../components/ToolStickers.astro";
+import { otherProjects, localize } from "../../../data/otherProjects.js";
+import { langParams, getLang, useT, localePath } from "../../../i18n.js";
+
+export function getStaticPaths() {
+  return langParams.map((params) => ({ params }));
+}
+
+const lang = getLang(Astro.params.lang);
+const t = useT(lang);
+const project = localize(otherProjects.find((p) => p.slug === "ev-diagnosis"), lang);
+---
+
+<Layout lang={lang} title={`${project.label} — Kai Usui Portfolio`} description={project.concept}>
+  <div style="min-height:100vh;position:relative;background:#eef4fb;">
+    <ProjectNav lang={lang} />
+
+    <section class="section" style="padding-top:80px;padding-bottom:50px;position:relative;">
+      <ToolStickers tools={"Figma（UIデザイン） Illustrator・Photoshop（イラスト）"} />
+      <div
+        class="ghost"
+        style="position:absolute;top:20px;left:50%;transform:translateX(-50%);font-size:clamp(60px,10vw,150px);z-index:0;opacity:.7;white-space:nowrap;"
+      >
+        MY WORKS
+      </div>
+      <div class="wrap" style="position:relative;z-index:1;">
+        <div style="text-align:center;">
+          <div class="eyebrow" style="justify-content:center;">Portfolio</div>
+          <h1 class="disp" style="font-size:clamp(34px,4.6vw,52px);font-weight:800;color:var(--ink);">CASE {project.caseNumber}</h1>
+          <a href={localePath(lang, "/") + "#other"} style="font-size:13.5px;color:var(--accent-2);display:inline-block;margin-top:10px;">← Back to home</a>
+        </div>
+
+        <!-- ============ CASE 08 ============ -->
+        <div style="margin-top:56px;">
+          <div class="case-media-grid">
+            <a
+              href="/images/diag-full.jpg"
+              target="_blank"
+              rel="noopener"
+              class="shot-panel lightbox-trigger"
+              style="display:flex;align-items:center;justify-content:center;"
+            >
+              <img src="/images/diag-top.jpg" style="width:100%;object-fit:contain;border-radius:10px;" alt={t("おすすめEV診断", "EV Recommendation Quiz")} />
+              <span class="expand-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 3H3v6M15 3h6v6M9 21H3v-6M15 21h6v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </a>
+            <div>
+              <div class="case-num">CASE {project.caseNumber}</div>
+              <h2 class="disp case-title-lg">{t("おすすめEV診断 — EV PLUSのEV選びサポートコンテンツ", "EV Recommendation Quiz — Helping EV PLUS Readers Choose an EV")}</h2>
+              <hr class="divider" style="margin:24px 0;max-width:120px;" />
+              <div class="meta-label">{t("期間", "Duration")}</div>
+              <p class="meta-value">{t("約2週間", "About 2 weeks")}</p>
+              <div class="meta-label">{t("チーム構成", "Team")}</div>
+              <p class="meta-value">{t("デザイナー1（自身）", "1 designer (me)")}<br />{t("ディレクター1", "1 director")}<br />{t("エンジニア1", "1 engineer")}</p>
+              <a href="https://ev-plus.jp/ev-diagnosis/" target="_blank" rel="noopener" class="btn-ghost" style="font-size:13px;padding:10px 20px;margin-top:8px;display:inline-flex;">{t("Live サイトを見る ↗", "View live site ↗")}</a>
+            </div>
+          </div>
+
+          <div class="ghost-mid">DETAILS</div>
+
+          <div class="grid-3 detail-grid">
+            <div>
+              <h4 class="disp detail-heading">{t("背景・課題", "Background & Challenge")}</h4>
+              <p class="detail-text">{t("EVへの関心が高まる一方で、「車種が多くて、自分に合うEVがわからない」という声も少なくありません。そこでEV PLUSのコンテンツとして、6つの質問に答えるだけで暮らしに合ったEVを提案する診断コンテンツを制作しました。", "While interest in EVs is growing, many people say, “There are so many models, I don’t know which EV is right for me.” So, as content for EV PLUS, we created a quiz that recommends an EV to suit your lifestyle after you answer just six questions.")}</p>
+              <h4 class="disp detail-heading" style="margin-top:32px;">{t("目的・KPI", "Goals & KPIs")}</h4>
+              <ul class="detail-list">
+                <li>{t("どのEVを選べばよいか迷うユーザーに、自分に合うEVを気軽に見つけてもらう", "Help users unsure which EV to choose easily find one that suits them")}</li>
+                <li>{t("診断結果からサイト内のEV紹介記事へ誘導する", "Lead users from their results to EV articles on the site")}</li>
+                <li>{t("EVの購入検討・購入につなげる", "Encourage users to consider and buy an EV")}</li>
+              </ul>
+              <h4 class="disp detail-heading" style="margin-top:32px;">{t("担当範囲", "My Role")}</h4>
+              <ul class="detail-list">
+                <li>{t("診断フロー（トップ・質問・ローディング・結果）のUIデザイン（SP / PC）", "UI design of the quiz flow — top, questions, loading and results (mobile / desktop)")}</li>
+                <li>{t("診断結果のイラスト", "Result illustrations")}</li>
+                <li>{t("OGP・記事導線バナーのデザイン", "OGP image and in-article banners")}</li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="disp detail-heading">{t("アプローチ・工夫点", "Approach")}</h4>
+              <p class="detail-text"><b style="color:var(--ink);">{t("1. 迷わず答えられる1画面1問の構成", "1. One question per screen, so answering is effortless")}</b><br />{t("1画面に質問を1つだけ置き、選択肢をタップするだけで次へ進む構成に。画面下部の進捗バーで残りの質問数がわかるようにし、最後まで気軽に答えられるようにしました。", "Each screen has just one question, and tapping an option moves on to the next. A progress bar at the bottom shows how many questions are left, so users can comfortably answer to the end.")}</p>
+              <p class="detail-text" style="margin-top:14px;"><b style="color:var(--ink);">{t("2. 結果が楽しみになるイラスト", "2. Illustrations that make the results something to look forward to")}</b><br />{t("トップや結果ページには、EVのある暮らしを描いたやわらかいトーンのイラストを使用。診断タイプごとにイラストを用意し、結果を見るワクワク感を演出しました。", "The top and result pages use soft-toned illustrations of life with an EV. Each result type has its own illustration, adding excitement to seeing the result.")}</p>
+              <p class="detail-text" style="margin-top:14px;"><b style="color:var(--ink);">{t("3. 記事から診断へつなぐ導線", "3. Paths from articles to the quiz")}</b><br />{t("「かんたん1分！」「EV選び、迷っていませんか？」といったコピーのOGPとバナーを制作し、SNSや記事から診断へ自然に流入できる導線を設計しました。", "I created an OGP image and banners with copy such as “Just 1 minute!” and “Not sure which EV to choose?”, designing paths that naturally bring people to the quiz from social media and articles.")}</p>
+              <h4 class="disp detail-heading" style="margin-top:32px;">{t("キーワード", "Keywords")}</h4>
+              <ul class="detail-list">
+                <li>{t("親しみやすい", "Approachable")}</li>
+                <li>{t("気軽・かんたん", "Easy & casual")}</li>
+                <li>{t("ワクワク感", "Exciting")}</li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="disp detail-heading">{t("メインカラー", "Main Colors")}</h4>
+              <div class="swatch-row">
+                <div class="swatch"><span style="background:#C60D31;"></span>#C60D31</div>
+                <div class="swatch"><span style="background:#02BCC5;"></span>#02BCC5</div>
+                <div class="swatch"><span style="background:#141414;"></span>#141414</div>
+                <div class="swatch"><span style="background:#F6F6F6;border:1px solid var(--border);"></span>#F6F6F6</div>
+              </div>
+              <h4 class="disp detail-heading" style="margin-top:32px;">{t("使用ツール・技術", "Tools & Skills")}</h4>
+              <p class="detail-text">{t("Figma（UIデザイン）", "Figma (UI design)")}<br />{t("Illustrator・Photoshop（イラスト）", "Illustrator, Photoshop (illustrations)")}</p>
+              <h4 class="disp detail-heading" style="margin-top:32px;">{t("成果", "Results")}</h4>
+              <p class="detail-text">{t("EV PLUSの常設コンテンツとして公開。サイトのフッターや記事内バナーから診断に入れる導線を整え、EV選びに迷うユーザーの入口となり、診断結果からEV紹介記事への回遊にもつなげています。", "Published as permanent content on EV PLUS. With entry points from the site footer and in-article banners, it serves as a starting point for users unsure which EV to choose, and leads them from their results on to EV articles.")}</p>
+            </div>
+          </div>
+
+          <div class="case-showcase-2col">
+            <div>
+              <a href="/images/diag-detail01.png" target="_blank" rel="noopener" class="lightbox-trigger" style="display:block;">
+                <img src="/images/diag-detail01.png" class="imgbox" alt={t("診断の質問画面", "Quiz question screens")} />
+                <span class="expand-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 3H3v6M15 3h6v6M9 21H3v-6M15 21h6v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+              </a>
+              <p class="detail-text" style="margin-top:16px;">{t("住まい・充電スタイル・車のタイプ・利用シーン・乗車人数・車に求めることの6問で構成。どの質問も2〜5個の選択肢から選ぶだけで、迷わず進めます。", "Six questions cover housing, charging style, vehicle type, how the car will be used, number of passengers and what you want from a car. Each question has just 2–5 options, so users can move ahead without hesitation.")}</p>
+            </div>
+            <div>
+              <a href="/images/diag-detail02.png" target="_blank" rel="noopener" class="lightbox-trigger" style="display:block;">
+                <img src="/images/diag-detail02.png" class="imgbox" alt={t("OGPと記事導線バナー", "OGP image and in-article banner")} />
+                <span class="expand-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 3H3v6M15 3h6v6M9 21H3v-6M15 21h6v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+              </a>
+              <p class="detail-text" style="margin-top:16px;">{t("SNSシェア用のOGPと、記事内に置く導線バナー。診断トップと同じイラストとトーンでそろえ、どこから入っても同じ世界観で診断を始められるようにしました。", "The OGP image for social sharing and the in-article banner. Both use the same illustration and tone as the quiz top page, so the quiz starts with the same look and feel wherever users come from.")}</p>
+            </div>
+          </div>
+
+          <div class="case-mockup">
+            <img src="/images/diag-thedesign.png" class="no-shadow" alt={t("THE DESIGN — おすすめEV診断", "THE DESIGN — EV Recommendation Quiz")} />
+          </div>
+
+          <div class="case-cta" style="text-align:center;margin-top:4px;">
+            <a href="#contact" class="btn">Contact Me</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <Contact lang={lang} />
+  </div>
+</Layout>

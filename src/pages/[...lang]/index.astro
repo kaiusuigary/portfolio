@@ -1,0 +1,27 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Nav from "../../components/Nav.astro";
+import Hero from "../../components/Hero.astro";
+import About from "../../components/About.astro";
+import Works from "../../components/Works.astro";
+import OtherProjects from "../../components/OtherProjects.astro";
+import Contact from "../../components/Contact.astro";
+import { langParams, getLang } from "../../i18n.js";
+
+export function getStaticPaths() {
+  return langParams.map((params) => ({ params }));
+}
+
+const lang = getLang(Astro.params.lang);
+---
+
+<Layout lang={lang}>
+  <div style="min-height:100vh;position:relative;background:#eef4fb;">
+    <Nav lang={lang} />
+    <Hero lang={lang} />
+    <About lang={lang} />
+    <Works lang={lang} />
+    <OtherProjects lang={lang} />
+    <Contact lang={lang} />
+  </div>
+</Layout>

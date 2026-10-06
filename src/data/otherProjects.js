@@ -1,6 +1,11 @@
 export const otherProjects = [
   {
     slug: "ev-diagnosis",
+    en: {
+      alt: "EV Recommendation Quiz",
+      label: "Interactive Content — EV Recommendation Quiz",
+      concept: "A quiz that recommends an EV to suit your lifestyle after just six questions. Built as content for EV PLUS, I designed the quiz flow UI along with the OGP image and in-article banners that lead to it.",
+    },
     src: "/images/diag-card.jpg",
     alt: "おすすめEV診断",
     label: "診断コンテンツ — おすすめEV診断",
@@ -12,6 +17,11 @@ export const otherProjects = [
   },
   {
     slug: "ev-life-program",
+    en: {
+      alt: "EV Life Program LP",
+      label: "LP — EV Life Program",
+      concept: "The landing page for the “EV Life Program”, where users earn points by charging and posting reviews and receive perks based on their rank. The design explains how the program works and its perks at a glance, leading visitors to sign up in the app.",
+    },
     src: "/images/elp-card.jpg",
     alt: "EV Life Program LP",
     label: "LP — EV Life Program",
@@ -23,6 +33,11 @@ export const otherProjects = [
   },
   {
     slug: "ev-life-support-program",
+    en: {
+      alt: "EV Life Support Program LP",
+      label: "Campaign LP — EV Life Support Program",
+      concept: "The landing page for the “EV Life Support Program”, which gives buyers of a new EV or PHEV charging coupons (worth up to ¥1,800) to use in the app. The design conveys the perk and how to enter at a glance, encouraging people to take part.",
+    },
     src: "/images/els-card.jpg",
     alt: "EVライフ応援制度 LP",
     label: "キャンペーンLP — EVライフ応援制度",
@@ -34,6 +49,11 @@ export const otherProjects = [
   },
   {
     slug: "odekake-map",
+    en: {
+      alt: "EVsmart Park Outing Map",
+      label: "Community Feature — Outing Map",
+      concept: "The “Outing Map”, a new feature in the EV owners’ community “EVsmart Park” that shows members’ trip posts on a map of Japan. I designed the main visual, the map and the badges.",
+    },
     src: "/images/odm-card.jpg",
     alt: "EVsmart Park おでかけマップ",
     label: "コミュニティ機能 — おでかけマップ",
@@ -45,6 +65,16 @@ export const otherProjects = [
   },
   {
     slug: "smart-speaker",
+    en: {
+      alt: "Smart speaker product LP",
+      label: "Product LP — Smart Speaker",
+      linkLabel: "View live site ↗",
+      period: "3 weeks",
+      team: "1 designer (me), 1 front-end developer",
+      concept: "A product landing page conveying the appeal of a newly launched smart speaker. Visuals that evoke everyday life with voice control, together with clearly organized specs, aim to increase purchase intent.",
+      keywords: ["Minimal", "Cutting-edge", "Blends into daily life"],
+      tools: "Photoshop (visuals)\nIllustrator (icons and graphics)",
+    },
     src: "/images/proj1.jpg",
     alt: "スマートスピーカー 製品LP",
     label: "プロダクトLP — スマートスピーカー",
@@ -60,6 +90,15 @@ export const otherProjects = [
   },
   {
     slug: "3d-scanning",
+    en: {
+      alt: "3D scanning product LP",
+      label: "Product LP — 3D Scanning Device",
+      period: "1 month",
+      team: "1 designer (me), 2 front-end developers",
+      concept: "A B2B introduction page for an industrial 3D scanning device. Simple visuals and figure-led messaging convey its technical reliability and high precision.",
+      keywords: ["Precise", "Trustworthy", "Technical"],
+      tools: "Photoshop (visuals)\nAdobe XD (UI design comps)",
+    },
     src: "/images/proj3.jpg",
     alt: "3Dスキャニング製品LP",
     label: "プロダクトLP — 3Dスキャニング機器",
@@ -74,6 +113,15 @@ export const otherProjects = [
   },
   {
     slug: "campaign-lp",
+    en: {
+      alt: "Campaign LP",
+      label: "Campaign LP",
+      period: "2 weeks",
+      team: "1 designer (me)",
+      concept: "A landing page promoting a limited-time campaign. Eye-catching, playful visuals and a clear presentation of the perks aimed to build awareness quickly and maximize entries in a short period.",
+      keywords: ["Playful", "Eye-catching", "Short and intensive"],
+      tools: "Photoshop (visuals)\nIllustrator (icons and graphics)",
+    },
     src: "/images/proj5.jpg",
     alt: "キャンペーンLP",
     label: "キャンペーンLP",
@@ -88,6 +136,15 @@ export const otherProjects = [
   },
   {
     slug: "video-media-template",
+    en: {
+      alt: "Video media site template",
+      label: "Web Template — Video Media",
+      period: "1 month",
+      team: "1 designer (me), 1 front-end developer",
+      concept: "A general-purpose template design for video media sites. Built on a dark tone, the layout prioritizes thumbnail visibility and easy browsing between videos.",
+      keywords: ["Dark mode", "Immersive", "Easy to browse"],
+      tools: "Photoshop (visuals)\nAdobe XD (UI design comps)",
+    },
     src: "/images/proj4.jpg",
     alt: "動画メディアサイト テンプレート",
     label: "Webテンプレート — 動画メディア",
@@ -102,6 +159,16 @@ export const otherProjects = [
   },
   {
     slug: "package-design",
+    en: {
+      alt: "Beverage package product page",
+      label: "Package Design",
+      linkLabel: "View live site ↗",
+      period: "3 weeks",
+      team: "1 designer (me)",
+      concept: "A package design that balances shelf visibility with brand image. Color and texture create a premium feel.",
+      keywords: ["Premium", "Shelf appeal", "Branding"],
+      tools: "Illustrator (package artwork)\nPhotoshop (textures)",
+    },
     src: "/images/proj-juice.png",
     alt: "飲料パッケージ 製品ページ",
     label: "パッケージデザイン",
@@ -117,6 +184,16 @@ export const otherProjects = [
   },
   {
     slug: "tourism-poster",
+    en: {
+      alt: "Tourism poster design",
+      label: "Graphic — Tourism Poster",
+      linkLabel: "View live site ↗",
+      period: "2 weeks",
+      team: "1 designer (me)",
+      concept: "A poster promoting regional tourism. Combining photography and typography, the visual is designed to make people want to travel.",
+      keywords: ["Impactful", "Seasonal", "Regional promotion"],
+      tools: "Photoshop (photo editing)\nIllustrator (typography)",
+    },
     src: "/images/proj6.jpg",
     alt: "観光ポスターデザイン",
     label: "グラフィック — 観光ポスター",
@@ -132,6 +209,16 @@ export const otherProjects = [
   },
   {
     slug: "parapara-manga",
+    en: {
+      alt: "Flip-book animation commercial for a renovation company",
+      label: "Flip-Book Animation Commercial — Mirai Biiku",
+      linkLabel: "Watch the video ↗",
+      period: "8 weeks",
+      team: "1 designer (me), 1 editor",
+      concept: "A commercial for a renovation company. Valuing customers’ feelings, it tells a warm family story — even when the outside of a home changes, the memories stay the same — through a hand-drawn flip-book animation.",
+      keywords: ["Moving", "Memories", "Family"],
+      tools: "Hand-drawn illustration (pencil and paper)\nAfter Effects (stop-motion editing)",
+    },
     src: "/images/proj9-manga.png",
     alt: "パラパラ漫画 リノベーション会社CM",
     label: "パラパラ漫画CM — 未来美育",
@@ -147,6 +234,15 @@ export const otherProjects = [
   },
   {
     slug: "csv-sustainability",
+    en: {
+      alt: "Sustainability special site",
+      label: "Sustainability Special Site",
+      period: "1.5 months",
+      team: "1 designer (me), 2 front-end developers",
+      concept: "A special site communicating a company’s CSV (Creating Shared Value) initiatives. A wide range of topics — environment, people, procurement and more — is organized with a modular design that color-codes each area, with readability as the priority.",
+      keywords: ["Trustworthy", "Well-organized", "Sustainable"],
+      tools: "Photoshop (graphics)\nIllustrator (icons and infographics)",
+    },
     src: "/images/proj7-csv.jpg",
     alt: "サステナビリティ特設サイト",
     label: "サステナビリティ特設サイト",
@@ -161,6 +257,15 @@ export const otherProjects = [
   },
   {
     slug: "rpa-software",
+    en: {
+      alt: "RPA software product LP",
+      label: "RPA Software Product LP",
+      period: "3 weeks",
+      team: "1 designer (me), 1 front-end developer",
+      concept: "A product landing page for business automation (RPA) software. A friendly robot character and visuals that make technical features easy to grasp intuitively carry the message.",
+      keywords: ["Approachable", "Efficiency", "Technical"],
+      tools: "Photoshop (visuals)\nIllustrator (character and icons)",
+    },
     src: "/images/proj8-rpa.jpg",
     alt: "RPAソフトウェア 製品LP",
     label: "RPAソフトウェア 製品LP",
@@ -174,3 +279,8 @@ export const otherProjects = [
     tools: "Photoshop（ビジュアル制作）\nIllustrator（キャラクター・アイコン）",
   },
 ];
+
+// 言語に合わせて英語の項目で上書きした project を返す
+export function localize(project, lang) {
+  return lang === "en" && project.en ? { ...project, ...project.en } : project;
+}

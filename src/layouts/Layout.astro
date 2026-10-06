@@ -1,21 +1,36 @@
 ---
+import { switchPath } from "../i18n.js";
+
 interface Props {
   title?: string;
   description?: string;
+  lang?: "ja" | "en";
 }
 
+const { lang = "ja" } = Astro.props;
 const {
   title = "Kai Usui Portfolio",
-  description = "Kai Usui — UI/UX Designer Portfolio. 4カ国語を操るマルチリンガル、13年のキャリア。",
+  description = lang === "en"
+    ? "Kai Usui — UI/UX Designer Portfolio. A quadrilingual designer with 13 years of experience."
+    : "Kai Usui — UI/UX Designer Portfolio. 4カ国語を操るマルチリンガル、13年のキャリア。",
 } = Astro.props;
+
+const site = "https://kaiusuiportfolio.com";
+const here = Astro.url.pathname;
+const other = switchPath(here);
+const jaPath = lang === "ja" ? here : other;
+const enPath = lang === "en" ? here : other;
 ---
 
-<html lang="ja">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="alternate" hreflang="ja" href={site + jaPath} />
+    <link rel="alternate" hreflang="en" href={site + enPath} />
+    <link rel="alternate" hreflang="x-default" href={site + jaPath} />
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="icon" type="image/png" href="/icon-192.png" sizes="192x192" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -467,7 +482,7 @@ const {
         gap: 24px;
       }
       .about-card {
-        padding: 36px;
+        padding: 36px 0;
       }
       .case-num {
         font-family: "Sora", sans-serif;
@@ -617,6 +632,27 @@ const {
         font-weight: 600;
         font-size: 13.5px;
       }
+      .lang-switch {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 7px 14px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: var(--glass-2);
+        color: var(--ink-soft);
+        font-family: "Sora", sans-serif;
+        font-weight: 700;
+        font-size: 12.5px;
+        letter-spacing: 0.08em;
+      }
+      .lang-switch:hover {
+        border-color: var(--accent-2);
+        color: var(--accent-2);
+      }
+      .lang-switch--mobile {
+        display: none;
+      }
       .nav-toggle-checkbox {
         display: none;
       }
@@ -677,6 +713,20 @@ const {
         .nav-toggle-btn {
           display: flex;
         }
+        .lang-switch--mobile {
+          display: inline-flex;
+          margin-left: auto;
+          margin-right: 10px;
+        }
+        .nav-links .lang-switch {
+          display: none;
+        }
+        .project-nav-links {
+          gap: 10px !important;
+        }
+        .project-nav-text {
+          display: none;
+        }
         .nav-links {
           display: none;
           position: absolute;
@@ -730,7 +780,7 @@ const {
           margin: 64px 0 20px 0;
         }
         .about-card {
-          padding: 24px;
+          padding: 24px 0;
         }
         .contact-panel {
           padding: 48px 26px;
