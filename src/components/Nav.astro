@@ -32,3 +32,13 @@ const t = useT(lang);
     </div>
   </div>
 </div>
+
+<script>
+  // スマホのメニューでリンクを押したらメニューを閉じる
+  const toggle = document.getElementById("nav-toggle") as HTMLInputElement | null;
+  document.querySelectorAll(".nav-links a").forEach((a) => {
+    a.addEventListener("click", () => {
+      if (toggle) toggle.checked = false;
+    });
+  });
+</script>

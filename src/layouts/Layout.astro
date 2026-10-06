@@ -70,6 +70,7 @@ const enPath = lang === "en" ? here : other;
       html {
         scrollbar-color: var(--border) var(--bg-1);
         scrollbar-width: thin;
+        overflow-x: clip;
       }
       ::-webkit-scrollbar {
         width: 12px;
@@ -90,7 +91,7 @@ const enPath = lang === "en" ? here : other;
         color: var(--ink);
         font-family: "Noto Sans JP", sans-serif;
         -webkit-font-smoothing: antialiased;
-        overflow-x: hidden;
+        overflow-x: clip; /* 飾りの大きな文字などで横スクロールさせない */
       }
       .disp {
         font-family: "Sora", "Noto Sans JP", sans-serif;
@@ -144,6 +145,18 @@ const enPath = lang === "en" ? here : other;
       }
       h2 {
         line-height: 1.3;
+      }
+      /* 見出しの最後の行に1〜2文字だけ残る改行を避け、日本語は文節で折り返す */
+      h1,
+      h2,
+      h3 {
+        text-wrap: pretty;
+      }
+      :lang(ja) h1,
+      :lang(ja) h2,
+      :lang(ja) h3 {
+        word-break: auto-phrase;
+        overflow-wrap: anywhere; /* 文節が長すぎて収まらないときは途中でも折り返す */
       }
       .btn {
         display: inline-flex;
@@ -620,6 +633,7 @@ const enPath = lang === "en" ? here : other;
       /* Nav */
       .nav-bar {
         position: relative;
+        overflow: visible; /* .glass の overflow:hidden だとスマホのメニューが切れる */
         display: flex;
         align-items: center;
         justify-content: space-between;
