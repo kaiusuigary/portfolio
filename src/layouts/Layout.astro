@@ -1,5 +1,6 @@
 ---
 import { switchPath } from "../i18n.js";
+import PageTop from "../components/PageTop.astro";
 
 interface Props {
   title?: string;
@@ -810,5 +811,6 @@ const enPath = lang === "en" ? here : other;
   </head>
   <body>
     <slot />
+    <PageTop lang={lang} />
   </body>
 </html>

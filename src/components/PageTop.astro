@@ -1,0 +1,108 @@
+---
+// ページトップへ戻るボタン（細い矢印の線＋縦書きの PAGE TOP）。少しスクロールすると表示される
+const { lang = "ja" } = Astro.props;
+---
+
+<button type="button" class="pagetop" aria-label={lang === "en" ? "Back to top" : "ページの先頭へ戻る"}>
+  <svg class="pagetop-arrow" viewBox="0 0 12 64" aria-hidden="true">
+    <path d="M6 1v62M6 1 1 9" />
+  </svg>
+  <span class="pagetop-label" aria-hidden="true">PAGE TOP</span>
+</button>
+
+<script>
+  const btn = document.querySelector<HTMLButtonElement>(".pagetop");
+  if (btn) {
+    const footer = document.querySelector(".site-footer");
+    const baseBottom = () => (window.innerWidth <= 780 ? 20 : 32);
+    const update = () => {
+      btn.classList.toggle("is-active", window.scrollY > 600);
+      // フッターに重ならないよう、フッターが見えたらその 40px 上で止める
+      const overlap = footer ? window.innerHeight - footer.getBoundingClientRect().top : 0;
+      btn.style.bottom = `${Math.max(baseBottom(), overlap + 40)}px`;
+    };
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    btn.addEventListener("click", () => {
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+    });
+  }
+</script>
+
+<style>
+  .pagetop {
+    position: fixed;
+    right: 28px;
+    bottom: 32px;
+    z-index: 90;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 6px;
+    border: 0;
+    background: none;
+    color: var(--ink-faint);
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(12px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s, color 0.2s ease;
+  }
+  .pagetop.is-active {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+  .pagetop:hover,
+  .pagetop:focus-visible {
+    color: var(--accent);
+  }
+  .pagetop:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+    border-radius: 4px;
+  }
+  .pagetop-arrow {
+    width: 12px;
+    height: 64px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.2;
+    stroke-linecap: round;
+    transition: transform 0.3s ease;
+  }
+  .pagetop:hover .pagetop-arrow {
+    transform: translateY(-6px);
+  }
+  .pagetop-label {
+    writing-mode: vertical-rl;
+    font-family: "Sora", sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+  }
+
+  @media (max-width: 780px) {
+    .pagetop {
+      right: 10px;
+      bottom: 20px;
+      gap: 8px;
+    }
+    .pagetop-arrow {
+      height: 44px;
+    }
+    .pagetop-label {
+      font-size: 10px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pagetop,
+    .pagetop-arrow {
+      transition: none;
+    }
+  }
+</style>
