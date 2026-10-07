@@ -6,7 +6,7 @@ const t = useT(lang);
 
 // サイドのタグは「日本語版での top（px）＋ 英語版で各 CASE がずれる量」で配置
 // （英語は文章が長く CASE の位置が下がるため。CASE の高さが変わったら測り直す）
-const enShift = [0, 173, 224, 336, 356, 374, 514];
+const enShift = [0, 51, 224, 275, 387, 407, 425, 565];
 const top = (caseNo, jaTop) => jaTop + (lang === "en" ? enShift[caseNo - 1] : 0);
 ---
 
@@ -21,34 +21,38 @@ const top = (caseNo, jaTop) => jaTop + (lang === "en" ? enShift[caseNo - 1] : 0)
   <!-- CASE 01 tool tags -->
   <div class="sticker" style={`top:${top(1, 280)}px;right:2%;transform:rotate(-6deg);`}>FIGMA</div>
   <div class="sticker" style={`top:${top(1, 400)}px;left:3.5%;transform:rotate(5deg);`}>ILLUSTRATOR</div>
-  <div class="sticker" style={`top:${top(1, 520)}px;right:1%;transform:rotate(7deg);`}>PHOTOSHOP</div>
 
   <!-- CASE 02 tool tags -->
-  <div class="sticker" style={`top:${top(2, 3362)}px;right:2%;transform:rotate(-6deg);`}>ILLUSTRATOR</div>
-  <div class="sticker" style={`top:${top(2, 3482)}px;left:3.5%;transform:rotate(5deg);`}>PHOTOSHOP</div>
-  <div class="sticker" style={`top:${top(2, 3602)}px;right:1%;transform:rotate(7deg);`}>FIGMA</div>
+  <div class="sticker" style={`top:${top(2, 3378)}px;right:2%;transform:rotate(-6deg);`}>FIGMA</div>
+  <div class="sticker" style={`top:${top(2, 3498)}px;left:3.5%;transform:rotate(5deg);`}>ILLUSTRATOR</div>
+  <div class="sticker" style={`top:${top(2, 3618)}px;right:1%;transform:rotate(7deg);`}>PHOTOSHOP</div>
 
   <!-- CASE 03 tool tags -->
-  <div class="sticker" style={`top:${top(3, 6906)}px;right:2%;transform:rotate(-6deg);`}>FIGMA</div>
-  <div class="sticker" style={`top:${top(3, 7026)}px;left:3.5%;transform:rotate(5deg);`}>PHOTOSHOP</div>
-  <div class="sticker" style={`top:${top(3, 7146)}px;right:1%;transform:rotate(7deg);`}>ILLUSTRATOR</div>
+  <div class="sticker" style={`top:${top(3, 6460)}px;right:2%;transform:rotate(-6deg);`}>ILLUSTRATOR</div>
+  <div class="sticker" style={`top:${top(3, 6580)}px;left:3.5%;transform:rotate(5deg);`}>PHOTOSHOP</div>
+  <div class="sticker" style={`top:${top(3, 6700)}px;right:1%;transform:rotate(7deg);`}>FIGMA</div>
 
   <!-- CASE 04 tool tags -->
-  <div class="sticker" style={`top:${top(4, 9897)}px;right:2%;transform:rotate(-6deg);`}>ILLUSTRATOR</div>
-  <div class="sticker" style={`top:${top(4, 10017)}px;left:3.5%;transform:rotate(5deg);`}>FIGMA</div>
+  <div class="sticker" style={`top:${top(4, 10004)}px;right:2%;transform:rotate(-6deg);`}>FIGMA</div>
+  <div class="sticker" style={`top:${top(4, 10124)}px;left:3.5%;transform:rotate(5deg);`}>PHOTOSHOP</div>
+  <div class="sticker" style={`top:${top(4, 10244)}px;right:1%;transform:rotate(7deg);`}>ILLUSTRATOR</div>
 
   <!-- CASE 05 tool tags -->
-  <div class="sticker" style={`top:${top(5, 12887)}px;right:2%;transform:rotate(-6deg);`}>PHOTOSHOP</div>
-  <div class="sticker" style={`top:${top(5, 13007)}px;left:3.5%;transform:rotate(5deg);`}>ADOBE XD</div>
-  <div class="sticker" style={`top:${top(5, 13127)}px;right:1%;transform:rotate(7deg);`}>AFTER EFFECTS</div>
+  <div class="sticker" style={`top:${top(5, 12995)}px;right:2%;transform:rotate(-6deg);`}>ILLUSTRATOR</div>
+  <div class="sticker" style={`top:${top(5, 13115)}px;left:3.5%;transform:rotate(5deg);`}>FIGMA</div>
 
   <!-- CASE 06 tool tags -->
-  <div class="sticker" style={`top:${top(6, 16000)}px;left:3.5%;transform:rotate(5deg);`}>PHOTOSHOP</div>
+  <div class="sticker" style={`top:${top(6, 15985)}px;right:2%;transform:rotate(-6deg);`}>PHOTOSHOP</div>
+  <div class="sticker" style={`top:${top(6, 16105)}px;left:3.5%;transform:rotate(5deg);`}>ADOBE XD</div>
+  <div class="sticker" style={`top:${top(6, 16225)}px;right:1%;transform:rotate(7deg);`}>AFTER EFFECTS</div>
 
   <!-- CASE 07 tool tags -->
-  <div class="sticker" style={`top:${top(7, 18818)}px;right:2%;transform:rotate(-6deg);`}>PHOTOSHOP</div>
-  <div class="sticker" style={`top:${top(7, 18938)}px;left:3.5%;transform:rotate(5deg);`}>ADOBE XD</div>
-  <div class="sticker" style={`top:${top(7, 19058)}px;right:1%;transform:rotate(7deg);`}>WEBFLOW</div>
+  <div class="sticker" style={`top:${top(7, 19098)}px;left:3.5%;transform:rotate(5deg);`}>PHOTOSHOP</div>
+
+  <!-- CASE 08 tool tags -->
+  <div class="sticker" style={`top:${top(8, 21916)}px;right:2%;transform:rotate(-6deg);`}>PHOTOSHOP</div>
+  <div class="sticker" style={`top:${top(8, 22036)}px;left:3.5%;transform:rotate(5deg);`}>ADOBE XD</div>
+  <div class="sticker" style={`top:${top(8, 22156)}px;right:1%;transform:rotate(7deg);`}>WEBFLOW</div>
 
   <div class="wrap">
     <div class="eyebrow">My Works</div>
@@ -58,19 +62,122 @@ const top = (caseNo, jaTop) => jaTop + (lang === "en" ? enShift[caseNo - 1] : 0)
     <div style="margin-top:80px;">
       <div class="case-media-grid">
         <a
-          href="/images/app-full.jpg"
+          href="/images/badge-full.jpg"
           target="_blank"
           rel="noopener"
           class="shot-panel lightbox-trigger"
           style="display:flex;align-items:center;justify-content:center;"
         >
-          <img src="/images/app-top.jpg" style="width:100%;object-fit:contain;border-radius:10px;" alt={t("EV充電エネチェンジ アプリ", "EV Charge ENECHANGE app")} />
+          <img src="/images/badge-top.jpg" style="width:100%;object-fit:contain;border-radius:10px;" alt={t("EV充電エネチェンジ アプリ マイバッジ機能", "EV Charge ENECHANGE app — My Badge feature")} />
           <span class="expand-icon">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 3H3v6M15 3h6v6M9 21H3v-6M15 21h6v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </span>
         </a>
         <div>
           <div class="case-num">CASE 01</div>
+          <h3 class="disp case-title-lg">{t("EV充電エネチェンジ アプリ v4.1.0 — 新機能「マイバッジ」", "EV Charge ENECHANGE App v4.1.0 — New “My Badge” Feature")}</h3>
+          <hr class="divider" style="margin:24px 0;max-width:120px;" />
+          <div class="meta-label">{t("期間", "Duration")}</div>
+          <p class="meta-value">{t("約1ヶ月", "About 1 month")}</p>
+          <div class="meta-label">{t("チーム構成", "Team")}</div>
+          <p class="meta-value">{t("デザイナー1（自身）", "1 designer (me)")}<br />{t("ディレクター1", "1 director")}<br />{t("エンジニア2", "2 engineers")}</p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px;">
+            <a href="https://apps.apple.com/jp/app/id911721775" target="_blank" rel="noopener" class="btn-ghost" style="font-size:13px;padding:10px 20px;display:inline-flex;">App Store ↗</a>
+            <a href="https://play.google.com/store/apps/details?id=net.evsmart" target="_blank" rel="noopener" class="btn-ghost" style="font-size:13px;padding:10px 20px;display:inline-flex;">Google Play ↗</a>
+            <a href="https://ev-plus.jp/news/important-notice/v4-1-0-update/" target="_blank" rel="noopener" class="btn-ghost" style="font-size:13px;padding:10px 20px;display:inline-flex;">{t("v4.1.0 アップデートのお知らせ ↗", "v4.1.0 release notes (JP) ↗")}</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="ghost-mid">DETAILS</div>
+
+      <div class="grid-3 detail-grid">
+        <div>
+          <h4 class="disp detail-heading">{t("背景・課題", "Background & Challenge")}</h4>
+          <p class="detail-text">{t("2026年7月31日配信のv4.1.0で追加された新機能「マイバッジ」。充電や口コミ投稿など、アプリの利用に応じてバッジを獲得・コレクションできる機能です。v4.0「ニコラ」で始まったEVライフプログラムに続き、「使うたびに楽しい」アプリ体験をさらに広げることが求められました。", "“My Badge”, a new feature added in v4.1.0 (released July 31, 2026). Users earn and collect badges as they use the app — charging, posting reviews and more. Following the EV Life Program launched in v4.0 “Nikola”, the goal was to further extend an app experience that’s “fun every time you use it”.")}</p>
+          <h4 class="disp detail-heading" style="margin-top:32px;">{t("目的・KPI", "Goals & KPIs")}</h4>
+          <ul class="detail-list">
+            <li>{t("アプリを継続して使う動機づけ", "Give users a reason to keep using the app")}</li>
+            <li>{t("口コミ・写真投稿の促進", "Encourage review and photo posts")}</li>
+            <li>{t("アプリへのロイヤルティを高め、充電利用と売上につなげる", "Build loyalty to the app, driving charging usage and revenue")}</li>
+          </ul>
+          <h4 class="disp detail-heading" style="margin-top:32px;">{t("担当範囲", "My Role")}</h4>
+          <ul class="detail-list">
+            <li>{t("マイバッジ画面のUI/UXデザイン", "UI/UX design of the My Badge screen")}</li>
+            <li>{t("バッジ獲得時のモーダルのデザイン", "Design of the badge-earned modal")}</li>
+            <li>{t("ホーム画面のマイバッジ導線バナー", "My Badge entry banner on the Home screen")}</li>
+            <li>{t("バッジのデザイン", "Badge design")}</li>
+            <li>{t("プロトタイピング", "Prototyping")}</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="disp detail-heading">{t("アプローチ・工夫点", "Approach")}</h4>
+          <p class="detail-text"><b style="color:var(--ink);">{t("1. 集めたくなるコレクション画面", "1. A collection screen that makes you want to collect")}</b><br />{t("充電・おでかけ・口コミなど、アクションの種類ごとにバッジを並べ、ブロンズ・シルバー・ゴールドと段階的に色が変わるデザインに。次に何を目指せばいいかがひと目でわかり、「全部そろえたい」と思える一覧にしました。", "Badges are grouped by type of action — charging, going out, reviews and more — and change color step by step from bronze to silver to gold. Users can see at a glance what to aim for next, and the list makes them want to complete the set.")}</p>
+          <p class="detail-text" style="margin-top:14px;"><b style="color:var(--ink);">{t("2. 獲得の瞬間を祝う演出", "2. Celebrating the moment you earn a badge")}</b><br />{t("バッジを獲得すると、紙吹雪とともにバッジと獲得条件を表示するモーダルを用意。達成感を味わえる瞬間をつくり、次のアクションへの意欲につなげています。", "When a badge is earned, a modal shows the badge and how it was earned, with confetti. It creates a moment of accomplishment that motivates the next action.")}</p>
+          <p class="detail-text" style="margin-top:14px;"><b style="color:var(--ink);">{t("3. ステージと連動したアイコンフレーム", "3. Icon frames linked to program stages")}</b><br />{t("EVライフプログラムのPlatinum・Diamondステージに応じたアイコンフレームを選べるようにし、プログラムとの一体感と特別感を演出。ライト・ダークの両モードでも世界観が崩れないよう配色を調整しました。", "Users can choose icon frames that match their EV Life Program stage (Platinum, Diamond), tying the feature to the program and adding a sense of status. Colors were tuned so the look holds up in both light and dark mode.")}</p>
+          <h4 class="disp detail-heading" style="margin-top:32px;">{t("キーワード", "Keywords")}</h4>
+          <ul class="detail-list">
+            <li>{t("集める楽しさ", "The joy of collecting")}</li>
+            <li>{t("達成感", "Sense of accomplishment")}</li>
+            <li>{t("特別感", "Feeling special")}</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="disp detail-heading">{t("メインカラー", "Main Colors")}</h4>
+          <div class="swatch-row">
+            <div class="swatch"><span style="background:#A04276;"></span>#A04276</div>
+            <div class="swatch"><span style="background:#662B4F;"></span>#662B4F</div>
+            <div class="swatch"><span style="background:#C60D31;"></span>#C60D31</div>
+            <div class="swatch"><span style="background:#FFE2AB;"></span>#FFE2AB</div>
+            <div class="swatch"><span style="background:#121212;"></span>#121212</div>
+          </div>
+          <h4 class="disp detail-heading" style="margin-top:32px;">{t("使用ツール・技術", "Tools & Skills")}</h4>
+          <p class="detail-text">{t("Figma（UIデザイン）", "Figma (UI design)")}<br />{t("Illustrator（バッジデザイン）", "Illustrator (badge design)")}</p>
+        </div>
+      </div>
+
+      <div class="case-showcase-2col">
+        <div>
+          <img src="/images/badge-detail01.png" class="imgbox" alt={t("マイバッジ画面（ライト・ダーク）", "My Badge screen (light and dark)")} />
+          <p class="detail-text" style="margin-top:16px;">{t("マイバッジ画面。アイコンフレームとアクションバッジをカードにまとめ、ライト・ダークどちらのモードでも見やすい配色にしています。", "The My Badge screen. Icon frames and action badges are grouped into cards, with colors that stay easy to read in both light and dark mode.")}</p>
+        </div>
+        <div>
+          <img src="/images/badge-detail02.png" class="imgbox" alt={t("ホームの導線バナーとバッジ獲得モーダル", "Home entry banner and badge-earned modal")} />
+          <p class="detail-text" style="margin-top:16px;">{t("ホーム画面の「マイバッジコレクション」バナー（左）と、バッジ獲得時のモーダル（右）。ホームから自然に機能を知ってもらい、獲得の瞬間を印象的に演出しています。", "The “My Badge Collection” banner on the Home screen (left) and the badge-earned modal (right). Users discover the feature naturally from Home, and the moment of earning a badge is made memorable.")}</p>
+        </div>
+      </div>
+
+      <div class="case-mockup">
+        <a href="/images/badge-thedesign3.png" target="_blank" rel="noopener" class="lightbox-trigger" style="display:block;max-width:720px;margin:0 auto;">
+          <img src="/images/badge-thedesign3.png" class="no-shadow" alt={t("THE DESIGN — マイバッジ画面と、デザインしたバッジ", "THE DESIGN — My Badge screens and the badges I designed")} />
+          <span class="expand-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 3H3v6M15 3h6v6M9 21H3v-6M15 21h6v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
+      </div>
+
+      <div class="case-cta" style="text-align:center;margin-top:4px;">
+        <a href="#contact" class="btn">Contact Me</a>
+      </div>
+    </div>
+
+    <!-- ============ CASE 02 ============ -->
+    <div style="margin-top:120px;">
+      <div class="case-media-grid">
+        <a
+          href="/images/app-full2.jpg"
+          target="_blank"
+          rel="noopener"
+          class="shot-panel lightbox-trigger"
+          style="display:flex;align-items:center;justify-content:center;"
+        >
+          <img src="/images/app-top2.jpg" style="width:100%;object-fit:contain;border-radius:10px;" alt={t("EV充電エネチェンジ アプリ", "EV Charge ENECHANGE app")} />
+          <span class="expand-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 3H3v6M15 3h6v6M9 21H3v-6M15 21h6v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
+        <div>
+          <div class="case-num">CASE 02</div>
           <h3 class="disp case-title-lg">{t("EV充電エネチェンジ アプリ改修 — v4.0「ニコラ」メジャーアップデート", "EV Charge ENECHANGE App Redesign — v4.0 “Nikola” Major Update")}</h3>
           <hr class="divider" style="margin:24px 0;max-width:120px;" />
           <div class="meta-label">{t("期間", "Duration")}</div>
@@ -154,7 +261,7 @@ const top = (caseNo, jaTop) => jaTop + (lang === "en" ? enShift[caseNo - 1] : 0)
       </div>
     </div>
 
-    <!-- ============ CASE 02 ============ -->
+    <!-- ============ CASE 03 ============ -->
     <div style="margin-top:120px;">
       <div class="case-media-grid">
         <a
@@ -170,7 +277,7 @@ const top = (caseNo, jaTop) => jaTop + (lang === "en" ? enShift[caseNo - 1] : 0)
           </span>
         </a>
         <div>
-          <div class="case-num">CASE 02</div>
+          <div class="case-num">CASE 03</div>
           <h3 class="disp case-title-lg">{t("EV PLUS — EVオーナー向けライフスタイルメディアの立ち上げ", "EV PLUS — Launching a Lifestyle Media Site for EV Owners")}</h3>
           <hr class="divider" style="margin:24px 0;max-width:120px;" />
           <div class="meta-label">{t("期間", "Duration")}</div>
@@ -252,7 +359,7 @@ const top = (caseNo, jaTop) => jaTop + (lang === "en" ? enShift[caseNo - 1] : 0)
       </div>
     </div>
 
-    <!-- ============ CASE 03 ============ -->
+    <!-- ============ CASE 04 ============ -->
     <div style="margin-top:120px;">
       <div class="case-media-grid">
         <a
@@ -268,7 +375,7 @@ const top = (caseNo, jaTop) => jaTop + (lang === "en" ? enShift[caseNo - 1] : 0)
           </span>
         </a>
         <div>
-          <div class="case-num">CASE 03</div>
+          <div class="case-num">CASE 04</div>
           <h3 class="disp case-title-lg">{t("EV STAY & CHARGE — EV充電できる宿泊施設の紹介サイト", "EV STAY & CHARGE — A Guide to Hotels with EV Charging")}</h3>
           <hr class="divider" style="margin:24px 0;max-width:120px;" />
           <div class="meta-label">{t("期間", "Duration")}</div>
@@ -344,7 +451,7 @@ const top = (caseNo, jaTop) => jaTop + (lang === "en" ? enShift[caseNo - 1] : 0)
       </div>
     </div>
 
-    <!-- ============ CASE 04 ============ -->
+    <!-- ============ CASE 05 ============ -->
     <div style="margin-top:120px;">
       <div class="case-media-grid">
         <a
@@ -360,7 +467,7 @@ const top = (caseNo, jaTop) => jaTop + (lang === "en" ? enShift[caseNo - 1] : 0)
           </span>
         </a>
         <div>
-          <div class="case-num">CASE 04</div>
+          <div class="case-num">CASE 05</div>
           <h3 class="disp case-title-lg">{t("「そうだ、箱根に行こう！」— EVおでかけ推進プロジェクト キャンペーンページ", "“Let’s Go to Hakone!” — EV Outing Promotion Project Campaign Page")}</h3>
           <hr class="divider" style="margin:24px 0;max-width:120px;" />
           <div class="meta-label">{t("期間", "Duration")}</div>
@@ -436,7 +543,7 @@ const top = (caseNo, jaTop) => jaTop + (lang === "en" ? enShift[caseNo - 1] : 0)
       </div>
     </div>
 
-    <!-- ============ CASE 05 ============ -->
+    <!-- ============ CASE 06 ============ -->
     <div style="margin-top:120px;">
       <div class="case-media-grid">
         <a
@@ -452,7 +559,7 @@ const top = (caseNo, jaTop) => jaTop + (lang === "en" ? enShift[caseNo - 1] : 0)
           </span>
         </a>
         <div>
-          <div class="case-num">CASE 05</div>
+          <div class="case-num">CASE 06</div>
           <h3 class="disp case-title-lg">{t("大手企業の新商品特化ページ", "New Product Page for a Major Company")}</h3>
           <hr class="divider" style="margin:24px 0;max-width:120px;" />
           <div class="meta-label">{t("期間", "Duration")}</div>
@@ -536,7 +643,7 @@ const top = (caseNo, jaTop) => jaTop + (lang === "en" ? enShift[caseNo - 1] : 0)
       </div>
     </div>
 
-    <!-- ============ CASE 06 ============ -->
+    <!-- ============ CASE 07 ============ -->
     <div style="margin-top:120px;">
       <div class="case-media-grid">
         <a
@@ -552,7 +659,7 @@ const top = (caseNo, jaTop) => jaTop + (lang === "en" ? enShift[caseNo - 1] : 0)
           </span>
         </a>
         <div>
-          <div class="case-num">CASE 06</div>
+          <div class="case-num">CASE 07</div>
           <h3 class="disp case-title-lg">{t("大手企業の既存商品ラインアップページ リニューアル", "Product Lineup Page Redesign for a Major Company")}</h3>
           <hr class="divider" style="margin:24px 0;max-width:120px;" />
           <div class="meta-label">{t("期間", "Duration")}</div>
@@ -626,7 +733,7 @@ const top = (caseNo, jaTop) => jaTop + (lang === "en" ? enShift[caseNo - 1] : 0)
       </div>
     </div>
 
-    <!-- ============ CASE 07 ============ -->
+    <!-- ============ CASE 08 ============ -->
     <div style="margin-top:120px;">
       <div class="case-media-grid">
         <a
@@ -642,7 +749,7 @@ const top = (caseNo, jaTop) => jaTop + (lang === "en" ? enShift[caseNo - 1] : 0)
           </span>
         </a>
         <div>
-          <div class="case-num">CASE 07</div>
+          <div class="case-num">CASE 08</div>
           <h3 class="disp case-title-lg">{t("YES Pay — クレジットカード連携型電子マネーサービス（自主制作）", "YES Pay — A Credit Card–Linked E-Money Service (Personal Project)")}</h3>
           <hr class="divider" style="margin:24px 0;max-width:120px;" />
           <div class="meta-label">{t("期間", "Duration")}</div>

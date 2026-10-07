@@ -9,8 +9,8 @@ export const otherProjects = [
     src: "/images/diag-card.jpg",
     alt: "おすすめEV診断",
     label: "診断コンテンツ — おすすめEV診断",
-    caseNumber: "08",
-    // CASE 01〜07と同じ詳細フォーマットの専用ページ（src/pages/projects/ev-diagnosis.astro）
+    caseNumber: "09",
+    // CASE 01〜08と同じ詳細フォーマットの専用ページ（src/pages/projects/ev-diagnosis.astro）
     customPage: true,
     concept:
       "6つの質問に答えるだけで、暮らしに合ったEVを提案する診断コンテンツ。EV PLUSのコンテンツとして、診断フローのUIとOGP・記事導線バナーをデザインしました。",
@@ -25,8 +25,8 @@ export const otherProjects = [
     src: "/images/elp-card.jpg",
     alt: "EV Life Program LP",
     label: "LP — EV Life Program",
-    caseNumber: "09",
-    // CASE 01〜07と同じ詳細フォーマットの専用ページ（src/pages/projects/ev-life-program.astro）
+    caseNumber: "10",
+    // CASE 01〜08と同じ詳細フォーマットの専用ページ（src/pages/projects/ev-life-program.astro）
     customPage: true,
     concept:
       "充電や口コミ投稿でポイントがたまり、ランクに応じた特典が受けられる「EV Life Program」のLP。プログラムの仕組みと特典をひと目で伝え、アプリからの参加登録につなげるデザインにしました。",
@@ -41,8 +41,8 @@ export const otherProjects = [
     src: "/images/els-card.jpg",
     alt: "EVライフ応援制度 LP",
     label: "キャンペーンLP — EVライフ応援制度",
-    caseNumber: "10",
-    // CASE 01〜07と同じ詳細フォーマットの専用ページ（src/pages/projects/ev-life-support-program.astro）
+    caseNumber: "11",
+    // CASE 01〜08と同じ詳細フォーマットの専用ページ（src/pages/projects/ev-life-support-program.astro）
     customPage: true,
     concept:
       "EV・PHEVの新車を購入した方に、アプリで使える充電クーポン（最大1,800円分）をプレゼントする「EVライフ応援制度」のLP。特典とエントリー方法をひと目で伝え、参加につなげるデザインにしました。",
@@ -57,8 +57,8 @@ export const otherProjects = [
     src: "/images/odm-card.jpg",
     alt: "EVsmart Park おでかけマップ",
     label: "コミュニティ機能 — おでかけマップ",
-    caseNumber: "11",
-    // CASE 01〜07と同じ詳細フォーマットの専用ページ（src/pages/projects/odekake-map.astro）
+    caseNumber: "12",
+    // CASE 01〜08と同じ詳細フォーマットの専用ページ（src/pages/projects/odekake-map.astro）
     customPage: true,
     concept:
       "EVオーナーのコミュニティ「EVsmart Park」に新設した、メンバーのおでかけ投稿を日本地図で見られる「おでかけマップ」。メインビジュアルとマップ、バッジのデザインを担当しました。",
@@ -78,7 +78,7 @@ export const otherProjects = [
     src: "/images/proj1.jpg",
     alt: "スマートスピーカー 製品LP",
     label: "プロダクトLP — スマートスピーカー",
-    caseNumber: "12",
+    caseNumber: "13",
     liveUrl: "https://dark-xspeaker.webflow.io/",
     linkLabel: "Live サイトを見る ↗",
     period: "3週間",
@@ -102,7 +102,7 @@ export const otherProjects = [
     src: "/images/proj3.jpg",
     alt: "3Dスキャニング製品LP",
     label: "プロダクトLP — 3Dスキャニング機器",
-    caseNumber: "13",
+    caseNumber: "14",
     fullImage: "/images/proj3-full.jpg",
     period: "1ヶ月",
     team: "デザイナー1（自身）・コーダー2",
@@ -125,7 +125,7 @@ export const otherProjects = [
     src: "/images/proj5.jpg",
     alt: "キャンペーンLP",
     label: "キャンペーンLP",
-    caseNumber: "14",
+    caseNumber: "15",
     fullImage: "/images/proj5-full.jpg",
     period: "2週間",
     team: "デザイナー1（自身）",
@@ -148,7 +148,7 @@ export const otherProjects = [
     src: "/images/proj4.jpg",
     alt: "動画メディアサイト テンプレート",
     label: "Webテンプレート — 動画メディア",
-    caseNumber: "15",
+    caseNumber: "16",
     fullImage: "/images/proj4-full.jpg",
     period: "1ヶ月",
     team: "デザイナー1（自身）・コーダー1",
@@ -172,7 +172,7 @@ export const otherProjects = [
     src: "/images/proj-juice.png",
     alt: "飲料パッケージ 製品ページ",
     label: "パッケージデザイン",
-    caseNumber: "16",
+    caseNumber: "17",
     liveUrl: "/works/juicy-juicy/",
     linkLabel: "Live サイトを見る ↗",
     period: "3週間",
@@ -197,7 +197,7 @@ export const otherProjects = [
     src: "/images/proj6.jpg",
     alt: "観光ポスターデザイン",
     label: "グラフィック — 観光ポスター",
-    caseNumber: "17",
+    caseNumber: "18",
     liveUrl: "https://visitncometohk.webflow.io/",
     linkLabel: "Live サイトを見る ↗",
     period: "2週間",
@@ -222,7 +222,7 @@ export const otherProjects = [
     src: "/images/proj9-manga.png",
     alt: "パラパラ漫画 リノベーション会社CM",
     label: "パラパラ漫画CM — 未来美育",
-    caseNumber: "18",
+    caseNumber: "19",
     liveUrl: "https://www.youtube.com/watch?v=DBSoqSIYHtU",
     linkLabel: "動画を見る ↗",
     period: "8週間",
@@ -246,7 +246,7 @@ export const otherProjects = [
     src: "/images/proj7-csv.jpg",
     alt: "サステナビリティ特設サイト",
     label: "サステナビリティ特設サイト",
-    caseNumber: "19",
+    caseNumber: "20",
     fullImage: "/images/proj7-csv.jpg",
     period: "1ヶ月半",
     team: "デザイナー1（自身）・コーダー2",
@@ -269,7 +269,7 @@ export const otherProjects = [
     src: "/images/proj8-rpa.jpg",
     alt: "RPAソフトウェア 製品LP",
     label: "RPAソフトウェア 製品LP",
-    caseNumber: "20",
+    caseNumber: "21",
     fullImage: "/images/proj8-rpa.jpg",
     period: "3週間",
     team: "デザイナー1（自身）・コーダー1",
