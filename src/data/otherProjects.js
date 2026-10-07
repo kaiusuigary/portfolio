@@ -173,7 +173,7 @@ export const otherProjects = [
     alt: "飲料パッケージ 製品ページ",
     label: "パッケージデザイン",
     caseNumber: "16",
-    liveUrl: "https://juicy-juicy-drink.webflow.io/",
+    liveUrl: "/works/juicy-juicy/",
     linkLabel: "Live サイトを見る ↗",
     period: "3週間",
     team: "デザイナー1（自身）",
