@@ -1,0 +1,58 @@
+---
+// WORKS の分類別一覧ページ（ヘッダーのプルダウン・トップの分類ボタンからの移動先）
+import Layout from "../../../layouts/Layout.astro";
+import Contact from "../../../components/Contact.astro";
+import ProjectNav from "../../../components/ProjectNav.astro";
+import CategoryTabs from "../../../components/CategoryTabs.astro";
+import { categories, casesIn } from "../../../data/categories.js";
+import { langParams, getLang, useT, localePath } from "../../../i18n.js";
+
+export function getStaticPaths() {
+  return langParams.flatMap(({ lang }) => categories.map((c) => ({ params: { lang, category: c.id }, props: { category: c } })));
+}
+
+const lang = getLang(Astro.params.lang);
+const t = useT(lang);
+const { category } = Astro.props;
+const name = t(category.ja, category.en);
+const cases = casesIn(category.id, lang);
+---
+
+<Layout lang={lang} title={`${name} — Works — Kai Usui Portfolio`} description={t(`${name}での制作実績の一覧です。`, `Works for ${name}.`)}>
+  <div style="min-height:100vh;position:relative;background:#eef4fb;">
+    <ProjectNav lang={lang} />
+
+    <section class="section" style="padding-top:80px;position:relative;">
+      <div
+        class="ghost"
+        style="position:absolute;top:20px;left:50%;transform:translateX(-50%);font-size:clamp(60px,10vw,150px);z-index:0;opacity:.7;white-space:nowrap;"
+      >
+        WORKS
+      </div>
+      <div class="wrap" style="position:relative;z-index:1;">
+        <div style="text-align:center;">
+          <div class="eyebrow" style="justify-content:center;">My Works</div>
+          <h1 class="disp" style="font-size:clamp(30px,4.2vw,48px);font-weight:800;color:var(--ink);">{name}</h1>
+          <p style="font-size:13.5px;color:var(--ink-faint);margin-top:10px;">{t(`${cases.length}件の制作実績`, `${cases.length} projects`)}</p>
+          <a href={localePath(lang, "/") + "#works"} style="font-size:13.5px;color:var(--accent-2);display:inline-block;margin-top:10px;">← Back to home</a>
+        </div>
+
+        <CategoryTabs lang={lang} current={category.id} center />
+
+        <div class="projects-grid" style="margin-top:44px;">
+          {
+            cases.map((c) => (
+              <a href={localePath(lang, c.path)} class="project-card" style="padding:14px;display:block;">
+                <img src={c.src} style="width:100%;display:block;aspect-ratio:4/5;object-fit:cover;border-radius:16px;" alt={c.label} />
+                <div style="padding:14px 4px 0 4px;font-family:'Sora',sans-serif;font-size:11.5px;font-weight:700;letter-spacing:.08em;color:var(--accent-2);">CASE {c.caseNumber}</div>
+                <div style="padding:4px 4px 4px 4px;font-size:12.5px;font-weight:600;color:var(--ink-soft);">{c.label}</div>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <Contact lang={lang} />
+  </div>
+</Layout>

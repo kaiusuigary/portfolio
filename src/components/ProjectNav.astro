@@ -1,6 +1,7 @@
 ---
 // プロジェクト詳細ページ共通のナビ（トップページの各セクションへ戻るリンク＋言語切り替え）
 import { useT, localePath, switchPath } from "../i18n.js";
+import WorksMenu from "./WorksMenu.astro";
 
 const { lang = "ja" } = Astro.props;
 const t = useT(lang);
@@ -18,7 +19,7 @@ const home = localePath(lang, "/");
     </a>
     <div class="project-nav-links" style="display:flex;align-items:center;gap:30px;font-family:'Sora',sans-serif;font-weight:600;font-size:13.5px;">
       <a href={`${home}#about`} class="project-nav-text" style="color:var(--ink-soft);">About</a>
-      <a href={`${home}#works`} class="project-nav-text" style="color:var(--ink-soft);">Works</a>
+      <WorksMenu lang={lang} href={`${home}#works`} class="project-nav-text" />
       <a href={`${home}#other`} class="project-nav-text" style="color:var(--ink-soft);">Other Projects</a>
       <a href={switchPath(Astro.url.pathname)} class="lang-switch" hreflang={t("en", "ja")} lang={t("en", "ja")}>{t("EN", "JP")}</a>
       <a href={`${home}#contact`} class="btn" style="padding:11px 22px;font-size:13px;">Contact</a>

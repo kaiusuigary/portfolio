@@ -1,0 +1,36 @@
+---
+// WORKS の分類ボタン（各分類の一覧ページへ）。current は今いる分類の id
+import { categories } from "../data/categories.js";
+import { useT, localePath } from "../i18n.js";
+
+const { lang = "ja", current, center = false } = Astro.props;
+const t = useT(lang);
+---
+
+<nav class:list={["category-tabs", { "category-tabs--center": center }]} aria-label={t("制作実績の分類", "Work categories")}>
+  {
+    categories.map((c) => (
+      <a
+        href={localePath(lang, `/category/${c.id}/`)}
+        class:list={["category-tab", { "is-current": c.id === current }]}
+        aria-current={c.id === current ? "page" : undefined}
+      >
+        {t(c.ja, c.en)}
+      </a>
+    ))
+  }
+</nav>
+
+<style>
+  .category-tabs { display: flex; flex-wrap: wrap; gap: 10px; }
+  .category-tabs--center { justify-content: center; margin-top: 34px; }
+  .category-tab {
+    display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 999px;
+    border: 1px solid var(--border); background: var(--glass-2); color: var(--ink-soft);
+    font-family: "Sora", sans-serif; font-weight: 600; font-size: 13px; transition: border-color .2s, color .2s, background .2s;
+  }
+  .category-tab::after { content: "→"; font-size: 12px; opacity: .6; }
+  .category-tab:hover { border-color: var(--accent-2); color: var(--accent-2); }
+  .category-tab.is-current { background: var(--ink); border-color: var(--ink); color: #fff; }
+  .category-tab.is-current::after { content: none; }
+</style>

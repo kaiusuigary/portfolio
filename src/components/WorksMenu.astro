@@ -1,0 +1,40 @@
+---
+// ヘッダーの「Works」＋分類プルダウン（PC はホバー／フォーカスで開く、スマホのメニュー内では常に表示）
+import { categories } from "../data/categories.js";
+import { useT, localePath } from "../i18n.js";
+
+const { lang = "ja", href, class: extra } = Astro.props;
+const t = useT(lang);
+---
+
+<div class:list={["nav-dd", extra]}>
+  <a href={href} class="nav-dd-trigger" style="color:var(--ink-soft);" aria-haspopup="true">Works<span class="nav-dd-caret" aria-hidden="true"></span></a>
+  <div class="nav-dd-menu">
+    <div class="nav-dd-panel">
+      {categories.map((c) => <a href={localePath(lang, `/category/${c.id}/`)}>{t(c.ja, c.en)}</a>)}
+    </div>
+  </div>
+</div>
+
+<style is:global>
+  .nav-dd { position: relative; }
+  .nav-dd-trigger { display: inline-flex; align-items: center; gap: 6px; }
+  .nav-dd-caret { width: 6px; height: 6px; margin-top: -3px; border: solid currentColor; border-width: 0 1.6px 1.6px 0; transform: rotate(45deg); opacity: .7; transition: transform .2s; }
+  .nav-dd-menu { position: absolute; top: 100%; left: 50%; transform: translateX(-50%); padding-top: 14px; display: none; z-index: 50; }
+  .nav-dd:hover .nav-dd-menu, .nav-dd:focus-within .nav-dd-menu { display: block; }
+  .nav-dd:hover .nav-dd-caret, .nav-dd:focus-within .nav-dd-caret { transform: rotate(225deg); margin-top: 3px; }
+  .nav-dd-panel {
+    display: flex; flex-direction: column; min-width: 210px; padding: 8px; border-radius: 18px;
+    background: var(--bg-2, #fff); border: 1px solid var(--border); box-shadow: 0 18px 40px -12px rgba(16, 27, 52, .28);
+  }
+  .nav-dd-panel a { padding: 10px 14px; border-radius: 12px; color: var(--ink-soft); white-space: nowrap; font-weight: 600; }
+  .nav-dd-panel a:hover, .nav-dd-panel a:focus-visible { background: var(--glass-2); color: var(--accent-2); }
+
+  /* スマホ：ハンバーガーメニューの中で分類を下に並べて表示 */
+  @media (max-width: 1060px) {
+    .nav-links .nav-dd-menu { position: static; transform: none; display: block; padding-top: 6px; }
+    .nav-links .nav-dd-caret { display: none; }
+    .nav-links .nav-dd-panel { background: none; border: 0; box-shadow: none; padding: 0 0 0 14px; min-width: 0; border-left: 2px solid var(--border); border-radius: 0; }
+    .nav-links .nav-dd-panel a { padding: 6px 10px; font-size: 13px; }
+  }
+</style>

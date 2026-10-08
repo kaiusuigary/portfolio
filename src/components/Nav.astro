@@ -1,5 +1,6 @@
 ---
 import { useT, switchPath } from "../i18n.js";
+import WorksMenu from "./WorksMenu.astro";
 
 const { lang = "ja" } = Astro.props;
 const t = useT(lang);
@@ -25,7 +26,7 @@ const t = useT(lang);
 
     <div class="nav-links">
       <a href="#about" style="color:var(--ink-soft);">About</a>
-      <a href="#works" style="color:var(--ink-soft);">Works</a>
+      <WorksMenu lang={lang} href="#works" />
       <a href="#other" style="color:var(--ink-soft);">Other Projects</a>
       <a href={switchPath(Astro.url.pathname)} class="lang-switch" hreflang={t("en", "ja")} lang={t("en", "ja")}>{t("EN", "JP")}</a>
       <a href="#contact" class="btn" style="padding:11px 22px;font-size:13px;">Contact Me</a>
