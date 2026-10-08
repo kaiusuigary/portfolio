@@ -361,6 +361,32 @@ export const otherProjects = [
       full: ["/images/sr-before-full.jpg", "/images/sr-after-full.jpg"],
     },
   },
+  {
+    slug: "ginbasha",
+    en: {
+      alt: "Hyogo Heritage Route tourism booklet and Gin-no-Basha-michi map",
+      label: "Graphic — Hyogo Heritage Route Tourism Booklet & Gin-no-Basha-michi Map",
+      liveUrl: "https://www.gin-basha.jp/pamph/material/en/",
+      linkLabel: "View booklet (English) ↗",
+      period: "1 month",
+      team: "1 designer (me), 1 editor",
+      concept: "Tourism promotion materials for the Hyogo Heritage Route and the historic Gin-no-Basha-michi (Silver Carriage Road). I designed the Japanese and English editions of the tourism booklet and the walking & cycling map — laying out the booklet, organizing scenic spots, model routes and accessibility information, designing maps and icons, and adapting the English edition. The friendly, easy-to-read visuals were well received by domestic and international visitors alike and are used as a regional tourism PR tool.",
+      keywords: ["Easy to read", "Inbound tourism", "Japanese & English"],
+      tools: "Illustrator (layout, maps and icons)",
+    },
+    src: "/images/proj-ginbasha.jpg",
+    alt: "兵庫遺産街道 観光素材集・銀の馬車道マップ",
+    label: "グラフィック — 兵庫遺産街道 観光素材集・銀の馬車道マップ",
+    caseNumber: "25",
+    liveUrl: "https://www.gin-basha.jp/pamph/material/jp/",
+    linkLabel: "観光素材集（日本語版）を見る ↗",
+    period: "1ヶ月",
+    team: "デザイナー1（自身）・エディター1",
+    concept:
+      "兵庫県の観光ルート「兵庫遺産街道」と「銀の馬車道」の観光プロモーション素材。観光ガイドブック・マップの日本語版・英語版のデザインを担当し、ガイドブック全体のレイアウト、絶景スポット・モデルルート・施設のユニバーサル対応情報の整理、地図やアイコンのデザイン、英語版の多言語対応調整、「ウォーキング & サイクリングマップ」の制作を行いました。訪日外国人にも伝わりやすいビジュアルと情報整理が評価され、地域の観光PRツールとして活用されています。",
+    keywords: ["わかりやすさ", "インバウンド対応", "日英2言語"],
+    tools: "Illustrator（レイアウト・地図・アイコン制作）",
+  },
 ];
 
 // 言語に合わせて英語の項目で上書きした project を返す
