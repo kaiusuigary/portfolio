@@ -120,6 +120,13 @@ const linkHref = project.liveUrl || project.fullImage;
 
             <h3 class="detail-heading" style="margin-top:32px;font-size:18px;">{t("使用ツール・技術", "Tools & Skills")}</h3>
             <p class="detail-text" style="white-space:pre-line;margin-top:12px;">{project.tools}</p>
+
+            {project.examples && (
+              <>
+                <h3 class="detail-heading" style="margin-top:32px;font-size:18px;">{t("制作例", "Examples")}</h3>
+                <p class="detail-text" style="margin-top:12px;">{project.examples.join(t("、", ", "))}{t(" など", ", etc.")}</p>
+              </>
+            )}
           </div>
         </div>
       </div>

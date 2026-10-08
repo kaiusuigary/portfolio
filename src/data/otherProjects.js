@@ -303,6 +303,33 @@ export const otherProjects = [
     keywords: ["親しみやすさ", "業務効率化", "テクニカル"],
     tools: "Photoshop（ビジュアル制作）\nIllustrator（キャラクター・アイコン）",
   },
+  {
+    slug: "ecard",
+    en: {
+      alt: "eCard — Christmas & Lunar New Year greeting cards",
+      label: "eCard — Christmas & Lunar New Year Greeting Cards",
+      linkLabel: "View reference site ↗",
+      period: "1 month",
+      team: "1 designer (me)",
+      concept: "Animated electronic greeting cards that companies send to partners and customers for Christmas, Lunar New Year and other occasions. I designed and animated cards, planned and adjusted the motion of cards made by other designers, and created custom cards for client requests. Positive feedback led to additional custom orders, and the cards gave businesses an efficient, modern alternative to paper greeting cards.",
+      keywords: ["Seasonal greetings", "Animation", "Custom design"],
+      tools: "Adobe Flash (animation)\nIllustrator (graphics)",
+    },
+    src: "/images/proj-ecard.jpg",
+    alt: "eCard クリスマス・旧正月向け電子グリーティングカード",
+    label: "eCard — クリスマス・旧正月向け電子グリーティングカード",
+    caseNumber: "23",
+    liveUrl: "https://ecard.pro/en/Christmas-electronic-greeting-card-design",
+    linkLabel: "参考サイトを見る ↗",
+    period: "1ヶ月",
+    team: "デザイナー1（自身）",
+    concept:
+      "企業がクリスマスや旧正月などのイベント時に取引先へ送る、アニメーション付きの電子グリーティングカード。カードのグラフィックデザインとアニメーション制作に加え、他デザイナーが制作したカードの動きの設計・調整や、顧客向けオーダーメイドカードの制作を担当しました。顧客から高評価を受けてオーダーメイドの受注につながり、紙の年賀状に代わって効率よく挨拶を届けられる仕組みを実現しました。",
+    keywords: ["季節のごあいさつ", "アニメーション", "オーダーメイド"],
+    tools: "Adobe Flash（アニメーション制作）\nIllustrator（グラフィック制作）",
+    // ecard.pro のカード番号（両言語共通）
+    examples: ["XC12500119E", "XC12500112Y", "XC12500097R", "XC12500089G", "XC12500102H", "XC12500103M", "XC12500059P", "XC12500069H", "XC12500113X", "XC12500041N", "XC12500045Z", "XC12500054E", "XC12500100G", "XC12500108R", "XC12500109O"],
+  },
 ];
 
 // 言語に合わせて英語の項目で上書きした project を返す
