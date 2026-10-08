@@ -3,6 +3,7 @@ import Layout from "../../../layouts/Layout.astro";
 import Contact from "../../../components/Contact.astro";
 import ProjectNav from "../../../components/ProjectNav.astro";
 import ToolStickers from "../../../components/ToolStickers.astro";
+import BeforeAfter from "../../../components/BeforeAfter.astro";
 import { otherProjects, localize } from "../../../data/otherProjects.js";
 import { langParams, getLang, useT, localePath } from "../../../i18n.js";
 
@@ -131,6 +132,8 @@ const linkHref = project.liveUrl || project.fullImage;
         </div>
       </div>
     </section>
+
+    {project.beforeAfter && <BeforeAfter lang={lang} data={project.beforeAfter} />}
 
     <Contact lang={lang} />
   </div>

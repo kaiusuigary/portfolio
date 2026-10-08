@@ -330,6 +330,37 @@ export const otherProjects = [
     // ecard.pro のカード番号（両言語共通）
     examples: ["XC12500119E", "XC12500112Y", "XC12500097R", "XC12500089G", "XC12500102H", "XC12500103M", "XC12500059P", "XC12500069H", "XC12500113X", "XC12500041N", "XC12500045Z", "XC12500054E", "XC12500100G", "XC12500108R", "XC12500109O"],
   },
+  {
+    slug: "site-renewal",
+    en: {
+      alt: "MIRAIZ ENECHANGE corporate site redesign concept",
+      label: "Corporate Site Redesign Concept — MIRAIZ ENECHANGE (Self-initiated)",
+      linkLabel: "View site ↗",
+      period: "2 weeks",
+      team: "1 designer (me)",
+      concept: "A self-initiated redesign of the MIRAIZ ENECHANGE corporate site (miraiz-enechange.co.jp). I re-prioritized the information across the whole site and rebuilt the layout around the four basic design principles — proximity, alignment, repetition and contrast. A light/dark mode toggle lets visitors view the site in whichever mode suits their environment. The site is fully responsive, and the hero video with the bold “Future of EV” message was designed to present a more cutting-edge image of the company.",
+      keywords: ["Forward-looking", "Trustworthy", "Dark mode"],
+      tools: "Figma (design)\nClaude Code (implementation)",
+    },
+    src: "/images/proj-site-renewal.jpg",
+    alt: "ミライズエネチェンジ コーポレートサイト リニューアル案",
+    label: "コーポレートサイト リニューアル案 — ミライズエネチェンジ（自主制作）",
+    caseNumber: "24",
+    liveUrl: "/works/site-renewal/index.html",
+    linkLabel: "サイトを見る ↗",
+    period: "2週間",
+    team: "デザイナー1（自身）",
+    concept:
+      "ミライズエネチェンジのコーポレートサイト（miraiz-enechange.co.jp）を題材にした自主制作のリニューアル案。サイト全体の情報の優先順位を整理し、デザインの基本4原則「近接」「整列」「反復」「対比（コントラスト）」を改めて見直して構成し直しました。ライトモードとダークモードを切り替えられるようにし、ユーザーが利用環境に合わせて最適なモードで閲覧できます。レスポンシブにも対応し、ファーストビューの動画と「Future of EV」のメッセージで、より最先端の企業イメージをアピールできるサイトをデザインしました。",
+    keywords: ["先進性", "信頼感", "ダークモード対応"],
+    tools: "Figma（デザイン）\nClaude Code（実装）",
+    // 現行サイト（before）とリニューアル案（after）、2026-10-08 キャプチャ
+    beforeAfter: {
+      pc: ["/images/sr-before-pc.jpg", "/images/sr-after-pc.jpg"],
+      sp: ["/images/sr-before-sp.jpg", "/images/sr-after-sp.jpg"],
+      full: ["/images/sr-before-full.jpg", "/images/sr-after-full.jpg"],
+    },
+  },
 ];
 
 // 言語に合わせて英語の項目で上書きした project を返す

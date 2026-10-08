@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 120" width="12" height="120" role="img" aria-label="Scroll mark">
+  <line x1="6" y1="0" x2="6" y2="88" stroke="#cfd6df" stroke-width="1"></line>
+  <line x1="6" y1="8" x2="6" y2="56" stroke="#C60D31" stroke-width="1.5">
+    
+    
+    
+  </line>
+  <text x="6" y="108" text-anchor="middle" font-family="&#39;Cormorant Garamond&#39;, serif" font-size="11" font-style="italic" fill="#4a5768" letter-spacing="0.2em">Scroll</text>
+</svg>
