@@ -9,8 +9,8 @@ export const categories = [
 
 // CASE 番号 → 分類（ここにない番号は「その他」）
 const caseCategory = {
-  "miraiz-enechange": ["01", "02", "03", "04", "05", "09", "10", "11", "12", "24"],
-  "mitsue-links": ["06", "07", "14", "16", "21", "22"],
+  "miraiz-enechange": ["01", "02", "03", "04", "05", "09", "10", "11", "12", "13", "14"],
+  "mitsue-links": ["06", "07", "16", "18", "23", "24"],
 };
 
 export function categoryOf(caseNumber) {
