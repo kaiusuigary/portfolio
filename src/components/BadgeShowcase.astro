@@ -1,0 +1,96 @@
+---
+// Badge grid used on project pages (おでかけマップ, マイバッジ).
+// groups: [{ title, items: [{ src, alt }] }] — groups with more than 12 badges use a fixed column grid.
+// size / spSize: badge size in px on PC / phones (bigger for badges with text on them).
+const { title, description, groups, size = 68, spSize = 42 } = Astro.props;
+---
+
+<div class="badge-showcase" style={`--badge-size:${size}px;--badge-sp-size:${spSize}px;`}>
+  <h4 class="disp detail-heading" style="text-align:center;">{title}</h4>
+  <p class="detail-text" style="margin:12px auto 0;max-width:760px;text-align:center;">{description}</p>
+  {
+    groups.map((g) => (
+      <div class="badge-group">
+        <div class="badge-label">{g.title}</div>
+        <ul class:list={["badge-grid", { "badge-grid--many": g.items.length > 12 }]}>
+          {g.items.map((it) => (
+            <li>
+              <img src={it.src} width="96" height="96" loading="lazy" alt={it.alt} title={it.alt} />
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))
+  }
+</div>
+
+<style>
+  .badge-showcase {
+    /* extra room before the THE DESIGN image that follows */
+    margin: 72px auto 80px;
+    max-width: 960px;
+  }
+  .badge-group {
+    margin-top: 36px;
+  }
+  .badge-label {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--ink-soft);
+    margin-bottom: 14px;
+    text-align: center;
+  }
+  .badge-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+  /* large sets (e.g. 47 prefectures): 12 per row on PC, 8 on tablets, 6 on phones */
+  .badge-grid--many {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    justify-items: center;
+    gap: 14px 10px;
+  }
+  .badge-grid img {
+    display: block;
+    width: var(--badge-size);
+    height: var(--badge-size);
+    object-fit: contain;
+    filter: drop-shadow(0 6px 10px rgba(16, 27, 52, 0.12));
+    transition: transform 0.2s ease;
+  }
+  .badge-grid img:hover {
+    transform: translateY(-4px) scale(1.06);
+  }
+  @media (max-width: 900px) {
+    .badge-grid--many {
+      grid-template-columns: repeat(8, 1fr);
+    }
+  }
+  @media (max-width: 600px) {
+    .badge-showcase {
+      margin-bottom: 48px;
+    }
+    .badge-grid {
+      gap: 6px;
+    }
+    .badge-grid--many {
+      grid-template-columns: repeat(6, 1fr);
+      gap: 8px;
+    }
+    .badge-grid img {
+      width: var(--badge-sp-size);
+      height: var(--badge-sp-size);
+    }
+    .badge-grid--many img {
+      width: 48px;
+      height: 48px;
+    }
+  }
+</style>

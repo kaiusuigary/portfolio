@@ -3,6 +3,7 @@ import Layout from "../../../layouts/Layout.astro";
 import Contact from "../../../components/Contact.astro";
 import ProjectNav from "../../../components/ProjectNav.astro";
 import ToolStickers from "../../../components/ToolStickers.astro";
+import BadgeShowcase from "../../../components/BadgeShowcase.astro";
 import { otherProjects, localize } from "../../../data/otherProjects.js";
 import { langParams, getLang, useT, localePath } from "../../../i18n.js";
 
@@ -42,7 +43,7 @@ const badgeGroups = [
       ["clear-kyushuokinawa", "九州・沖縄", "Kyushu & Okinawa"],
     ],
   },
-];
+].map((g) => ({ ...g, items: g.items.map(([file, ja, en]) => ({ src: `/images/odm-badges/${file}.webp`, alt: t(`${ja}のバッジ`, `${en} badge`) })) }));
 ---
 
 <Layout lang={lang} title={`${project.label} — Kai Usui Portfolio`} description={project.concept}>
@@ -167,24 +168,7 @@ const badgeGroups = [
             <p class="detail-text" style="margin:16px auto 0;max-width:960px;">{t("ダークモードにも対応。地図の塗り分けや投稿数のバッジ、カテゴリの絞り込みは暗い背景でも見やすい配色に調整し、ライトモードと同じ情報がひと目で伝わるようにしました。", "Dark mode is supported too. The map colors, post-count badges and category filters were adjusted to stay legible on a dark background, so the same information comes across at a glance as in light mode.")}</p>
           </div>
 
-          <div class="odm-badges">
-            <h4 class="disp detail-heading" style="text-align:center;">{t("バッジデザイン", "Badge Design")}</h4>
-            <p class="detail-text" style="margin:12px auto 0;max-width:760px;text-align:center;">{t("おでかけの記録に応じて集められるバッジを、全59種類デザインしました。都道府県バッジには各地の名所や名物を描き、県の形とピンを添えて「行った場所」がひと目でわかるようにしています。地方ごとの制覇バッジは、地方の形をモチーフにしました。", "I designed all 59 badges that users collect as they log their trips. Each prefecture badge features local sights and specialties along with the prefecture’s shape and a pin, so you can see at a glance where you’ve been. The region badges use the shape of each region as their motif.")}</p>
-            {
-              badgeGroups.map((g) => (
-                <div class="odm-badge-group">
-                  <div class="odm-badge-label">{g.title}</div>
-                  <ul class:list={["odm-badge-grid", { "odm-badge-grid--many": g.items.length > 12 }]}>
-                    {g.items.map(([file, ja, en]) => (
-                      <li>
-                        <img src={`/images/odm-badges/${file}.webp`} width="96" height="96" loading="lazy" alt={t(`${ja}のバッジ`, `${en} badge`)} title={t(ja, en)} />
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))
-            }
-          </div>
+          <BadgeShowcase title={t("バッジデザイン", "Badge Design")} description={t("おでかけの記録に応じて集められるバッジを、全59種類デザインしました。都道府県バッジには各地の名所や名物を描き、県の形とピンを添えて「行った場所」がひと目でわかるようにしています。地方ごとの制覇バッジは、地方の形をモチーフにしました。", "I designed all 59 badges that users collect as they log their trips. Each prefecture badge features local sights and specialties along with the prefecture’s shape and a pin, so you can see at a glance where you’ve been. The region badges use the shape of each region as their motif.")} groups={badgeGroups} />
 
           <div class="case-mockup">
             <img src="/images/odm-thedesign.png" class="no-shadow" alt={t("THE DESIGN — おでかけマップ", "THE DESIGN — Outing Map")} />
@@ -201,70 +185,3 @@ const badgeGroups = [
   </div>
 </Layout>
 
-<style>
-  .odm-badges {
-    margin: 72px auto 0;
-    max-width: 960px;
-  }
-  .odm-badge-group {
-    margin-top: 36px;
-  }
-  .odm-badge-label {
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    color: var(--ink-soft);
-    margin-bottom: 14px;
-    text-align: center;
-  }
-  .odm-badge-grid {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 14px;
-  }
-  /* the 47 prefecture badges: 12 per row on PC, 6 on phones */
-  .odm-badge-grid--many {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    justify-items: center;
-    gap: 14px 10px;
-  }
-  .odm-badge-grid img {
-    display: block;
-    width: 68px;
-    height: 68px;
-    filter: drop-shadow(0 6px 10px rgba(16, 27, 52, 0.12));
-    transition: transform 0.2s ease;
-  }
-  .odm-badge-grid img:hover {
-    transform: translateY(-4px) scale(1.06);
-  }
-  @media (max-width: 900px) {
-    .odm-badge-grid--many {
-      grid-template-columns: repeat(8, 1fr);
-    }
-  }
-  @media (max-width: 600px) {
-    .odm-badge-grid {
-      gap: 6px;
-    }
-    .odm-badge-grid--many {
-      gap: 8px;
-    }
-    .odm-badge-grid--many {
-      grid-template-columns: repeat(6, 1fr);
-    }
-    .odm-badge-grid img {
-      width: 42px;
-      height: 42px;
-    }
-    .odm-badge-grid--many img {
-      width: 48px;
-      height: 48px;
-    }
-  }
-</style>

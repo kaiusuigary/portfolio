@@ -1,13 +1,45 @@
 ---
 import { useT } from "../i18n.js";
 import CategoryTabs from "./CategoryTabs.astro";
+import BadgeShowcase from "./BadgeShowcase.astro";
 
 const { lang = "ja" } = Astro.props;
 const t = useT(lang);
 
+// CASE 01 マイバッジ: badges exported from Figma (v4 file, frame "medal"), public/images/mybadge-badges/<file>.webp
+const myBadgeGroups = [
+  {
+    title: t("充電回数バッジ", "Charge count badges"),
+    items: [["first-charge", "ファースト・チャージ", "First Charge"], ["bronze-charge", "ブロンズ・チャージ", "Bronze Charge"], ["silver-charge", "シルバー・チャージ", "Silver Charge"], ["gold-charge", "ゴールド・チャージ", "Gold Charge"]],
+  },
+  {
+    title: t("おでかけバッジ", "Travel badges"),
+    items: [["beginner-traveller", "ビギナー・トラベラー", "Beginner Traveller"], ["traveller", "トラベラー", "Traveller"], ["explorer", "エクスプローラー", "Explorer"], ["grand-master", "グランドマスター", "Grand Master"]],
+  },
+  {
+    title: t("口コミバッジ", "Review badges"),
+    items: [["beginner-reporter", "ビギナー・レポーター", "Beginner Reporter"], ["reporter", "レポーター", "Reporter"], ["photographer", "フォトグラファー", "Photographer"], ["top-contributor", "トップ・コントリビューター", "Top Contributor"]],
+  },
+  {
+    title: t("チャレンジバッジ", "Challenge badges"),
+    items: [
+      ["hotel-stay", "ホテルステイ", "Hotel Stay"], ["golfer", "ゴルファー", "Golfer"], ["smart-shopper", "スマートショッパー", "Smart Shopper"], ["mountain", "マウンテン", "Mountain"], ["island", "アイランド", "Island"],
+      ["river", "リバー", "River"], ["night-owl", "ナイトアウル", "Night Owl"], ["early-bird", "アーリーバード", "Early Bird"], ["time-traveler", "タイムトラベラー", "Time Traveler"], ["pioneer", "パイオニア", "Pioneer"],
+    ],
+  },
+  {
+    title: t("EVサポーターズ メダル", "EV Supporters medals"),
+    items: [["supporters-s1-platinum", "EVサポーターズ メダル", "EV Supporters medal"], ["supporters-s1-gold", "EVサポーターズ メダル", "EV Supporters medal"], ["supporters-s2-platinum", "EVサポーターズ メダル", "EV Supporters medal"], ["supporters-s2-gold", "EVサポーターズ メダル", "EV Supporters medal"], ["supporters-s2-silver", "EVサポーターズ メダル", "EV Supporters medal"], ["supporters-s2-bronze", "EVサポーターズ メダル", "EV Supporters medal"]],
+  },
+  {
+    title: t("都道府県バッジ", "Prefecture badges"),
+    items: [["sticker-hokkaido", "北海道", "Hokkaido"], ["sticker-tohoku", "東北", "Tohoku"], ["sticker-kitakanto", "北関東", "Kita-Kanto"], ["sticker-minamikanto", "南関東", "Minami-Kanto"], ["sticker-tokai", "東海", "Tokai"], ["sticker-hokuriku", "北陸", "Hokuriku"], ["sticker-kinki", "近畿", "Kinki"], ["sticker-chugoku", "中国", "Chugoku"], ["sticker-shikoku", "四国", "Shikoku"], ["sticker-kyushu", "九州", "Kyushu"]],
+  },
+].map((g) => ({ ...g, items: g.items.map(([file, ja, en]) => ({ src: `/images/mybadge-badges/${file}.webp`, alt: t(`${ja}のバッジ`, `${en} badge`) })) }));
+
 // サイドのタグは「日本語版での top（px）＋ 英語版で各 CASE がずれる量」で配置
 // （英語は文章が長く CASE の位置が下がるため。CASE の高さが変わったら測り直す）
-const enShift = [0, 51, 224, 275, 387, 407, 425, 565];
+const enShift = [0, 46, 219, 270, 382, 403, 420, 560];
 const top = (caseNo, jaTop) => jaTop + (lang === "en" ? enShift[caseNo - 1] : 0);
 ---
 
@@ -24,36 +56,36 @@ const top = (caseNo, jaTop) => jaTop + (lang === "en" ? enShift[caseNo - 1] : 0)
   <div class="sticker" style={`top:${top(1, 400)}px;left:3.5%;transform:rotate(5deg);`}>ILLUSTRATOR</div>
 
   <!-- CASE 02 tool tags -->
-  <div class="sticker" style={`top:${top(2, 3378)}px;right:2%;transform:rotate(-6deg);`}>FIGMA</div>
-  <div class="sticker" style={`top:${top(2, 3498)}px;left:3.5%;transform:rotate(5deg);`}>ILLUSTRATOR</div>
-  <div class="sticker" style={`top:${top(2, 3618)}px;right:1%;transform:rotate(7deg);`}>PHOTOSHOP</div>
+  <div class="sticker" style={`top:${top(2, 4564)}px;right:2%;transform:rotate(-6deg);`}>FIGMA</div>
+  <div class="sticker" style={`top:${top(2, 4684)}px;left:3.5%;transform:rotate(5deg);`}>ILLUSTRATOR</div>
+  <div class="sticker" style={`top:${top(2, 4804)}px;right:1%;transform:rotate(7deg);`}>PHOTOSHOP</div>
 
   <!-- CASE 03 tool tags -->
-  <div class="sticker" style={`top:${top(3, 6460)}px;right:2%;transform:rotate(-6deg);`}>ILLUSTRATOR</div>
-  <div class="sticker" style={`top:${top(3, 6580)}px;left:3.5%;transform:rotate(5deg);`}>PHOTOSHOP</div>
-  <div class="sticker" style={`top:${top(3, 6700)}px;right:1%;transform:rotate(7deg);`}>FIGMA</div>
+  <div class="sticker" style={`top:${top(3, 7646)}px;right:2%;transform:rotate(-6deg);`}>ILLUSTRATOR</div>
+  <div class="sticker" style={`top:${top(3, 7766)}px;left:3.5%;transform:rotate(5deg);`}>PHOTOSHOP</div>
+  <div class="sticker" style={`top:${top(3, 7886)}px;right:1%;transform:rotate(7deg);`}>FIGMA</div>
 
   <!-- CASE 04 tool tags -->
-  <div class="sticker" style={`top:${top(4, 10004)}px;right:2%;transform:rotate(-6deg);`}>FIGMA</div>
-  <div class="sticker" style={`top:${top(4, 10124)}px;left:3.5%;transform:rotate(5deg);`}>PHOTOSHOP</div>
-  <div class="sticker" style={`top:${top(4, 10244)}px;right:1%;transform:rotate(7deg);`}>ILLUSTRATOR</div>
+  <div class="sticker" style={`top:${top(4, 11190)}px;right:2%;transform:rotate(-6deg);`}>FIGMA</div>
+  <div class="sticker" style={`top:${top(4, 11310)}px;left:3.5%;transform:rotate(5deg);`}>PHOTOSHOP</div>
+  <div class="sticker" style={`top:${top(4, 11430)}px;right:1%;transform:rotate(7deg);`}>ILLUSTRATOR</div>
 
   <!-- CASE 05 tool tags -->
-  <div class="sticker" style={`top:${top(5, 12995)}px;right:2%;transform:rotate(-6deg);`}>ILLUSTRATOR</div>
-  <div class="sticker" style={`top:${top(5, 13115)}px;left:3.5%;transform:rotate(5deg);`}>FIGMA</div>
+  <div class="sticker" style={`top:${top(5, 14182)}px;right:2%;transform:rotate(-6deg);`}>ILLUSTRATOR</div>
+  <div class="sticker" style={`top:${top(5, 14302)}px;left:3.5%;transform:rotate(5deg);`}>FIGMA</div>
 
   <!-- CASE 06 tool tags -->
-  <div class="sticker" style={`top:${top(6, 15985)}px;right:2%;transform:rotate(-6deg);`}>PHOTOSHOP</div>
-  <div class="sticker" style={`top:${top(6, 16105)}px;left:3.5%;transform:rotate(5deg);`}>ADOBE XD</div>
-  <div class="sticker" style={`top:${top(6, 16225)}px;right:1%;transform:rotate(7deg);`}>AFTER EFFECTS</div>
+  <div class="sticker" style={`top:${top(6, 17171)}px;right:2%;transform:rotate(-6deg);`}>PHOTOSHOP</div>
+  <div class="sticker" style={`top:${top(6, 17291)}px;left:3.5%;transform:rotate(5deg);`}>ADOBE XD</div>
+  <div class="sticker" style={`top:${top(6, 17411)}px;right:1%;transform:rotate(7deg);`}>AFTER EFFECTS</div>
 
   <!-- CASE 07 tool tags -->
-  <div class="sticker" style={`top:${top(7, 19098)}px;left:3.5%;transform:rotate(5deg);`}>PHOTOSHOP</div>
+  <div class="sticker" style={`top:${top(7, 20284)}px;left:3.5%;transform:rotate(5deg);`}>PHOTOSHOP</div>
 
   <!-- CASE 08 tool tags -->
-  <div class="sticker" style={`top:${top(8, 21916)}px;right:2%;transform:rotate(-6deg);`}>PHOTOSHOP</div>
-  <div class="sticker" style={`top:${top(8, 22036)}px;left:3.5%;transform:rotate(5deg);`}>ADOBE XD</div>
-  <div class="sticker" style={`top:${top(8, 22156)}px;right:1%;transform:rotate(7deg);`}>WEBFLOW</div>
+  <div class="sticker" style={`top:${top(8, 23102)}px;right:2%;transform:rotate(-6deg);`}>PHOTOSHOP</div>
+  <div class="sticker" style={`top:${top(8, 23222)}px;left:3.5%;transform:rotate(5deg);`}>ADOBE XD</div>
+  <div class="sticker" style={`top:${top(8, 23342)}px;right:1%;transform:rotate(7deg);`}>WEBFLOW</div>
 
   <div class="wrap">
     <div class="works-head">
@@ -152,6 +184,14 @@ const top = (caseNo, jaTop) => jaTop + (lang === "en" ? enShift[caseNo - 1] : 0)
           <p class="detail-text" style="margin-top:16px;">{t("ホーム画面の「マイバッジコレクション」バナー（左）と、バッジ獲得時のモーダル（右）。ホームから自然に機能を知ってもらい、獲得の瞬間を印象的に演出しています。", "The “My Badge Collection” banner on the Home screen (left) and the badge-earned modal (right). Users discover the feature naturally from Home, and the moment of earning a badge is made memorable.")}</p>
         </div>
       </div>
+
+      <BadgeShowcase
+        title={t("バッジデザイン", "Badge Design")}
+        description={t("充電・おでかけ・口コミなど、アプリでのアクションに応じて獲得できるバッジを、全38種類デザインしました。段階のあるバッジはブロンズ・シルバー・ゴールドと色が変わり、数字とモチーフで獲得条件がひと目でわかるようにしています。", "I designed all 38 badges that users earn through actions in the app — charging, going out, posting reviews and more. Tiered badges change color from bronze to silver to gold, and numbers and motifs show at a glance what each badge is for.")}
+        groups={myBadgeGroups}
+        size={84}
+        spSize={58}
+      />
 
       <div class="case-mockup">
         <a href="/images/badge-thedesign3.png" target="_blank" rel="noopener" class="lightbox-trigger" style="display:block;max-width:720px;margin:0 auto;">
