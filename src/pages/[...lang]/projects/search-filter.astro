@@ -1,0 +1,304 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Contact from "../../../components/Contact.astro";
+import ProjectNav from "../../../components/ProjectNav.astro";
+import ToolStickers from "../../../components/ToolStickers.astro";
+import { otherProjects, localize } from "../../../data/otherProjects.js";
+import { langParams, getLang, useT, localePath } from "../../../i18n.js";
+
+export function getStaticPaths() {
+  return langParams.map((params) => ({ params }));
+}
+
+const lang = getLang(Astro.params.lang);
+const t = useT(lang);
+const project = localize(otherProjects.find((p) => p.slug === "search-filter"), lang);
+
+// Screens exported from Figma (v5 file): before = frame "リニューアル前", after = section "検索フィルタ"
+const changes = [
+  [t("充電器の分類", "Charger types"), t("普通充電・CHAdeMO・テスラが横一列のボタン", "Normal charging, CHAdeMO and Tesla side by side as buttons"), t("「普通充電」「急速充電」の中にプラグの規格を並べ、規格ごとにオン/オフ", "Plug standards listed inside “Normal” and “Fast” charging, each with its own on/off switch")],
+  [t("テスラ", "Tesla"), t("メーカー名「テスラ」の下に充電器の種類", "Charger types listed under the brand name “Tesla”"), t("「NACS規格（テスラ）」として、ほかと同じプラグの規格にそろえた", "Shown as “NACS (Tesla)”, a plug standard like the others")],
+  [t("出力", "Output"), t("CHAdeMOの下に3段階のボタン", "Three fixed output buttons under CHAdeMO"), t("急速充電の枠の中に0〜250kW+のスライダー", "A 0–250kW+ slider inside the fast charging card")],
+  [t("認証システム", "Authentication"), t("一番上に運営側の言葉「認証システム」", "“Authentication system” — internal wording — at the very top"), t("「充電カード・アプリで探す」と、ユーザーが持っている物の名前に", "“Search by charging card / app”, named after what users actually carry")],
+  [t("条件", "Conditions"), t("見出しなしで並び、エネパスだけ離れた場所に", "No heading; EnePass placed apart from the rest"), t("「条件・ステータス」の見出しの下に1か所にまとめた", "Grouped in one place under “Conditions & Status”")],
+];
+---
+
+<Layout lang={lang} title={`${project.label} — Kai Usui Portfolio`} description={project.concept}>
+  <div style="min-height:100vh;position:relative;background:#eef4fb;">
+    <ProjectNav lang={lang} />
+
+    <section class="section" style="padding-top:80px;padding-bottom:50px;position:relative;">
+      <ToolStickers tools={"Figma（UIデザイン）"} />
+      <div
+        class="ghost"
+        style="position:absolute;top:20px;left:50%;transform:translateX(-50%);font-size:clamp(60px,10vw,150px);z-index:0;opacity:.7;white-space:nowrap;"
+      >
+        MY WORKS
+      </div>
+      <div class="wrap" style="position:relative;z-index:1;">
+        <div style="text-align:center;">
+          <div class="eyebrow" style="justify-content:center;">Portfolio</div>
+          <h1 class="disp" style="font-size:clamp(34px,4.6vw,52px);font-weight:800;color:var(--ink);">CASE {project.caseNumber}</h1>
+          <a href={localePath(lang, "/") + "#other"} style="font-size:13.5px;color:var(--accent-2);display:inline-block;margin-top:10px;">← Back to home</a>
+        </div>
+
+
+        <!-- ============ CASE 13 ============ -->
+        <div style="margin-top:56px;">
+          <div class="case-media-grid">
+            <a
+              href="/images/sf-full.jpg"
+              target="_blank"
+              rel="noopener"
+              class="shot-panel lightbox-trigger"
+              style="display:flex;align-items:center;justify-content:center;"
+            >
+              <img src="/images/sf-top.jpg" style="width:100%;object-fit:contain;border-radius:10px;" alt={t("検索フィルタ リニューアル前後", "Search filter before and after the redesign")} />
+              <span class="expand-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 3H3v6M15 3h6v6M9 21H3v-6M15 21h6v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </a>
+            <div>
+              <div class="case-num">CASE {project.caseNumber}</div>
+              <h2 class="disp case-title-lg">{t("検索フィルタ リニューアル", "Search Filter Redesign")}</h2>
+              <hr class="divider" style="margin:24px 0;max-width:120px;" />
+              <div class="meta-label">{t("期間", "Duration")}</div>
+              <p class="meta-value">{t("2週間", "2 weeks")}</p>
+              <div class="meta-label">{t("チーム構成", "Team")}</div>
+              <p class="meta-value">{t("デザイナー1（自身）", "1 designer (me)")}<br />{t("ディレクター1", "1 director")}<br />{t("エンジニア1", "1 engineer")}</p>
+            </div>
+          </div>
+
+          <div class="ghost-mid">DETAILS</div>
+
+          <div class="grid-3 detail-grid">
+            <div>
+              <h4 class="disp detail-heading">{t("背景・課題", "Background & Challenge")}</h4>
+              <p class="detail-text">{t("EV充電エネチェンジ アプリの検索フィルタは、機能を足していくうちに「充電の速さ」「プラグの形」「メーカー名」といった違う種類の項目が一列に混ざり、ボタンを押すまで中身が見えない仕組みや運営側の言葉も残っていました。ユーザーが「自分の車で使える充電スポット」を迷わず探せるよう、全体を整理し直しました。", "As features were added to the EV Charge ENECHANGE app’s search filter, different kinds of items — charging speed, plug type and car brand — ended up mixed in one row, options stayed hidden until you tapped, and internal wording remained. I reorganized the whole filter so users can find a spot that works for their car without confusion.")}</p>
+              <h4 class="disp detail-heading" style="margin-top:32px;">{t("目的", "Goals")}</h4>
+              <ul class="detail-list">
+                <li>{t("自分の車・手持ちのカード・行き先に合ったスポットを、迷わず絞り込める", "Let users narrow down to spots that fit their car, card and destination")}</li>
+                <li>{t("隠れたルールをなくし、「該当0件」で困ることを減らす", "Remove hidden rules and reduce “0 results” dead ends")}</li>
+              </ul>
+              <h4 class="disp detail-heading" style="margin-top:32px;">{t("担当範囲", "My Role")}</h4>
+              <ul class="detail-list">
+                <li>{t("検索フィルタ全体の項目整理とUIデザイン", "Restructuring and UI design of the whole filter")}</li>
+                <li>{t("充電カード・アプリ／施設の選択画面", "Charging card / app and facility selection screens")}</li>
+                <li>{t("充電の規格の説明ダイアログ", "Charging standard help dialog")}</li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="disp detail-heading">{t("アプローチ・工夫点", "Approach")}</h4>
+              <p class="detail-text"><b style="color:var(--ink);">{t("1. ユーザーが思い浮かべる「モノ」でまとめる", "1. Grouped by the things users have in mind")}</b><br />{t("スーパーの売り場が「肉」「野菜」のようにモノで分かれているのと同じように、「充電器」「充電カード・アプリ」「施設」「条件」の4つにまとめ、その中で細かい条件を選べるようにしました。", "Just as a supermarket is divided by things like “meat” and “vegetables”, the filter is split into four groups — chargers, charging cards/apps, facilities and conditions — with detailed options inside each.")}</p>
+              <p class="detail-text" style="margin-top:14px;"><b style="color:var(--ink);">{t("2. 中身は最初から見せる", "2. Show everything up front")}</b><br />{t("押すと出てくる仕組みをやめ、普通充電／急速充電の枠の中にプラグの規格を常に表示。出力は急速充電にしか関係しないので、急速充電の枠の中にスライダーとして置きました。", "Instead of options appearing only after a tap, plug standards are always visible inside the normal and fast charging cards. Output only matters for fast charging, so it sits inside that card as a slider.")}</p>
+              <p class="detail-text" style="margin-top:14px;"><b style="color:var(--ink);">{t("3. ユーザーの言葉と、そろえた色・操作", "3. Users’ words, with consistent color and controls")}</b><br />{t("「認証システム」は「充電カード・アプリ」に、「事前連絡不要」は「事前予約不要」に。オン/オフはスイッチ、複数選択はボタンに役割を絞り、色は「選んでいる」ことを示すときだけ使います。", "“Authentication system” became “Charging card / app”, and wording follows what users actually do. Switches are for on/off, buttons for multiple choice, and color only marks what’s selected.")}</p>
+              <h4 class="disp detail-heading" style="margin-top:32px;">{t("キーワード", "Keywords")}</h4>
+              <ul class="detail-list">
+                <li>{t("迷わない", "No guesswork")}</li>
+                <li>{t("ひと目でわかる", "Clear at a glance")}</li>
+                <li>{t("ユーザーの言葉", "Users’ own words")}</li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="disp detail-heading">{t("メインカラー", "Main Colors")}</h4>
+              <div class="swatch-row">
+                <div class="swatch"><span style="background:#008198;"></span>#008198</div>
+                <div class="swatch"><span style="background:#C60D31;"></span>#C60D31</div>
+                <div class="swatch"><span style="background:#111111;"></span>#111111</div>
+                <div class="swatch"><span style="background:#F9FAFB;border:1px solid var(--border);"></span>#F9FAFB</div>
+              </div>
+              <h4 class="disp detail-heading" style="margin-top:32px;">{t("使用ツール・技術", "Tools & Skills")}</h4>
+              <p class="detail-text">{t("Figma（UIデザイン）", "Figma (UI design)")}</p>
+            </div>
+          </div>
+
+          <!-- BEFORE / AFTER -->
+          <div class="sf-ba">
+            <h4 class="disp detail-heading" style="text-align:center;">BEFORE / AFTER</h4>
+            <p class="detail-text" style="margin:12px auto 0;max-width:760px;text-align:center;">{t("左がリニューアル前、右がリニューアル後の検索フィルタです。", "The search filter before (left) and after (right) the redesign.")}</p>
+            <div class="sf-ba-grid">
+              <figure>
+                <a href="/images/sf-before-top.webp" target="_blank" rel="noopener" class="lightbox-trigger" style="display:block;">
+                  <img src="/images/sf-before-top.webp" loading="lazy" width="720" height="1852" alt={t("リニューアル前の検索フィルタ", "Search filter before the redesign")} />
+                </a>
+                <figcaption class="sf-label sf-label--before">BEFORE</figcaption>
+              </figure>
+              <figure>
+                <a href="/images/sf-after-top.webp" target="_blank" rel="noopener" class="lightbox-trigger" style="display:block;">
+                  <img src="/images/sf-after-top.webp" loading="lazy" width="720" height="2826" alt={t("リニューアル後の検索フィルタ", "Search filter after the redesign")} />
+                </a>
+                <figcaption class="sf-label sf-label--after">AFTER</figcaption>
+              </figure>
+            </div>
+
+            <div class="sf-table-wrap">
+              <table class="sf-table">
+                <thead>
+                  <tr><th>{t("項目", "Item")}</th><th>BEFORE</th><th>AFTER</th></tr>
+                </thead>
+                <tbody>
+                  {changes.map(([item, before, after]) => (
+                    <tr><th scope="row">{item}</th><td>{before}</td><td>{after}</td></tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="case-showcase-2col">
+            <div>
+              <div class="sf-pair">
+                <img src="/images/sf-before-auth.webp" loading="lazy" alt={t("リニューアル前の認証システム選択画面", "Authentication system screen before the redesign")} />
+                <img src="/images/sf-after-card.webp" loading="lazy" alt={t("リニューアル後の充電カード・アプリ選択画面", "Charging card / app screen after the redesign")} />
+              </div>
+              <p class="detail-text" style="margin-top:16px;">{t("「認証システム」の画面（左）は、「充電カード・アプリ」の画面（右）に。選択肢が多いので最初の画面ではオン/オフと選んだ内容だけを見せ、細かい選択はこの画面で行います。", "The “Authentication system” screen (left) became “Charging card / app” (right). With so many options, the main filter only shows an on/off switch and a summary, and the detailed choice happens here.")}</p>
+            </div>
+            <div>
+              <a href="/images/sf-after-dialog.webp" target="_blank" rel="noopener" class="lightbox-trigger" style="display:block;">
+                <img src="/images/sf-after-dialog.webp" class="sf-dialog" loading="lazy" alt={t("充電の規格の説明ダイアログ（イラストあり）", "Charging standard help dialog with illustration")} />
+                <span class="expand-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 3H3v6M15 3h6v6M9 21H3v-6M15 21h6v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+              </a>
+              <p class="detail-text" style="margin-top:16px;">{t("いちばん迷いやすい「充電の規格」は、右上の「?」から説明ダイアログをすぐ開けるようにしました。「詳しくみる」を押すと、EV PLUSの記事「", "Charging standards are the most confusing part, so the “?” at the top right opens a dialog that explains them right away. Tapping “Learn more” takes users to the EV PLUS article “")}<a href="https://ev-plus.jp/know/ev-charging-standards/" target="_blank" rel="noopener" style="color:var(--accent-2);text-decoration:underline;">{t("EVの充電規格とは？", "What are EV charging standards?")}</a>{t("」へ移動し、規格の違いや対応車種をくわしく確認できます。", "”, where they can read about each standard and which cars support it.")}</p>
+            </div>
+          </div>
+
+          <div class="case-mockup">
+            <img src="/images/sf-thedesign.png" class="no-shadow" alt={t("THE DESIGN — 検索フィルタ リニューアル", "THE DESIGN — Search Filter Redesign")} />
+          </div>
+
+          <div class="case-cta" style="text-align:center;margin-top:4px;">
+            <a href="#contact" class="btn">Contact Me</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <Contact lang={lang} />
+  </div>
+</Layout>
+
+<style>
+  .sf-ba {
+    margin: 72px auto 0;
+    max-width: 960px;
+  }
+  .sf-ba-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    max-width: 760px;
+    margin: 32px auto 0;
+    align-items: start;
+  }
+  .sf-ba-grid figure {
+    margin: 0;
+  }
+  /* screens have transparent corners, so the shadow follows the phone shape */
+  .sf-ba-grid img {
+    display: block;
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 16px 24px rgba(16, 27, 52, 0.16));
+  }
+  .sf-label {
+    margin-top: 16px;
+    text-align: center;
+    font-family: "Sora", sans-serif;
+    font-weight: 800;
+    font-size: 14px;
+    letter-spacing: 0.14em;
+  }
+  .sf-label--before {
+    color: #8a93a3;
+  }
+  .sf-label--after {
+    color: #008198;
+  }
+  .sf-table-wrap {
+    margin: 48px auto 0;
+    overflow-x: auto;
+  }
+  .sf-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    background: #fff;
+    border-radius: 14px;
+    overflow: hidden;
+  }
+  .sf-table th,
+  .sf-table td {
+    padding: 14px 16px;
+    text-align: left;
+    vertical-align: top;
+    border-bottom: 1px solid var(--border);
+  }
+  .sf-table thead th {
+    font-family: "Sora", sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--ink);
+    background: #f5f8fc;
+  }
+  .sf-table tbody th {
+    color: var(--ink);
+    white-space: nowrap;
+  }
+  .sf-table tbody tr:last-child th,
+  .sf-table tbody tr:last-child td {
+    border-bottom: 0;
+  }
+  .sf-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    padding: 24px;
+    background: #fff;
+    border-radius: 14px;
+    align-items: start;
+  }
+  .sf-pair img {
+    display: block;
+    width: 100%;
+    /* same height for both phones: crop the long list from the top */
+    aspect-ratio: 360 / 926;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 0 0 16px 16px;
+    filter: drop-shadow(0 8px 14px rgba(16, 27, 52, 0.14));
+  }
+  .sf-dialog {
+    display: block;
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+    filter: drop-shadow(0 16px 24px rgba(16, 27, 52, 0.16));
+  }
+  @media (max-width: 600px) {
+    .sf-ba {
+      margin-top: 48px;
+    }
+    .sf-ba-grid {
+      gap: 16px;
+    }
+    .sf-table {
+      font-size: 13px;
+    }
+    .sf-table th,
+    .sf-table td {
+      padding: 10px;
+    }
+    .sf-table tbody th {
+      white-space: normal;
+    }
+    .sf-pair {
+      padding: 12px;
+      gap: 10px;
+    }
+  }
+</style>
