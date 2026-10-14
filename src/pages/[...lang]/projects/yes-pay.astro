@@ -1,0 +1,130 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Contact from "../../../components/Contact.astro";
+import ProjectNav from "../../../components/ProjectNav.astro";
+import ToolStickers from "../../../components/ToolStickers.astro";
+import { otherProjects, localize } from "../../../data/otherProjects.js";
+import { langParams, getLang, useT, localePath } from "../../../i18n.js";
+
+export function getStaticPaths() {
+  return langParams.map((params) => ({ params }));
+}
+
+const lang = getLang(Astro.params.lang);
+const t = useT(lang);
+const project = localize(otherProjects.find((p) => p.slug === "yes-pay"), lang);
+
+---
+
+<Layout lang={lang} title={`${project.label} — Kai Usui Portfolio`} description={project.concept}>
+  <div style="min-height:100vh;position:relative;background:#eef7fb;">
+    <ProjectNav lang={lang} />
+
+    <section class="section" style="padding-top:80px;padding-bottom:50px;position:relative;">
+      <ToolStickers tools={"Photoshop\nAdobe XD\nWebflow"} />
+      <div
+        class="ghost"
+        style="position:absolute;top:20px;left:50%;transform:translateX(-50%);font-size:clamp(60px,10vw,150px);z-index:0;opacity:.7;white-space:nowrap;"
+      >
+        MY WORKS
+      </div>
+      <div class="wrap" style="position:relative;z-index:1;">
+        <div style="text-align:center;">
+          <div class="eyebrow" style="justify-content:center;">Portfolio</div>
+          <h1 class="disp" style="font-size:clamp(34px,4.6vw,52px);font-weight:800;color:var(--ink);">CASE {project.caseNumber}</h1>
+          <a href={localePath(lang, "/") + "#other"} style="font-size:13.5px;color:var(--accent-2);display:inline-block;margin-top:10px;">← Back to home</a>
+        </div>
+
+        <div style="margin-top:56px;">
+          <div class="case-media-grid">
+            <a
+              href="https://yespay.webflow.io/"
+              target="_blank"
+              rel="noopener"
+              class="shot-panel lightbox-trigger"
+              style="display:flex;align-items:center;justify-content:center;"
+            >
+              <img src="/images/case3-top.jpg" style="width:100%;object-fit:contain;border-radius:10px;" alt="YES Pay LP" />
+              <span class="expand-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </a>
+            <div>
+              <div class="case-num">CASE {project.caseNumber}</div>
+              <h2 class="disp case-title-lg">{t("YES Pay — クレジットカード連携型電子マネーサービス（自主制作）", "YES Pay — A Credit Card–Linked E-Money Service (Personal Project)")}</h2>
+              <hr class="divider" style="margin:24px 0;max-width:120px;" />
+              <div class="meta-label">{t("期間", "Duration")}</div>
+              <p class="meta-value">{t("2週間", "2 weeks")}</p>
+              <div class="meta-label">{t("チーム構成", "Team")}</div>
+              <p class="meta-value">{t("個人制作（1人）", "Personal project (solo)")}</p>
+              <a href="https://yespay.webflow.io/" class="btn-ghost" style="font-size:13px;padding:10px 20px;margin-top:8px;display:inline-flex;">{t("Live サイトを見る ↗", "View live site ↗")}</a>
+            </div>
+          </div>
+
+          <div class="ghost-mid">DETAILS</div>
+
+          <div class="grid-3 detail-grid">
+            <div>
+              <h4 class="disp detail-heading">{t("背景・課題", "Background & Challenge")}</h4>
+              <p class="detail-text">{t("クレジットカードと連携できる電子マネーサービス「YES Pay」の仮想商品を想定し、ユーザー獲得に向けたLPを制作。「信頼性や実績が伝わりづらい」「メリットが瞬時に理解されない」「登録への導線が弱い」という課題に対し、魅力を訴求しCV（登録）へつなげる構成が求められました。", "I imagined “YES Pay”, a fictional e-money service that links to credit cards, and created an LP to acquire users. To address the challenges that credibility and track record were hard to convey, the benefits weren’t understood instantly and the path to sign-up was weak, the page needed to communicate the service’s appeal and lead to conversions (sign-ups).")}</p>
+              <h4 class="disp detail-heading" style="margin-top:32px;">{t("目的・KPI", "Goals & KPIs")}</h4>
+              <ul class="detail-list">
+                <li>{t("登録コンバージョン率（CVR）の最大化", "Maximize the sign-up conversion rate (CVR)")}</li>
+                <li>{t("「便利で信頼できるサービス」という第一印象の獲得", "Make a first impression of a convenient, trustworthy service")}</li>
+              </ul>
+              <h4 class="disp detail-heading" style="margin-top:32px;">{t("担当範囲", "My Role")}</h4>
+              <ul class="detail-list">
+                <li>{t("UX設計", "UX design")}</li>
+                <li>{t("UIデザイン", "UI design")}</li>
+                <li>{t("実装（Webflow）", "Build (Webflow)")}</li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="disp detail-heading">{t("アプローチ・工夫点", "Approach")}</h4>
+              <p class="detail-text"><b style="color:var(--ink);">{t("1. 情報設計（信用 × 論理 × 行動喚起）", "1. Information architecture (trust × logic × call to action)")}</b><br />{t("ファーストビューにスマホUIを大きく配置し、手軽さと利便性をビジュアルで訴求。実績・メディア掲載情報をMV直下に設置して信頼性を補強しました。", "A large smartphone UI in the hero section visually communicates ease and convenience. Track record and media coverage placed right below the main visual reinforce credibility.")}</p>
+              <p class="detail-text" style="margin-top:14px;"><b style="color:var(--ink);">{t("2. ビジュアル設計", "2. Visual design")}</b><br />{t("「カード残高・履歴が一目で見える」デザインで機能性を表現。クレジットカードがスマートフォン内に収まるビジュアルで管理のしやすさと安心感を直感的に伝えました。", "A design where card balance and history are visible at a glance expresses functionality. A visual of a credit card fitting inside a smartphone intuitively conveys easy management and peace of mind.")}</p>
+              <h4 class="disp detail-heading" style="margin-top:32px;">{t("キーワード", "Keywords")}</h4>
+              <ul class="detail-list">
+                <li>{t("導入メリットが明確", "Clear benefits")}</li>
+                <li>{t("信頼性の高い体験", "A trustworthy experience")}</li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="disp detail-heading">{t("メインカラー", "Main Colors")}</h4>
+              <div class="swatch-row">
+                <div class="swatch"><span style="background:#0F70A8;"></span>#0F70A8</div>
+                <div class="swatch"><span style="background:#17B8C4;"></span>#17B8C4</div>
+                <div class="swatch"><span style="background:#FFFFFF;border:1px solid var(--border);"></span>#FFFFFF</div>
+              </div>
+              <h4 class="disp detail-heading" style="margin-top:32px;">{t("使用ツール・技術", "Tools & Skills")}</h4>
+              <p class="detail-text">{t("Photoshop（ビジュアル素材）", "Photoshop (visual assets)")}<br />{t("Adobe XD（ワイヤーフレーム）", "Adobe XD (wireframes)")}<br />{t("Webflow（ノーコード実装）", "Webflow (no-code build)")}</p>
+              <h4 class="disp detail-heading" style="margin-top:32px;">{t("成果", "Results")}</h4>
+              <p class="detail-text">{t("BtoCのランディングページ制作を想定し、限られた時間の中で「UXと視覚訴求のバランス」を重視。BtoB制作で培った情報構造力を、より消費者目線で展開した挑戦的なプロジェクトです。", "Designed as a B2C landing page, the project focused on balancing UX and visual appeal within a limited time. It was a challenging project that applied the information-structuring skills I built in B2B work from a more consumer-oriented perspective.")}</p>
+            </div>
+          </div>
+
+          <div class="case-showcase-2col">
+            <div>
+              <img src="/images/case3-visual1.png" class="imgbox" alt={t("カード連携ビジュアル", "Card-linking visual")} />
+              <p class="detail-text" style="margin-top:16px;">{t("クレジットカードがスマートフォン内に収まるビジュアルで、カード残高・履歴が一目で見える機能性を表現しました。", "A visual of a credit card fitting inside a smartphone expresses the functionality of seeing card balance and history at a glance.")}</p>
+            </div>
+            <div>
+              <img src="/images/case3-visual2.png" class="imgbox" alt={t("サービスの特徴アイコン", "Service feature icons")} />
+              <p class="detail-text" style="margin-top:16px;">{t("セキュリティ・両替・株の購入・カードサポートなど、サービスの特徴をアイコンで直感的に伝える構成にしています。", "Icons intuitively communicate the service’s features, such as security, currency exchange, stock purchases and card support.")}</p>
+            </div>
+          </div>
+
+          <div class="case-mockup">
+            <img src="/images/case3-thedesign.png" class="no-shadow" alt={t("THE DESIGN — YES Pay LP デザイン", "THE DESIGN — YES Pay LP")} />
+          </div>
+
+          <div style="text-align:center;margin-top:4px;">
+            <a href="#contact" class="btn">Contact Me</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <Contact lang={lang} />
+  </div>
+</Layout>

@@ -1,5 +1,37 @@
 export const otherProjects = [
   {
+    slug: "product-lineup",
+    en: {
+      alt: "LED lineup page",
+      label: "Product Lineup Page Redesign for a Major Company",
+      concept: "A redesign of a major company’s product lineup page. I reworked the information architecture so products are easier to compare and users reach what they need faster, designed the UI comps, and produced localized graphics in 30+ languages.",
+    },
+    src: "/images/case2-top.jpg",
+    alt: "LEDラインアップページ LP",
+    label: "大手企業の既存商品ラインアップページ リニューアル",
+    caseNumber: "08",
+    // 元はトップの WORKS（CASE 08）。WORKS の CASE と同じ詳細フォーマットの専用ページ（src/pages/[...lang]/projects/product-lineup.astro）
+    customPage: true,
+    concept:
+      "大手企業の既存商品ラインアップページのリニューアル。商品を比較しやすく、目的の情報にすぐたどり着けるよう情報設計を見直し、UIデザインと30言語以上の多言語図版制作を担当しました。",
+  },
+  {
+    slug: "yes-pay",
+    en: {
+      alt: "YES Pay LP",
+      label: "YES Pay — A Credit Card–Linked E-Money Service (Personal Project)",
+      concept: "An LP for “YES Pay”, a fictional e-money service that links to credit cards. I handled UX, UI and the Webflow build, balancing credibility, clear benefits and a strong path to sign-up.",
+    },
+    src: "/images/case3-top.jpg",
+    alt: "YES Pay LP",
+    label: "YES Pay — クレジットカード連携型電子マネーサービス（自主制作）",
+    caseNumber: "09",
+    // 元はトップの WORKS（CASE 08）。WORKS の CASE と同じ詳細フォーマットの専用ページ（src/pages/[...lang]/projects/yes-pay.astro）
+    customPage: true,
+    concept:
+      "クレジットカードと連携できる架空の電子マネーサービス「YES Pay」のLP。信頼性・メリットのわかりやすさ・登録への導線を意識し、UX設計からUIデザイン、Webflowでの実装までを担当しました。",
+  },
+  {
     slug: "ev-diagnosis",
     en: {
       alt: "EV Recommendation Quiz",
@@ -9,8 +41,8 @@ export const otherProjects = [
     src: "/images/diag-card.jpg",
     alt: "おすすめEV診断",
     label: "診断コンテンツ — おすすめEV診断",
-    caseNumber: "09",
-    // CASE 01〜08と同じ詳細フォーマットの専用ページ（src/pages/projects/ev-diagnosis.astro）
+    caseNumber: "10",
+    // WORKS の CASE と同じ詳細フォーマットの専用ページ（src/pages/projects/ev-diagnosis.astro）
     customPage: true,
     concept:
       "6つの質問に答えるだけで、暮らしに合ったEVを提案する診断コンテンツ。EV PLUSのコンテンツとして、診断フローのUIとOGP・記事導線バナーをデザインしました。",
@@ -25,8 +57,8 @@ export const otherProjects = [
     src: "/images/elp-card.jpg",
     alt: "EV Life Program LP",
     label: "LP — EV Life Program",
-    caseNumber: "10",
-    // CASE 01〜08と同じ詳細フォーマットの専用ページ（src/pages/projects/ev-life-program.astro）
+    caseNumber: "11",
+    // WORKS の CASE と同じ詳細フォーマットの専用ページ（src/pages/projects/ev-life-program.astro）
     customPage: true,
     concept:
       "充電や口コミ投稿でポイントがたまり、ランクに応じた特典が受けられる「EV Life Program」のLP。プログラムの仕組みと特典をひと目で伝え、アプリからの参加登録につなげるデザインにしました。",
@@ -41,8 +73,8 @@ export const otherProjects = [
     src: "/images/els-card.jpg",
     alt: "EVライフ応援制度 LP",
     label: "キャンペーンLP — EVライフ応援制度",
-    caseNumber: "11",
-    // CASE 01〜08と同じ詳細フォーマットの専用ページ（src/pages/projects/ev-life-support-program.astro）
+    caseNumber: "12",
+    // WORKS の CASE と同じ詳細フォーマットの専用ページ（src/pages/projects/ev-life-support-program.astro）
     customPage: true,
     concept:
       "EV・PHEVの新車を購入した方に、アプリで使える充電クーポン（最大1,800円分）をプレゼントする「EVライフ応援制度」のLP。特典とエントリー方法をひと目で伝え、参加につなげるデザインにしました。",
@@ -57,8 +89,8 @@ export const otherProjects = [
     src: "/images/odm-card.jpg",
     alt: "EVsmart Park おでかけマップ",
     label: "コミュニティ機能 — おでかけマップ",
-    caseNumber: "12",
-    // CASE 01〜08と同じ詳細フォーマットの専用ページ（src/pages/projects/odekake-map.astro）
+    caseNumber: "13",
+    // WORKS の CASE と同じ詳細フォーマットの専用ページ（src/pages/projects/odekake-map.astro）
     customPage: true,
     concept:
       "EVオーナーのコミュニティ「EVsmart Park」に新設した、メンバーのおでかけ投稿を日本地図で見られる「おでかけマップ」。メインビジュアルとマップ、バッジのデザインを担当しました。",
@@ -73,8 +105,8 @@ export const otherProjects = [
     src: "/images/sf-card.jpg",
     alt: "検索フィルタ リニューアル",
     label: "アプリ機能改善 — 検索フィルタ リニューアル",
-    caseNumber: "13",
-    // CASE 01〜08と同じ詳細フォーマットの専用ページ（src/pages/[...lang]/projects/search-filter.astro）
+    caseNumber: "14",
+    // WORKS の CASE と同じ詳細フォーマットの専用ページ（src/pages/[...lang]/projects/search-filter.astro）
     customPage: true,
     concept:
       "EV充電エネチェンジ アプリの検索フィルタのリニューアル。ばらばらに並んでいた項目を「自分の車」「手持ちのカード」「行き先」というユーザーが思い浮かべるモノごとに整理し、使える充電スポットを迷わず絞り込めるようにしました。",
@@ -94,7 +126,7 @@ export const otherProjects = [
     src: "/images/proj-howtocharge.jpg",
     alt: "6kW普通充電器の3Dコンセプトページ",
     label: "EV充電エネチェンジ 6kW普通充電器 — 3Dコンセプトページ（自主制作）",
-    caseNumber: "14",
+    caseNumber: "15",
     liveUrl: "/howtocharge/",
     linkLabel: "ページを見る ↗",
     period: "1日",
@@ -119,7 +151,7 @@ export const otherProjects = [
     src: "/images/proj-site-renewal.jpg",
     alt: "ミライズエネチェンジ コーポレートサイト リニューアル案",
     label: "コーポレートサイト リニューアル案 — ミライズエネチェンジ（自主制作）",
-    caseNumber: "15",
+    caseNumber: "16",
     liveUrl: "/works/site-renewal/index.html",
     linkLabel: "サイトを見る ↗",
     period: "2週間",
@@ -150,7 +182,7 @@ export const otherProjects = [
     src: "/images/proj1.jpg",
     alt: "スマートスピーカー 製品LP",
     label: "プロダクトLP — スマートスピーカー",
-    caseNumber: "16",
+    caseNumber: "17",
     liveUrl: "https://dark-xspeaker.webflow.io/",
     linkLabel: "Live サイトを見る ↗",
     period: "3週間",
@@ -174,7 +206,7 @@ export const otherProjects = [
     src: "/images/proj3.jpg",
     alt: "3Dスキャニング製品LP",
     label: "プロダクトLP — 3Dスキャニング機器",
-    caseNumber: "17",
+    caseNumber: "18",
     fullImage: "/images/proj3-full.jpg",
     period: "1ヶ月",
     team: "デザイナー1（自身）・コーダー2",
@@ -197,7 +229,7 @@ export const otherProjects = [
     src: "/images/proj5.jpg",
     alt: "キャンペーンLP",
     label: "キャンペーンLP",
-    caseNumber: "18",
+    caseNumber: "19",
     fullImage: "/images/proj5-full.jpg",
     period: "2週間",
     team: "デザイナー1（自身）",
@@ -220,7 +252,7 @@ export const otherProjects = [
     src: "/images/proj4.jpg",
     alt: "動画メディアサイト テンプレート",
     label: "Webテンプレート — 動画メディア",
-    caseNumber: "19",
+    caseNumber: "20",
     fullImage: "/images/proj4-full.jpg",
     period: "1ヶ月",
     team: "デザイナー1（自身）・コーダー1",
@@ -244,7 +276,7 @@ export const otherProjects = [
     src: "/images/proj-juice.png",
     alt: "飲料パッケージ 製品ページ",
     label: "パッケージデザイン",
-    caseNumber: "20",
+    caseNumber: "21",
     liveUrl: "/works/juicy-juicy/",
     linkLabel: "Live サイトを見る ↗",
     period: "3週間",
@@ -269,7 +301,7 @@ export const otherProjects = [
     src: "/images/proj6-himeji.jpg",
     alt: "姫路交通便利帳",
     label: "グラフィック — 姫路交通便利帳",
-    caseNumber: "21",
+    caseNumber: "22",
     liveUrl: "https://www.himeji-kanko.jp/files_foreign/pdf/transportation_guide.pdf",
     linkLabel: "ガイドブック（PDF）を見る ↗",
     period: "1ヶ月",
@@ -294,7 +326,7 @@ export const otherProjects = [
     src: "/images/proj-visithk.png",
     alt: "VisitHK 香港観光サイト",
     label: "Webサイト — VisitHK（香港観光）",
-    caseNumber: "22",
+    caseNumber: "23",
     liveUrl: "https://visitncometohk.webflow.io/",
     linkLabel: "Live サイトを見る ↗",
     period: "1週間",
@@ -319,7 +351,7 @@ export const otherProjects = [
     src: "/images/proj9-manga.png",
     alt: "パラパラ漫画 リノベーション会社CM",
     label: "パラパラ漫画CM — 未来美育",
-    caseNumber: "23",
+    caseNumber: "24",
     liveUrl: "https://www.youtube.com/watch?v=DBSoqSIYHtU",
     linkLabel: "動画を見る ↗",
     period: "8週間",
@@ -343,7 +375,7 @@ export const otherProjects = [
     src: "/images/proj7-csv.jpg",
     alt: "サステナビリティ特設サイト",
     label: "サステナビリティ特設サイト",
-    caseNumber: "24",
+    caseNumber: "25",
     fullImage: "/images/proj7-csv.jpg",
     period: "1ヶ月半",
     team: "デザイナー1（自身）・コーダー2",
@@ -366,7 +398,7 @@ export const otherProjects = [
     src: "/images/proj8-rpa.jpg",
     alt: "RPAソフトウェア 製品LP",
     label: "RPAソフトウェア 製品LP",
-    caseNumber: "25",
+    caseNumber: "26",
     fullImage: "/images/proj8-rpa.jpg",
     period: "3週間",
     team: "デザイナー1（自身）・コーダー1",
@@ -390,7 +422,7 @@ export const otherProjects = [
     src: "/images/proj-ecard.jpg",
     alt: "eCard クリスマス・旧正月向け電子グリーティングカード",
     label: "eCard — クリスマス・旧正月向け電子グリーティングカード",
-    caseNumber: "26",
+    caseNumber: "27",
     liveUrl: "https://ecard.pro/en/Christmas-electronic-greeting-card-design",
     linkLabel: "参考サイトを見る ↗",
     period: "1ヶ月",
@@ -418,7 +450,7 @@ export const otherProjects = [
     src: "/images/proj-ginbasha.jpg",
     alt: "兵庫遺産街道 観光素材集・銀の馬車道マップ",
     label: "グラフィック — 兵庫遺産街道 観光素材集・銀の馬車道マップ",
-    caseNumber: "27",
+    caseNumber: "28",
     liveUrl: "https://www.gin-basha.jp/pamph/material/jp/",
     linkLabel: "観光素材集（日本語版）を見る ↗",
     period: "1ヶ月",

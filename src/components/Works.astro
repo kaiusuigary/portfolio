@@ -37,9 +37,50 @@ const myBadgeGroups = [
   },
 ].map((g) => ({ ...g, items: g.items.map(([file, ja, en]) => ({ src: `/images/mybadge-badges/${file}.webp`, alt: t(`${ja}のバッジ`, `${en} badge`) })) }));
 
+// CASE 06 全体リニューアル: BEFORE/AFTER pairs, search filter rows, key changes
+const pairs = [
+  {
+    before: "/images/lg-before-map.webp",
+    after: "/images/lg-after-map.webp",
+    label: t("マップ", "Map"),
+    note: t("ヘッダーとナビをガラスの素材に。ナビは「ホーム・探す・充電・知る・マイページ」に組み直し、「充電」を中央の赤いボタンとして独立させました。", "Header and navigation became glass. The tab bar was rebuilt as Home / Search / Charge / Learn / My Page, with “Charge” pulled out as a red button in the center."),
+  },
+  {
+    before: "/images/lg-before-history.webp",
+    after: "/images/lg-after-history.webp",
+    label: t("検索（履歴）", "Search (history)"),
+    note: t("検索バーとフィルタをガラスの丸ボタンにまとめ、見出しとリストは左揃えに統一しました。", "The search bar and filter became round glass controls, and headings and lists are consistently left-aligned."),
+  },
+  {
+    before: "/images/lg-before-results.webp",
+    after: "/images/lg-after-results.webp",
+    label: t("検索（結果）", "Search (results)"),
+    note: t("文字をRobotoからInterに変え、コントラストを上げて屋外でも読みやすくしました。", "Type moved from Roboto to Inter, with higher contrast so it stays readable outdoors."),
+  },
+];
+
+// Search filter section 53962:101722: top row = before the full redesign, bottom row = after
+const sfScreens = [
+  { id: "off", label: t("検索フィルタ（初期状態）", "Search filter (default)") },
+  { id: "on", label: t("検索フィルタ（選択あり）", "Search filter (with selections)") },
+  { id: "card", label: t("充電カード・アプリ", "Charging cards / apps") },
+  { id: "facility", label: t("施設の種類", "Facility types") },
+];
+
+const points = [
+  [t("iOS・Android共通のガラス表現", "A glass style for iOS and Android"), t("長く止まっていたUIの更新を体験全体の見直しとして行い、変化がひと目で伝わるよう、ガラスのような半透明の素材をデザインシステムに取り入れました。iOSのLiquid Glassを参考にしつつ、Androidでも同じ見た目と使い心地になるよう、OSに依存しない共通の表現として設計。ヘッダーや主要ボタンに使い、EVにふさわしい先進的でプレミアムな印象を目指しました。", "UI updates had stalled, so this was a full review of the experience. To make the change obvious at a glance, I added a translucent, glass-like material to the design system. It takes cues from iOS’s Liquid Glass but was designed as a shared style that looks and feels the same on Android. Used on headers and key buttons, it gives the premium, forward-looking feel an EV brand needs.")],
+  [t("フォントの選定", "Choosing the typeface"), t("RobotoからInterに変更しました。屋外の日差しの下や暗い駐車場でも、「90kW」「85%」「25分」のような数字と単位をすぐ読めるように。1・I・lの区別がはっきりしていて、マップ上の小さな文字（10〜12px）もつぶれません。", "I switched from Roboto to Inter, so numbers and units like “90kW”, “85%” and “25 min” read instantly in sunlight or a dark car park. Inter clearly separates 1, I and l, and small map labels (10–12px) stay crisp.")],
+  [t("コントラストと色の見直し", "Contrast and color"), t("文字と背景のコントラスト比を高めるよう色を調整し、ライト／ダークの両モードで対になる色を定義しました。色覚の多様性にも配慮し、色だけに頼らずに状態を示します。", "Colors were adjusted for higher text contrast and defined as light/dark pairs. States never rely on color alone, so they also work for people with color vision differences.")],
+  [t("左揃えを最優先に", "Left alignment first"), t("iOS・Androidどちらでも自然に読めるよう、見出し・本文・ダイアログを左揃えに統一しました。視線の動きに沿うため、「どこから読むか」で迷わず、内容をすばやく拾えます。", "Headings, body text and dialogs are left-aligned so they read naturally on both iOS and Android. It follows how the eye moves, so users never wonder where to start and can scan content quickly.")],
+  [t("「充電」を主役のボタンに", "Charge as the primary action"), t("充電開始はアプリでいちばん大切な行動。ナビのほかの項目から独立させ、ブランドカラーの赤で目立たせ、片手でも押しやすい位置に置きました。", "Starting a charge is the app’s most important action, so it is separated from the other tabs, highlighted in the brand red and placed where a thumb reaches it easily.")],
+  [t("ダイナミックアイランドと充電画面", "Dynamic Island and charging screens"), t("ロック画面とダイナミックアイランドで充電の経過時間を見られるようにし、アプリ内の充電画面も同じイラストとアニメーションでそろえ、「ちゃんと充電できている」ことが伝わるようにしました。", "Elapsed charging time now shows on the Lock Screen and Dynamic Island, and the in-app charging screens share the same illustration and animation, so users can see that charging is really working.")],
+  [t("ライトモードとダークモード", "Light and dark mode"), t("すべての画面をライト／ダークの両方で設計。白すぎない背景（bgPrimary）を基本にして、長い時間見ても目が疲れにくくしました。", "Every screen was designed in both light and dark. The base background is a soft off-white (bgPrimary) rather than pure white, to be easier on the eyes.")],
+  [t("入力済みと未入力を色で分ける", "Filled vs. empty fields"), t("「選択してください」などの未入力の表示と、ユーザーが入力した内容の色をはっきり分け、入力漏れに気づきやすくしました。", "Placeholder text like “Please select” and user-entered values use clearly different colors, so missing fields are easy to spot.")],
+];
+
 // サイドのタグは「日本語版での top（px）＋ 英語版で各 CASE がずれる量」で配置
 // （英語は文章が長く CASE の位置が下がるため。CASE の高さが変わったら測り直す）
-const enShift = [0, 46, 219, 270, 382, 403, 420, 560];
+const enShift = [0, 46, 219, 270, 382, 403, 519];
 const top = (caseNo, jaTop) => jaTop + (lang === "en" ? enShift[caseNo - 1] : 0);
 ---
 
@@ -75,17 +116,12 @@ const top = (caseNo, jaTop) => jaTop + (lang === "en" ? enShift[caseNo - 1] : 0)
   <div class="sticker" style={`top:${top(5, 14302)}px;left:3.5%;transform:rotate(5deg);`}>FIGMA</div>
 
   <!-- CASE 06 tool tags -->
-  <div class="sticker" style={`top:${top(6, 17171)}px;right:2%;transform:rotate(-6deg);`}>PHOTOSHOP</div>
-  <div class="sticker" style={`top:${top(6, 17291)}px;left:3.5%;transform:rotate(5deg);`}>ADOBE XD</div>
-  <div class="sticker" style={`top:${top(6, 17411)}px;right:1%;transform:rotate(7deg);`}>AFTER EFFECTS</div>
+  <div class="sticker" style={`top:${top(6, 17174)}px;right:2%;transform:rotate(-6deg);`}>FIGMA</div>
 
   <!-- CASE 07 tool tags -->
-  <div class="sticker" style={`top:${top(7, 20284)}px;left:3.5%;transform:rotate(5deg);`}>PHOTOSHOP</div>
-
-  <!-- CASE 08 tool tags -->
-  <div class="sticker" style={`top:${top(8, 23102)}px;right:2%;transform:rotate(-6deg);`}>PHOTOSHOP</div>
-  <div class="sticker" style={`top:${top(8, 23222)}px;left:3.5%;transform:rotate(5deg);`}>ADOBE XD</div>
-  <div class="sticker" style={`top:${top(8, 23342)}px;right:1%;transform:rotate(7deg);`}>WEBFLOW</div>
+  <div class="sticker" style={`top:${top(7, 29491)}px;right:2%;transform:rotate(-6deg);`}>PHOTOSHOP</div>
+  <div class="sticker" style={`top:${top(7, 29611)}px;left:3.5%;transform:rotate(5deg);`}>ADOBE XD</div>
+  <div class="sticker" style={`top:${top(7, 29731)}px;right:1%;transform:rotate(7deg);`}>AFTER EFFECTS</div>
 
   <div class="wrap">
     <div class="works-head">
@@ -590,7 +626,179 @@ const top = (caseNo, jaTop) => jaTop + (lang === "en" ? enShift[caseNo - 1] : 0)
     </div>
 
     <!-- ============ CASE 06 ============ -->
+    <!-- v5 full redesign (cancelled before release). Screens: v4 file uNmcvS0CxlLMOhBfVYs94N (before), v5 file jf5THs0AD0FSUwk1oxZIsR (after) -->
     <div id="case-06" class="case-anchor" style="margin-top:120px;">
+      <div class="case-media-grid">
+        <a
+          href="/images/lg-top.webp"
+          target="_blank"
+          rel="noopener"
+          class="shot-panel lightbox-trigger"
+          style="display:flex;align-items:center;justify-content:center;"
+        >
+          <img src="/images/lg-top.webp" style="width:100%;object-fit:contain;border-radius:10px;" alt={t("スタイルガイド Vol.5 の表紙", "Cover of Styleguide Vol.5")} />
+          <span class="expand-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 3H3v6M15 3h6v6M9 21H3v-6M15 21h6v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
+        <div>
+          <div class="case-num">CASE 06 <span class="lg-badge">{t("リリース前に中止", "Cancelled before release")}</span></div>
+          <h3 class="disp case-title-lg">{t("EV充電エネチェンジ アプリ 全体リニューアル", "EV Charge ENECHANGE App Redesign")}</h3>
+          <hr class="divider" style="margin:24px 0;max-width:120px;" />
+          <div class="meta-label">{t("期間", "Duration")}</div>
+          <p class="meta-value">{t("2026年5月〜8月", "May – Aug 2026")}</p>
+          <div class="meta-label">{t("チーム構成", "Team")}</div>
+          <p class="meta-value">{t("デザイナー1（自身）", "1 designer (me)")}<br />{t("ディレクター1", "1 director")}<br />{t("エンジニア2", "2 engineers")}</p>
+        </div>
+      </div>
+
+      <div class="ghost-mid">DETAILS</div>
+
+      <div class="grid-3 detail-grid">
+        <div>
+          <h4 class="disp detail-heading">{t("背景・課題", "Background & Challenge")}</h4>
+          <p class="detail-text">{t("EV充電エネチェンジ アプリは機能追加を重ねる一方で、見た目や操作の土台となるUIの更新が長く止まっていました。毎日使われるアプリだからこそ、変わったことがすぐ伝わり、屋外や車内でも迷わず使えるよう、デザインシステムから画面まで全体を作り直す計画でした。", "Features kept being added to the EV Charge ENECHANGE app, but the underlying UI hadn’t been updated in a long time. Because people use it every day, the plan was to rebuild everything from the design system to each screen — so the change is obvious and the app is easy to use outdoors or in the car.")}</p>
+          <p class="detail-text" style="margin-top:14px;">{t("デザインはほぼ完成していましたが、会社の事情によりアプリ自体の提供終了が決まったため、リリース前に中止となりました。", "The design was nearly finished, but the project was cancelled before release when the company decided to discontinue the app.")}</p>
+          <h4 class="disp detail-heading" style="margin-top:32px;">{t("担当範囲", "My Role")}</h4>
+          <ul class="detail-list">
+            <li>{t("アプリ全体のUIデザイン", "UI design for the whole app")}</li>
+            <li>{t("情報設計", "Information architecture")}</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="disp detail-heading">{t("コンセプト", "Concept")}</h4>
+          <ul class="detail-list">
+            <li><b style="color:var(--ink);">Inspired</b> — {t("充電をもっと身近に、スマートな移動体験を", "Make charging feel closer and smarter")}</li>
+            <li><b style="color:var(--ink);">Reliable</b> — {t("誰でも、どんな状況でも、迷わず確実に使える", "Anyone, anywhere, without hesitation")}</li>
+            <li><b style="color:var(--ink);">Universal</b> — {t("年齢や環境に関わらず、すべてのドライバーへ", "For every driver, whatever their age or situation")}</li>
+          </ul>
+          <h4 class="disp detail-heading" style="margin-top:32px;">{t("キーワード", "Keywords")}</h4>
+          <ul class="detail-list">
+            <li>{t("使いやすい", "Easy to use")}</li>
+            <li>{t("ユーザーフレンドリー", "User-friendly")}</li>
+            <li>{t("屋外でも読める", "Readable outdoors")}</li>
+            <li>{t("ライト／ダーク", "Light / Dark")}</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="disp detail-heading">{t("メインカラー", "Main Colors")}</h4>
+          <div class="swatch-row">
+            <div class="swatch"><span style="background:#C60D31;"></span>#C60D31</div>
+            <div class="swatch"><span style="background:#008198;"></span>#008198</div>
+            <div class="swatch"><span style="background:#FFB800;"></span>#FFB800</div>
+            <div class="swatch"><span style="background:#F9FAFB;border:1px solid var(--border);"></span>#F9FAFB</div>
+          </div>
+          <h4 class="disp detail-heading" style="margin-top:32px;">{t("使用ツール・技術", "Tools & Skills")}</h4>
+          <p class="detail-text">{t("Figma（UIデザイン・デザインシステム）", "Figma (UI design, design system)")}</p>
+        </div>
+      </div>
+
+      <div class="lg-wide">
+        <a href="/images/lg-concept.webp" target="_blank" rel="noopener" class="lightbox-trigger" style="display:block;">
+          <img src="/images/lg-concept.webp" loading="lazy" width="960" height="998" alt={t("コンセプト：Inspired / Reliable / Universal", "Concept: Inspired / Reliable / Universal")} />
+        </a>
+      </div>
+
+      <!-- BEFORE / AFTER -->
+      <div class="lg-ba">
+        <h4 class="disp detail-heading" style="text-align:center;">BEFORE / AFTER</h4>
+        <p class="detail-text" style="margin:12px auto 0;max-width:760px;text-align:center;">{t("左が現行アプリ（v4）、右がリニューアル案（v5）です。", "Current app (v4) on the left, the redesign (v5) on the right.")}</p>
+        {pairs.map((p) => (
+          <div class="lg-ba-row">
+            <figure>
+              <img src={p.before} loading="lazy" alt={`${p.label} — BEFORE`} />
+              <figcaption class="lg-label lg-label--before">BEFORE</figcaption>
+            </figure>
+            <figure>
+              <img src={p.after} loading="lazy" alt={`${p.label} — AFTER`} />
+              <figcaption class="lg-label lg-label--after">AFTER</figcaption>
+            </figure>
+            <div class="lg-ba-note">
+              <h5 class="disp">{p.label}</h5>
+              <p class="detail-text">{p.note}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- SEARCH FILTER: top row = before, bottom row = after -->
+      <div class="lg-block">
+        <h4 class="disp detail-heading" style="text-align:center;">{t("検索フィルタ", "Search Filter")}</h4>
+        <p class="detail-text" style="margin:12px auto 0;max-width:760px;text-align:center;">{t("上が全体リニューアル前、下がリニューアル後です。中央のタイトルを左揃えの大見出しに変え、戻る・ヘルプのボタンをガラスの丸ボタンに。カードにはやわらかい影をつけて項目のまとまりを示し、情報の優先順位がビジュアルでひと目でわかるようにしました。", "Top row: before the full redesign. Bottom row: after. The centered title became a large left-aligned heading, the back and help buttons became round glass buttons, and cards got a soft shadow to group related items — so the priority of information is clear at a glance.")}</p>
+        <div class="lg-sf-label lg-label lg-label--before">BEFORE</div>
+        <div class="lg-sf-row">
+          {sfScreens.map((s) => (
+            <img src={`/images/lg-sfb-${s.id}.webp`} loading="lazy" alt={`${s.label} — BEFORE`} />
+          ))}
+        </div>
+        <div class="lg-sf-label lg-label lg-label--after">AFTER</div>
+        <div class="lg-sf-row">
+          {sfScreens.map((s) => (
+            <img src={`/images/lg-sfa-${s.id}.webp`} loading="lazy" alt={`${s.label} — AFTER`} />
+          ))}
+        </div>
+      </div>
+
+      <!-- KEY CHANGES -->
+      <div class="lg-points">
+        <h4 class="disp detail-heading" style="text-align:center;">{t("主な変更点", "Key Changes")}</h4>
+        <ol>
+          {points.map(([title, body]) => (
+            <li>
+              <h5 class="disp">{title}</h5>
+              <p class="detail-text">{body}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+
+      <!-- LIGHT / DARK -->
+      <div class="lg-block">
+        <h4 class="disp detail-heading" style="text-align:center;">LIGHT / DARK</h4>
+        <div class="lg-phones lg-phones--3">
+          <img src="/images/lg-home-light.webp" loading="lazy" alt={t("ホーム（ライトモード）", "Home (light mode)")} />
+          <img src="/images/lg-home-dark.webp" loading="lazy" alt={t("ホーム（ダークモード）", "Home (dark mode)")} />
+          <img src="/images/lg-map-dark.webp" loading="lazy" alt={t("マップ（ダークモード）", "Map (dark mode)")} />
+        </div>
+        <a href="/images/lg-colors.webp" target="_blank" rel="noopener" class="lightbox-trigger lg-wide" style="display:block;">
+          <img src="/images/lg-colors.webp" loading="lazy" width="1470" height="1352" alt={t("ライト／ダークのカラーパレット", "Light / dark color palette")} />
+        </a>
+      </div>
+
+      <!-- CHARGING -->
+      <div class="lg-block">
+        <h4 class="disp detail-heading" style="text-align:center;">{t("充電の流れ", "Charging Flow")}</h4>
+        <p class="detail-text" style="margin:12px auto 0;max-width:760px;text-align:center;">{t("充電の確認 → 充電中 → 充電完了。ロック画面とダイナミックアイランドにも同じイラストと経過時間を表示します。", "Confirm → charging → complete. The Lock Screen and Dynamic Island show the same illustration and elapsed time.")}</p>
+        <div class="lg-phones lg-phones--3">
+          <img src="/images/lg-confirm.webp" loading="lazy" alt={t("充電の確認", "Confirm charging")} />
+          <img src="/images/lg-charging.webp" loading="lazy" alt={t("充電中", "Charging")} />
+          <img src="/images/lg-complete.webp" loading="lazy" alt={t("充電完了", "Charging complete")} />
+        </div>
+        <div class="lg-phones lg-phones--2">
+          <img src="/images/lg-island-lock.webp" loading="lazy" alt={t("ロック画面の充電通知", "Charging notification on the Lock Screen")} />
+          <img src="/images/lg-island-ext.webp" loading="lazy" alt={t("ダイナミックアイランド（充電中）", "Dynamic Island while charging")} />
+        </div>
+      </div>
+
+      <!-- COMPONENTS -->
+      <div class="case-showcase-2col">
+        <div>
+          <img src="/images/lg-coupon.webp" class="lg-single" loading="lazy" alt={t("クーポン一覧", "Coupon list")} />
+          <p class="detail-text" style="margin-top:16px;">{t("クーポンはチケットの形に。選択中・並び替え・削除などの状態がひと目でわかるようにしました。", "Coupons became ticket shapes, so states like selected, reordering and deleting are clear at a glance.")}</p>
+        </div>
+        <div>
+          <img src="/images/lg-buttons.webp" class="lg-single" loading="lazy" alt={t("ボタンのバリエーション", "Button variations")} />
+          <p class="detail-text" style="margin-top:16px;">{t("ボタンはサイズと役割ごとにバリエーションを整理し、デザインシステムのコンポーネントとして定義しました。", "Buttons were organized by size and role and defined as design system components.")}</p>
+        </div>
+      </div>
+
+      <div class="case-cta" style="text-align:center;margin-top:4px;">
+        <a href="#contact" class="btn">Contact Me</a>
+      </div>
+    </div>
+
+    <!-- ============ CASE 07 ============ -->
+    <div id="case-07" class="case-anchor" style="margin-top:120px;">
       <div class="case-media-grid">
         <a
           href="/images/case1-full.jpg"
@@ -605,7 +813,7 @@ const top = (caseNo, jaTop) => jaTop + (lang === "en" ? enShift[caseNo - 1] : 0)
           </span>
         </a>
         <div>
-          <div class="case-num">CASE 06</div>
+          <div class="case-num">CASE 07</div>
           <h3 class="disp case-title-lg">{t("大手企業の新商品特化ページ", "New Product Page for a Major Company")}</h3>
           <hr class="divider" style="margin:24px 0;max-width:120px;" />
           <div class="meta-label">{t("期間", "Duration")}</div>
@@ -688,185 +896,6 @@ const top = (caseNo, jaTop) => jaTop + (lang === "en" ? enShift[caseNo - 1] : 0)
         <a href="#contact" class="btn">Contact Me</a>
       </div>
     </div>
-
-    <!-- ============ CASE 07 ============ -->
-    <div id="case-07" class="case-anchor" style="margin-top:120px;">
-      <div class="case-media-grid">
-        <a
-          href="/images/case2-full.jpg"
-          target="_blank"
-          rel="noopener"
-          class="shot-panel lightbox-trigger"
-          style="display:flex;align-items:center;justify-content:center;"
-        >
-          <img src="/images/case2-top.jpg" style="width:100%;object-fit:contain;border-radius:10px;" alt={t("LEDラインアップページ LP", "LED lineup page")} />
-          <span class="expand-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 3H3v6M15 3h6v6M9 21H3v-6M15 21h6v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </span>
-        </a>
-        <div>
-          <div class="case-num">CASE 07</div>
-          <h3 class="disp case-title-lg">{t("大手企業の既存商品ラインアップページ リニューアル", "Product Lineup Page Redesign for a Major Company")}</h3>
-          <hr class="divider" style="margin:24px 0;max-width:120px;" />
-          <div class="meta-label">{t("期間", "Duration")}</div>
-          <p class="meta-value">{t("約6ヶ月", "About 6 months")}</p>
-          <div class="meta-label">{t("チーム構成", "Team")}</div>
-          <p class="meta-value">{t("デザイナー1（自身）", "1 designer (me)")}<br />{t("コーダー4", "4 front-end developers")}<br />{t("ディレクター1", "1 director")}</p>
-        </div>
-      </div>
-
-      <div class="ghost-mid">DETAILS</div>
-
-      <div class="grid-3 detail-grid">
-        <div>
-          <h4 class="disp detail-heading">{t("背景・課題", "Background & Challenge")}</h4>
-          <p class="detail-text">{t("既存商品のラインアップページは、情報量の多さや構成の複雑さにより「比較のしづらさ」「目的情報への到達しづらさ」といった課題を抱えていました。対象カテゴリが2系統存在し、ページ内でのスムーズな回遊も求められていました。", "Because of the sheer amount of information and its complex structure, the existing product lineup page made products hard to compare and the right information hard to reach. With two product categories, it also needed to let users move smoothly around the page.")}</p>
-          <h4 class="disp detail-heading" style="margin-top:32px;">{t("目的・KPI", "Goals & KPIs")}</h4>
-          <ul class="detail-list">
-            <li>{t("商品の魅力を直感的に伝えるUIへの改善", "Improve the UI to convey each product’s appeal intuitively")}</li>
-            <li>{t("カタログDL数・お問い合わせ件数（CVR）の向上", "Increase catalog downloads and inquiries (CVR)")}</li>
-            <li>{t("商品比較のしやすさ向上と離脱率の低下", "Make products easier to compare and reduce bounce rate")}</li>
-          </ul>
-          <h4 class="disp detail-heading" style="margin-top:32px;">{t("担当範囲", "My Role")}</h4>
-          <ul class="detail-list">
-            <li>{t("情報設計（導線・構成）", "Information architecture (user flow and structure)")}</li>
-            <li>{t("UIデザイン（デザインカンプ）", "UI design (design comps)")}</li>
-            <li>{t("多言語対応図版制作（30言語以上）", "Localized graphics (30+ languages)")}</li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="disp detail-heading">{t("アプローチ・工夫点", "Approach")}</h4>
-          <p class="detail-text"><b style="color:var(--ink);">{t("1. 情報設計の改善", "1. Improved information architecture")}</b><br />{t("商品サムネイルをファーストビューから多数見せる構成へ変更（1列2個→4個）。不要なグローバルナビを削除し、目的情報への最短導線を確保。カテゴリ間をスムーズに行き来できる構成に。", "Changed the layout to show many product thumbnails from the first view (from 2 to 4 per row). Removed unnecessary global navigation to create the shortest path to the information users want, and made it easy to move between categories.")}</p>
-          <p class="detail-text" style="margin-top:14px;"><b style="color:var(--ink);">{t("2. デザインの工夫", "2. Design")}</b><br />{t("落ち着いたグレートーンで商品自体が引き立つように調整し、「現在地」を示すアクセントカラー（青）で選択状態を強調しました。", "A calm gray palette lets the products stand out, while an accent color (blue) indicating “you are here” emphasizes the selected state.")}</p>
-          <h4 class="disp detail-heading" style="margin-top:32px;">{t("キーワード", "Keywords")}</h4>
-          <ul class="detail-list">
-            <li>{t("シンプルで洗練", "Simple & refined")}</li>
-            <li>{t("直感的にわかりやすい", "Intuitive & clear")}</li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="disp detail-heading">{t("メインカラー", "Main Colors")}</h4>
-          <div class="swatch-row">
-            <div class="swatch"><span style="background:#DCEAEE;"></span>#DCEAEE</div>
-            <div class="swatch"><span style="background:#263C5A;"></span>#263C5A</div>
-            <div class="swatch"><span style="background:#D3DFEC;"></span>#D3DFEC</div>
-            <div class="swatch"><span style="background:#FFFFFF;border:1px solid var(--border);"></span>#FFFFFF</div>
-          </div>
-          <h4 class="disp detail-heading" style="margin-top:32px;">{t("使用ツール・技術", "Tools & Skills")}</h4>
-          <p class="detail-text">{t("Photoshop（図版制作・UIデザインカンプ・パーツ設計）", "Photoshop (graphics, UI design comps, component design)")}<br />{t("コーダー連携を意識したモジュールデザイン", "Modular design built for smooth hand-off to developers")}</p>
-          <h4 class="disp detail-heading" style="margin-top:32px;">{t("成果", "Results")}</h4>
-          <p class="detail-text">{t("リニューアル後は、カタログDL数やお問い合わせ数（CVR）が前年比5%以上改善。作成したデザインは日本語を含む30以上の言語に展開され、グローバル展開にも大きく貢献しました。", "After the redesign, catalog downloads and inquiries (CVR) improved by more than 5% year over year. The design was rolled out in over 30 languages including Japanese, contributing greatly to the global rollout.")}</p>
-        </div>
-      </div>
-
-      <div class="case-showcase-2col">
-        <div>
-          <div class="shot-panel"><img src="/images/case2-before.png" class="imgbox" style="border-radius:10px;" alt="Before" /></div>
-          <p class="detail-text" style="margin-top:14px;"><b style="color:var(--ink);">← Before</b><br />{t("左右にグローバルナビが表示され情報量が多く、視線が分散しやすい構成。テキスト中心で目的到達までの負荷が高い設計でした。", "Global navigation on both sides meant a lot of information and scattered attention. The text-heavy design made it hard work to reach the information users wanted.")}</p>
-        </div>
-        <div>
-          <div class="shot-panel"><img src="/images/case2-after.png" class="imgbox" style="border-radius:10px;" alt="After" /></div>
-          <p class="detail-text" style="margin-top:14px;"><b style="color:var(--ink);">After →</b><br />{t("不要なナビを削除し、商品サムネイルを上部に集約。カテゴリ間をタブで切り替えられるようにし、比較しやすい導線を設計しました。", "Removed unnecessary navigation and gathered product thumbnails at the top. Tabs let users switch between categories, making products easier to compare.")}</p>
-        </div>
-      </div>
-
-      <div class="case-mockup">
-        <img src="/images/case2-thedesign.png" class="no-shadow" alt={t("THE DESIGN — ラインアップページ デザイン", "THE DESIGN — Lineup page")} />
-      </div>
-
-      <div class="case-cta" style="text-align:center;margin-top:4px;">
-        <a href="#contact" class="btn">Contact Me</a>
-      </div>
-    </div>
-
-    <!-- ============ CASE 08 ============ -->
-    <div id="case-08" class="case-anchor" style="margin-top:120px;">
-      <div class="case-media-grid">
-        <a
-          href="https://yespay.webflow.io/"
-          target="_blank"
-          rel="noopener"
-          class="shot-panel lightbox-trigger"
-          style="display:flex;align-items:center;justify-content:center;"
-        >
-          <img src="/images/case3-top.jpg" style="width:100%;object-fit:contain;border-radius:10px;" alt="YES Pay LP" />
-          <span class="expand-icon">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </span>
-        </a>
-        <div>
-          <div class="case-num">CASE 08</div>
-          <h3 class="disp case-title-lg">{t("YES Pay — クレジットカード連携型電子マネーサービス（自主制作）", "YES Pay — A Credit Card–Linked E-Money Service (Personal Project)")}</h3>
-          <hr class="divider" style="margin:24px 0;max-width:120px;" />
-          <div class="meta-label">{t("期間", "Duration")}</div>
-          <p class="meta-value">{t("2週間", "2 weeks")}</p>
-          <div class="meta-label">{t("チーム構成", "Team")}</div>
-          <p class="meta-value">{t("個人制作（1人）", "Personal project (solo)")}</p>
-          <a href="https://yespay.webflow.io/" class="btn-ghost" style="font-size:13px;padding:10px 20px;margin-top:8px;display:inline-flex;">{t("Live サイトを見る ↗", "View live site ↗")}</a>
-        </div>
-      </div>
-
-      <div class="ghost-mid">DETAILS</div>
-
-      <div class="grid-3 detail-grid">
-        <div>
-          <h4 class="disp detail-heading">{t("背景・課題", "Background & Challenge")}</h4>
-          <p class="detail-text">{t("クレジットカードと連携できる電子マネーサービス「YES Pay」の仮想商品を想定し、ユーザー獲得に向けたLPを制作。「信頼性や実績が伝わりづらい」「メリットが瞬時に理解されない」「登録への導線が弱い」という課題に対し、魅力を訴求しCV（登録）へつなげる構成が求められました。", "I imagined “YES Pay”, a fictional e-money service that links to credit cards, and created an LP to acquire users. To address the challenges that credibility and track record were hard to convey, the benefits weren’t understood instantly and the path to sign-up was weak, the page needed to communicate the service’s appeal and lead to conversions (sign-ups).")}</p>
-          <h4 class="disp detail-heading" style="margin-top:32px;">{t("目的・KPI", "Goals & KPIs")}</h4>
-          <ul class="detail-list">
-            <li>{t("登録コンバージョン率（CVR）の最大化", "Maximize the sign-up conversion rate (CVR)")}</li>
-            <li>{t("「便利で信頼できるサービス」という第一印象の獲得", "Make a first impression of a convenient, trustworthy service")}</li>
-          </ul>
-          <h4 class="disp detail-heading" style="margin-top:32px;">{t("担当範囲", "My Role")}</h4>
-          <ul class="detail-list">
-            <li>{t("UX設計", "UX design")}</li>
-            <li>{t("UIデザイン", "UI design")}</li>
-            <li>{t("実装（Webflow）", "Build (Webflow)")}</li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="disp detail-heading">{t("アプローチ・工夫点", "Approach")}</h4>
-          <p class="detail-text"><b style="color:var(--ink);">{t("1. 情報設計（信用 × 論理 × 行動喚起）", "1. Information architecture (trust × logic × call to action)")}</b><br />{t("ファーストビューにスマホUIを大きく配置し、手軽さと利便性をビジュアルで訴求。実績・メディア掲載情報をMV直下に設置して信頼性を補強しました。", "A large smartphone UI in the hero section visually communicates ease and convenience. Track record and media coverage placed right below the main visual reinforce credibility.")}</p>
-          <p class="detail-text" style="margin-top:14px;"><b style="color:var(--ink);">{t("2. ビジュアル設計", "2. Visual design")}</b><br />{t("「カード残高・履歴が一目で見える」デザインで機能性を表現。クレジットカードがスマートフォン内に収まるビジュアルで管理のしやすさと安心感を直感的に伝えました。", "A design where card balance and history are visible at a glance expresses functionality. A visual of a credit card fitting inside a smartphone intuitively conveys easy management and peace of mind.")}</p>
-          <h4 class="disp detail-heading" style="margin-top:32px;">{t("キーワード", "Keywords")}</h4>
-          <ul class="detail-list">
-            <li>{t("導入メリットが明確", "Clear benefits")}</li>
-            <li>{t("信頼性の高い体験", "A trustworthy experience")}</li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="disp detail-heading">{t("メインカラー", "Main Colors")}</h4>
-          <div class="swatch-row">
-            <div class="swatch"><span style="background:#0F70A8;"></span>#0F70A8</div>
-            <div class="swatch"><span style="background:#17B8C4;"></span>#17B8C4</div>
-            <div class="swatch"><span style="background:#FFFFFF;border:1px solid var(--border);"></span>#FFFFFF</div>
-          </div>
-          <h4 class="disp detail-heading" style="margin-top:32px;">{t("使用ツール・技術", "Tools & Skills")}</h4>
-          <p class="detail-text">{t("Photoshop（ビジュアル素材）", "Photoshop (visual assets)")}<br />{t("Adobe XD（ワイヤーフレーム）", "Adobe XD (wireframes)")}<br />{t("Webflow（ノーコード実装）", "Webflow (no-code build)")}</p>
-          <h4 class="disp detail-heading" style="margin-top:32px;">{t("成果", "Results")}</h4>
-          <p class="detail-text">{t("BtoCのランディングページ制作を想定し、限られた時間の中で「UXと視覚訴求のバランス」を重視。BtoB制作で培った情報構造力を、より消費者目線で展開した挑戦的なプロジェクトです。", "Designed as a B2C landing page, the project focused on balancing UX and visual appeal within a limited time. It was a challenging project that applied the information-structuring skills I built in B2B work from a more consumer-oriented perspective.")}</p>
-        </div>
-      </div>
-
-      <div class="case-showcase-2col">
-        <div>
-          <img src="/images/case3-visual1.png" class="imgbox" alt={t("カード連携ビジュアル", "Card-linking visual")} />
-          <p class="detail-text" style="margin-top:16px;">{t("クレジットカードがスマートフォン内に収まるビジュアルで、カード残高・履歴が一目で見える機能性を表現しました。", "A visual of a credit card fitting inside a smartphone expresses the functionality of seeing card balance and history at a glance.")}</p>
-        </div>
-        <div>
-          <img src="/images/case3-visual2.png" class="imgbox" alt={t("サービスの特徴アイコン", "Service feature icons")} />
-          <p class="detail-text" style="margin-top:16px;">{t("セキュリティ・両替・株の購入・カードサポートなど、サービスの特徴をアイコンで直感的に伝える構成にしています。", "Icons intuitively communicate the service’s features, such as security, currency exchange, stock purchases and card support.")}</p>
-        </div>
-      </div>
-
-      <div class="case-mockup">
-        <img src="/images/case3-thedesign.png" class="no-shadow" alt={t("THE DESIGN — YES Pay LP デザイン", "THE DESIGN — YES Pay LP")} />
-      </div>
-
-      <div style="text-align:center;margin-top:4px;">
-        <a href="#contact" class="btn">Contact Me</a>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -875,4 +904,164 @@ const top = (caseNo, jaTop) => jaTop + (lang === "en" ? enShift[caseNo - 1] : 0)
   .works-head :global(.category-tabs) { padding-bottom: 8px; }
   /* ヘッダーに隠れないよう、分類一覧から CASE へ飛んだときの止まり位置を下げる */
   .case-anchor { scroll-margin-top: 110px; }
+
+  /* CASE 06 全体リニューアル */
+  .lg-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 999px;
+    background: #c60d31;
+    color: #fff;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+  }
+  .lg-wide {
+    max-width: 760px;
+    margin: 72px auto 0;
+  }
+  .lg-wide img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 14px;
+  }
+  .lg-ba,
+  .lg-points,
+  .lg-block {
+    margin: 72px auto 0;
+    max-width: 960px;
+  }
+  .lg-ba-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1.3fr;
+    gap: 32px;
+    align-items: center;
+    margin-top: 40px;
+  }
+  .lg-ba-row figure {
+    margin: 0;
+  }
+  /* screens have transparent corners, so the shadow follows the phone shape */
+  .lg-ba-row img,
+  .lg-phones img,
+  .lg-single {
+    display: block;
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 16px 24px rgba(16, 27, 52, 0.16));
+  }
+  .lg-ba-row img {
+    aspect-ratio: 360 / 800;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 0 0 24px 24px;
+  }
+  .lg-ba-note h5,
+  .lg-points h5 {
+    font-size: 16px;
+    color: var(--ink);
+    margin: 0 0 8px;
+  }
+  .lg-label {
+    margin-top: 12px;
+    text-align: center;
+    font-family: "Sora", sans-serif;
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 0.14em;
+  }
+  .lg-label--before {
+    color: #8a93a3;
+  }
+  .lg-label--after {
+    color: #c60d31;
+  }
+  .lg-points ol {
+    list-style: none;
+    counter-reset: pt;
+    padding: 0;
+    margin: 32px 0 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .lg-points li {
+    counter-increment: pt;
+    background: #fff;
+    border-radius: 14px;
+    padding: 24px 24px 24px 64px;
+    position: relative;
+  }
+  .lg-points li::before {
+    content: counter(pt, decimal-leading-zero);
+    position: absolute;
+    left: 22px;
+    top: 22px;
+    font-family: "Sora", sans-serif;
+    font-weight: 800;
+    font-size: 15px;
+    color: #c60d31;
+  }
+  .lg-phones {
+    display: grid;
+    gap: 32px;
+    margin: 32px auto 0;
+    align-items: start;
+  }
+  .lg-phones--3 {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 860px;
+  }
+  .lg-phones--2 {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 560px;
+    margin-top: 48px;
+  }
+  .lg-sf-label {
+    margin-top: 36px;
+  }
+  .lg-sf-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-top: 16px;
+    align-items: start;
+  }
+  .lg-sf-row img {
+    display: block;
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 12px 20px rgba(16, 27, 52, 0.14));
+  }
+  .lg-single {
+    max-width: 320px;
+    margin: 0 auto;
+  }
+  @media (max-width: 760px) {
+    .lg-ba-row {
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .lg-ba-note {
+      grid-column: 1 / -1;
+    }
+    .lg-points ol {
+      grid-template-columns: 1fr;
+    }
+    .lg-phones {
+      gap: 12px;
+    }
+    .lg-sf-row {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+  }
+  @media (max-width: 600px) {
+    .lg-ba,
+    .lg-points,
+    .lg-block,
+    .lg-wide {
+      margin-top: 48px;
+    }
+  }
 </style>
