@@ -1,0 +1,133 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Contact from "../../../components/Contact.astro";
+import ProjectNav from "../../../components/ProjectNav.astro";
+import ToolStickers from "../../../components/ToolStickers.astro";
+import { otherProjects, localize } from "../../../data/otherProjects.js";
+import { langParams, getLang, useT, localePath } from "../../../i18n.js";
+
+export function getStaticPaths() {
+  return langParams.map((params) => ({ params }));
+}
+
+const lang = getLang(Astro.params.lang);
+const t = useT(lang);
+const project = localize(otherProjects.find((p) => p.slug === "hakone-campaign"), lang);
+
+---
+
+<Layout lang={lang} title={`${project.label} — Kai Usui Portfolio`} description={project.concept}>
+  <div style="min-height:100vh;position:relative;background:#eef4fb;">
+    <ProjectNav lang={lang} />
+
+    <section class="section" style="padding-top:80px;padding-bottom:50px;position:relative;">
+      <ToolStickers tools={"Illustrator Figma"} />
+      <div
+        class="ghost"
+        style="position:absolute;top:20px;left:50%;transform:translateX(-50%);font-size:clamp(60px,10vw,150px);z-index:0;opacity:.7;white-space:nowrap;"
+      >
+        MY WORKS
+      </div>
+      <div class="wrap" style="position:relative;z-index:1;">
+        <div style="text-align:center;">
+          <div class="eyebrow" style="justify-content:center;">Portfolio</div>
+          <h1 class="disp" style="font-size:clamp(34px,4.6vw,52px);font-weight:800;color:var(--ink);">CASE {project.caseNumber}</h1>
+          <a href={localePath(lang, "/") + "#other"} style="font-size:13.5px;color:var(--accent-2);display:inline-block;margin-top:10px;">← Back to home</a>
+        </div>
+
+        <div style="margin-top:56px;">
+          <div class="case-media-grid">
+            <a
+              href="/images/hakone-full.jpg"
+              target="_blank"
+              rel="noopener"
+              class="shot-panel lightbox-trigger"
+              style="display:flex;align-items:center;justify-content:center;"
+            >
+              <img src="/images/hakone-top.jpg" style="width:100%;object-fit:contain;border-radius:10px;" alt={t("EVおでかけ推進プロジェクト 箱根キャンペーンページ", "EV Outing Promotion Project Hakone campaign page")} />
+              <span class="expand-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 3H3v6M15 3h6v6M9 21H3v-6M15 21h6v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </a>
+            <div>
+              <div class="case-num">CASE {project.caseNumber}</div>
+              <h2 class="disp case-title-lg">{t("「そうだ、箱根に行こう！」— EVおでかけ推進プロジェクト キャンペーンページ", "“Let’s Go to Hakone!” — EV Outing Promotion Project Campaign Page")}</h2>
+              <hr class="divider" style="margin:24px 0;max-width:120px;" />
+              <div class="meta-label">{t("期間", "Duration")}</div>
+              <p class="meta-value">{t("約1週間", "About 1 week")}</p>
+              <div class="meta-label">{t("チーム構成", "Team")}</div>
+              <p class="meta-value">{t("デザイナー1（自身）", "1 designer (me)")}<br />{t("ディレクター1", "1 director")}<br />{t("コーダー1", "1 front-end developer")}</p>
+              <a href="https://ev-charge-enechange.jp/for_drivers/campaigns/miraene_emp_poc/hakone2025-autumn/" target="_blank" rel="noopener" class="btn-ghost" style="font-size:13px;padding:10px 20px;margin-top:8px;display:inline-flex;">{t("Live サイトを見る ↗", "View live site ↗")}</a>
+            </div>
+          </div>
+
+          <div class="ghost-mid">DETAILS</div>
+
+          <div class="grid-3 detail-grid">
+            <div>
+              <h4 class="disp detail-heading">{t("背景・課題", "Background & Challenge")}</h4>
+              <p class="detail-text">{t("EV・PHEVユーザーが「もっと気軽に遠出を楽しめる未来」を目指す「EVおでかけ推進プロジェクト」の企画として、2025年11月22日〜24日の3日間、箱根へのおでかけを後押しするキャンペーンを実施。急速充電の割引や現地イベントの内容を、わかりやすく伝えて参加につなげるページが求められました。", "As part of the “EV Outing Promotion Project”, which aims for a future where EV and PHEV drivers can enjoy long trips more easily, a three-day campaign from November 22 to 24, 2025 encouraged people to visit Hakone. The page needed to clearly explain the fast-charging discount and the on-site event, and turn interest into participation.")}</p>
+              <h4 class="disp detail-heading" style="margin-top:32px;">{t("目的・KPI", "Goals & KPIs")}</h4>
+              <ul class="detail-list">
+                <li>{t("イベントへの事前エントリー数の獲得", "Gain pre-registrations for the event")}</li>
+                <li>{t("割引対象の急速充電の利用促進", "Promote use of the discounted fast chargers")}</li>
+              </ul>
+              <h4 class="disp detail-heading" style="margin-top:32px;">{t("担当範囲", "My Role")}</h4>
+              <ul class="detail-list">
+                <li>{t("ページ全体のデザイン", "Design of the entire page")}</li>
+                <li>{t("メインビジュアル制作", "Main visual")}</li>
+                <li>{t("イラスト制作", "Illustrations")}</li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="disp detail-heading">{t("アプローチ・工夫点", "Approach")}</h4>
+              <p class="detail-text"><b style="color:var(--ink);">{t("1. 「行ってみたい」を引き出すメインビジュアル", "1. A main visual that makes people want to go")}</b><br />{t("富士山・温泉・鳥居・遊覧船など箱根の名所と充電スポットを、道でつないだアイソメトリックのイラストで表現。EVで箱根を巡る楽しさがひと目で伝わるビジュアルにしました。", "An isometric illustration connects Hakone’s landmarks — Mt. Fuji, hot springs, a torii gate, a sightseeing boat — and charging spots with roads, so the fun of touring Hakone by EV comes across at a glance.")}</p>
+              <p class="detail-text" style="margin-top:14px;"><b style="color:var(--ink);">{t("2. 特典を「3つの工夫」で整理", "2. Organizing the perks as “three highlights”")}</b><br />{t("充電の割引・お役立ち情報・会場でのプレゼントという3つの特典を、イラスト付きのカードで並べ、キャンペーンの内容を短時間で理解できる構成にしました。", "The three perks — a charging discount, helpful tips and gifts at the venue — are laid out as illustrated cards so the campaign can be understood quickly.")}</p>
+              <p class="detail-text" style="margin-top:14px;"><b style="color:var(--ink);">{t("3. 2社のブランドを両立した配色", "3. A color scheme that balances two brands")}</b><br />{t("ミライズエネチェンジの赤とe-Mobility Powerのティールを組み合わせ、共同企画であることが自然に伝わるトーン＆マナーにしました。", "Combining MIRAIZ ENECHANGE’s red with e-Mobility Power’s teal, the tone and manner naturally conveys that this is a joint project.")}</p>
+              <h4 class="disp detail-heading" style="margin-top:32px;">{t("キーワード", "Keywords")}</h4>
+              <ul class="detail-list">
+                <li>{t("明るい", "Bright")}</li>
+                <li>{t("わかりやすさ", "Clear")}</li>
+                <li>{t("おでかけのワクワク感", "The excitement of a day out")}</li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="disp detail-heading">{t("メインカラー", "Main Colors")}</h4>
+              <div class="swatch-row">
+                <div class="swatch"><span style="background:#C60D31;"></span>#C60D31</div>
+                <div class="swatch"><span style="background:#01BCC5;"></span>#01BCC5</div>
+                <div class="swatch"><span style="background:#1A2E35;"></span>#1A2E35</div>
+                <div class="swatch"><span style="background:#E5EFEF;border:1px solid var(--border);"></span>#E5EFEF</div>
+              </div>
+              <h4 class="disp detail-heading" style="margin-top:32px;">{t("使用ツール・技術", "Tools & Skills")}</h4>
+              <p class="detail-text">{t("Illustrator（イラスト）", "Illustrator (illustrations)")}<br />{t("Figma（UIデザイン）", "Figma (UI design)")}</p>
+              <h4 class="disp detail-heading" style="margin-top:32px;">{t("成果", "Results")}</h4>
+              <p class="detail-text">{t("現地イベントを通じて、ユーザーと直接交流し生の声を聞く機会を創出。共同企画を成功させたことで、e-Mobility Powerとの信頼関係の強化にもつながりました。", "The on-site event created a chance to meet users in person and hear their feedback directly. The success of the joint project also strengthened our relationship with e-Mobility Power.")}</p>
+            </div>
+          </div>
+
+          <div class="case-showcase-2col">
+            <div>
+              <img src="/images/hakone-detail01.png" class="imgbox" alt={t("箱根キャンペーン メインビジュアル", "Hakone campaign main visual")} />
+              <p class="detail-text" style="margin-top:16px;">{t("箱根の名所と充電スポットを道でつないだメインビジュアル。EVで巡る旅のルートを想像できるようにしました。", "The main visual connects Hakone’s landmarks and charging spots with roads, helping visitors picture a route for an EV trip.")}</p>
+            </div>
+            <div>
+              <img src="/images/hakone-detail02.png" class="imgbox" alt={t("3つの工夫セクション", "Three highlights section")} />
+              <p class="detail-text" style="margin-top:16px;">{t("キャンペーンの特典を「3つの工夫」としてイラスト付きで紹介し、参加するメリットがすぐに伝わる構成にしています。", "The campaign perks are introduced as “three highlights” with illustrations, so the benefits of joining come across right away.")}</p>
+            </div>
+          </div>
+
+          <div class="case-mockup">
+            <img src="/images/hakone-thedesign.png" class="no-shadow" alt={t("THE DESIGN — 箱根キャンペーンページ", "THE DESIGN — Hakone campaign page")} />
+          </div>
+
+          <div class="case-cta" style="text-align:center;margin-top:4px;">
+            <a href="#contact" class="btn">Contact Me</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <Contact lang={lang} />
+  </div>
+</Layout>

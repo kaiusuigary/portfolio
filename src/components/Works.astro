@@ -1,43 +1,11 @@
 ---
 import { useT } from "../i18n.js";
 import CategoryTabs from "./CategoryTabs.astro";
-import BadgeShowcase from "./BadgeShowcase.astro";
 
 const { lang = "ja" } = Astro.props;
 const t = useT(lang);
 
-// CASE 01 マイバッジ: badges exported from Figma (v4 file, frame "medal"), public/images/mybadge-badges/<file>.webp
-const myBadgeGroups = [
-  {
-    title: t("充電回数バッジ", "Charge count badges"),
-    items: [["first-charge", "ファースト・チャージ", "First Charge"], ["bronze-charge", "ブロンズ・チャージ", "Bronze Charge"], ["silver-charge", "シルバー・チャージ", "Silver Charge"], ["gold-charge", "ゴールド・チャージ", "Gold Charge"]],
-  },
-  {
-    title: t("おでかけバッジ", "Travel badges"),
-    items: [["beginner-traveller", "ビギナー・トラベラー", "Beginner Traveller"], ["traveller", "トラベラー", "Traveller"], ["explorer", "エクスプローラー", "Explorer"], ["grand-master", "グランドマスター", "Grand Master"]],
-  },
-  {
-    title: t("口コミバッジ", "Review badges"),
-    items: [["beginner-reporter", "ビギナー・レポーター", "Beginner Reporter"], ["reporter", "レポーター", "Reporter"], ["photographer", "フォトグラファー", "Photographer"], ["top-contributor", "トップ・コントリビューター", "Top Contributor"]],
-  },
-  {
-    title: t("チャレンジバッジ", "Challenge badges"),
-    items: [
-      ["hotel-stay", "ホテルステイ", "Hotel Stay"], ["golfer", "ゴルファー", "Golfer"], ["smart-shopper", "スマートショッパー", "Smart Shopper"], ["mountain", "マウンテン", "Mountain"], ["island", "アイランド", "Island"],
-      ["river", "リバー", "River"], ["night-owl", "ナイトアウル", "Night Owl"], ["early-bird", "アーリーバード", "Early Bird"], ["time-traveler", "タイムトラベラー", "Time Traveler"], ["pioneer", "パイオニア", "Pioneer"],
-    ],
-  },
-  {
-    title: t("EVサポーターズ メダル", "EV Supporters medals"),
-    items: [["supporters-s1-platinum", "EVサポーターズ メダル", "EV Supporters medal"], ["supporters-s1-gold", "EVサポーターズ メダル", "EV Supporters medal"], ["supporters-s2-platinum", "EVサポーターズ メダル", "EV Supporters medal"], ["supporters-s2-gold", "EVサポーターズ メダル", "EV Supporters medal"], ["supporters-s2-silver", "EVサポーターズ メダル", "EV Supporters medal"], ["supporters-s2-bronze", "EVサポーターズ メダル", "EV Supporters medal"]],
-  },
-  {
-    title: t("都道府県バッジ", "Prefecture badges"),
-    items: [["sticker-hokkaido", "北海道", "Hokkaido"], ["sticker-tohoku", "東北", "Tohoku"], ["sticker-kitakanto", "北関東", "Kita-Kanto"], ["sticker-minamikanto", "南関東", "Minami-Kanto"], ["sticker-tokai", "東海", "Tokai"], ["sticker-hokuriku", "北陸", "Hokuriku"], ["sticker-kinki", "近畿", "Kinki"], ["sticker-chugoku", "中国", "Chugoku"], ["sticker-shikoku", "四国", "Shikoku"], ["sticker-kyushu", "九州", "Kyushu"]],
-  },
-].map((g) => ({ ...g, items: g.items.map(([file, ja, en]) => ({ src: `/images/mybadge-badges/${file}.webp`, alt: t(`${ja}のバッジ`, `${en} badge`) })) }));
-
-// CASE 06 全体リニューアル: BEFORE/AFTER pairs, search filter rows, key changes
+// CASE 02 全体リニューアル: BEFORE/AFTER pairs, search filter rows, key changes
 const pairs = [
   {
     before: "/images/lg-before-map.webp",
@@ -80,7 +48,7 @@ const points = [
 
 // サイドのタグは「日本語版での top（px）＋ 英語版で各 CASE がずれる量」で配置
 // （英語は文章が長く CASE の位置が下がるため。CASE の高さが変わったら測り直す）
-const enShift = [0, 46, 219, 270, 382, 403, 523];
+const enShift = [0, 173, 293];
 const top = (caseNo, jaTop) => jaTop + (lang === "en" ? enShift[caseNo - 1] : 0);
 ---
 
@@ -95,33 +63,15 @@ const top = (caseNo, jaTop) => jaTop + (lang === "en" ? enShift[caseNo - 1] : 0)
   <!-- CASE 01 tool tags -->
   <div class="sticker" style={`top:${top(1, 280)}px;right:2%;transform:rotate(-6deg);`}>FIGMA</div>
   <div class="sticker" style={`top:${top(1, 400)}px;left:3.5%;transform:rotate(5deg);`}>ILLUSTRATOR</div>
+  <div class="sticker" style={`top:${top(1, 520)}px;right:1%;transform:rotate(7deg);`}>PHOTOSHOP</div>
 
   <!-- CASE 02 tool tags -->
-  <div class="sticker" style={`top:${top(2, 4564)}px;right:2%;transform:rotate(-6deg);`}>FIGMA</div>
-  <div class="sticker" style={`top:${top(2, 4684)}px;left:3.5%;transform:rotate(5deg);`}>ILLUSTRATOR</div>
-  <div class="sticker" style={`top:${top(2, 4804)}px;right:1%;transform:rotate(7deg);`}>PHOTOSHOP</div>
+  <div class="sticker" style={`top:${top(2, 3363)}px;right:2%;transform:rotate(-6deg);`}>FIGMA</div>
 
   <!-- CASE 03 tool tags -->
-  <div class="sticker" style={`top:${top(3, 7646)}px;right:2%;transform:rotate(-6deg);`}>ILLUSTRATOR</div>
-  <div class="sticker" style={`top:${top(3, 7766)}px;left:3.5%;transform:rotate(5deg);`}>PHOTOSHOP</div>
-  <div class="sticker" style={`top:${top(3, 7886)}px;right:1%;transform:rotate(7deg);`}>FIGMA</div>
-
-  <!-- CASE 04 tool tags -->
-  <div class="sticker" style={`top:${top(4, 11190)}px;right:2%;transform:rotate(-6deg);`}>FIGMA</div>
-  <div class="sticker" style={`top:${top(4, 11310)}px;left:3.5%;transform:rotate(5deg);`}>PHOTOSHOP</div>
-  <div class="sticker" style={`top:${top(4, 11430)}px;right:1%;transform:rotate(7deg);`}>ILLUSTRATOR</div>
-
-  <!-- CASE 05 tool tags -->
-  <div class="sticker" style={`top:${top(5, 14182)}px;right:2%;transform:rotate(-6deg);`}>ILLUSTRATOR</div>
-  <div class="sticker" style={`top:${top(5, 14302)}px;left:3.5%;transform:rotate(5deg);`}>FIGMA</div>
-
-  <!-- CASE 06 tool tags -->
-  <div class="sticker" style={`top:${top(6, 17174)}px;right:2%;transform:rotate(-6deg);`}>FIGMA</div>
-
-  <!-- CASE 07 tool tags -->
-  <div class="sticker" style={`top:${top(7, 29579)}px;right:2%;transform:rotate(-6deg);`}>PHOTOSHOP</div>
-  <div class="sticker" style={`top:${top(7, 29699)}px;left:3.5%;transform:rotate(5deg);`}>ADOBE XD</div>
-  <div class="sticker" style={`top:${top(7, 29819)}px;right:1%;transform:rotate(7deg);`}>AFTER EFFECTS</div>
+  <div class="sticker" style={`top:${top(3, 10805)}px;right:2%;transform:rotate(-6deg);`}>ILLUSTRATOR</div>
+  <div class="sticker" style={`top:${top(3, 10925)}px;left:3.5%;transform:rotate(5deg);`}>PHOTOSHOP</div>
+  <div class="sticker" style={`top:${top(3, 11045)}px;right:1%;transform:rotate(7deg);`}>FIGMA</div>
 
   <div class="wrap">
     <div class="works-head">
@@ -136,117 +86,6 @@ const top = (caseNo, jaTop) => jaTop + (lang === "en" ? enShift[caseNo - 1] : 0)
     <div id="case-01" class="case-anchor" style="margin-top:80px;">
       <div class="case-media-grid">
         <a
-          href="/images/badge-full.jpg"
-          target="_blank"
-          rel="noopener"
-          class="shot-panel lightbox-trigger"
-          style="display:flex;align-items:center;justify-content:center;"
-        >
-          <img src="/images/badge-top.jpg" style="width:100%;object-fit:contain;border-radius:10px;" alt={t("EV充電エネチェンジ アプリ マイバッジ機能", "EV Charge ENECHANGE app — My Badge feature")} />
-          <span class="expand-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 3H3v6M15 3h6v6M9 21H3v-6M15 21h6v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </span>
-        </a>
-        <div>
-          <div class="case-num">CASE 01</div>
-          <h3 class="disp case-title-lg">{t("EV充電エネチェンジ アプリ v4.1.0 — 新機能「マイバッジ」", "EV Charge ENECHANGE App v4.1.0 — New “My Badge” Feature")}</h3>
-          <hr class="divider" style="margin:24px 0;max-width:120px;" />
-          <div class="meta-label">{t("期間", "Duration")}</div>
-          <p class="meta-value">{t("約1ヶ月", "About 1 month")}</p>
-          <div class="meta-label">{t("チーム構成", "Team")}</div>
-          <p class="meta-value">{t("デザイナー1（自身）", "1 designer (me)")}<br />{t("ディレクター1", "1 director")}<br />{t("エンジニア2", "2 engineers")}</p>
-          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px;">
-            <a href="https://apps.apple.com/jp/app/id911721775" target="_blank" rel="noopener" class="btn-ghost" style="font-size:13px;padding:10px 20px;display:inline-flex;">App Store ↗</a>
-            <a href="https://play.google.com/store/apps/details?id=net.evsmart" target="_blank" rel="noopener" class="btn-ghost" style="font-size:13px;padding:10px 20px;display:inline-flex;">Google Play ↗</a>
-            <a href="https://ev-plus.jp/news/important-notice/v4-1-0-update/" target="_blank" rel="noopener" class="btn-ghost" style="font-size:13px;padding:10px 20px;display:inline-flex;">{t("v4.1.0 アップデートのお知らせ ↗", "v4.1.0 release notes (JP) ↗")}</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="ghost-mid">DETAILS</div>
-
-      <div class="grid-3 detail-grid">
-        <div>
-          <h4 class="disp detail-heading">{t("背景・課題", "Background & Challenge")}</h4>
-          <p class="detail-text">{t("2026年7月31日配信のv4.1.0で追加された新機能「マイバッジ」。充電や口コミ投稿など、アプリの利用に応じてバッジを獲得・コレクションできる機能です。v4.0「ニコラ」で始まったEVライフプログラムに続き、「使うたびに楽しい」アプリ体験をさらに広げることが求められました。", "“My Badge”, a new feature added in v4.1.0 (released July 31, 2026). Users earn and collect badges as they use the app — charging, posting reviews and more. Following the EV Life Program launched in v4.0 “Nikola”, the goal was to further extend an app experience that’s “fun every time you use it”.")}</p>
-          <h4 class="disp detail-heading" style="margin-top:32px;">{t("目的・KPI", "Goals & KPIs")}</h4>
-          <ul class="detail-list">
-            <li>{t("アプリを継続して使う動機づけ", "Give users a reason to keep using the app")}</li>
-            <li>{t("口コミ・写真投稿の促進", "Encourage review and photo posts")}</li>
-            <li>{t("アプリへのロイヤルティを高め、充電利用と売上につなげる", "Build loyalty to the app, driving charging usage and revenue")}</li>
-          </ul>
-          <h4 class="disp detail-heading" style="margin-top:32px;">{t("担当範囲", "My Role")}</h4>
-          <ul class="detail-list">
-            <li>{t("マイバッジ画面のUI/UXデザイン", "UI/UX design of the My Badge screen")}</li>
-            <li>{t("バッジ獲得時のモーダルのデザイン", "Design of the badge-earned modal")}</li>
-            <li>{t("ホーム画面のマイバッジ導線バナー", "My Badge entry banner on the Home screen")}</li>
-            <li>{t("バッジのデザイン", "Badge design")}</li>
-            <li>{t("プロトタイピング", "Prototyping")}</li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="disp detail-heading">{t("アプローチ・工夫点", "Approach")}</h4>
-          <p class="detail-text"><b style="color:var(--ink);">{t("1. 集めたくなるコレクション画面", "1. A collection screen that makes you want to collect")}</b><br />{t("充電・おでかけ・口コミなど、アクションの種類ごとにバッジを並べ、ブロンズ・シルバー・ゴールドと段階的に色が変わるデザインに。次に何を目指せばいいかがひと目でわかり、「全部そろえたい」と思える一覧にしました。", "Badges are grouped by type of action — charging, going out, reviews and more — and change color step by step from bronze to silver to gold. Users can see at a glance what to aim for next, and the list makes them want to complete the set.")}</p>
-          <p class="detail-text" style="margin-top:14px;"><b style="color:var(--ink);">{t("2. 獲得の瞬間を祝う演出", "2. Celebrating the moment you earn a badge")}</b><br />{t("バッジを獲得すると、紙吹雪とともにバッジと獲得条件を表示するモーダルを用意。達成感を味わえる瞬間をつくり、次のアクションへの意欲につなげています。", "When a badge is earned, a modal shows the badge and how it was earned, with confetti. It creates a moment of accomplishment that motivates the next action.")}</p>
-          <p class="detail-text" style="margin-top:14px;"><b style="color:var(--ink);">{t("3. ステージと連動したアイコンフレーム", "3. Icon frames linked to program stages")}</b><br />{t("EVライフプログラムのPlatinum・Diamondステージに応じたアイコンフレームを選べるようにし、プログラムとの一体感と特別感を演出。ライト・ダークの両モードでも世界観が崩れないよう配色を調整しました。", "Users can choose icon frames that match their EV Life Program stage (Platinum, Diamond), tying the feature to the program and adding a sense of status. Colors were tuned so the look holds up in both light and dark mode.")}</p>
-          <h4 class="disp detail-heading" style="margin-top:32px;">{t("キーワード", "Keywords")}</h4>
-          <ul class="detail-list">
-            <li>{t("集める楽しさ", "The joy of collecting")}</li>
-            <li>{t("達成感", "Sense of accomplishment")}</li>
-            <li>{t("特別感", "Feeling special")}</li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="disp detail-heading">{t("メインカラー", "Main Colors")}</h4>
-          <div class="swatch-row">
-            <div class="swatch"><span style="background:#A04276;"></span>#A04276</div>
-            <div class="swatch"><span style="background:#662B4F;"></span>#662B4F</div>
-            <div class="swatch"><span style="background:#C60D31;"></span>#C60D31</div>
-            <div class="swatch"><span style="background:#FFE2AB;"></span>#FFE2AB</div>
-            <div class="swatch"><span style="background:#121212;"></span>#121212</div>
-          </div>
-          <h4 class="disp detail-heading" style="margin-top:32px;">{t("使用ツール・技術", "Tools & Skills")}</h4>
-          <p class="detail-text">{t("Figma（UIデザイン）", "Figma (UI design)")}<br />{t("Illustrator（バッジデザイン）", "Illustrator (badge design)")}</p>
-        </div>
-      </div>
-
-      <div class="case-showcase-2col">
-        <div>
-          <img src="/images/badge-detail01.png" class="imgbox" alt={t("マイバッジ画面（ライト・ダーク）", "My Badge screen (light and dark)")} />
-          <p class="detail-text" style="margin-top:16px;">{t("マイバッジ画面。アイコンフレームとアクションバッジをカードにまとめ、ライト・ダークどちらのモードでも見やすい配色にしています。", "The My Badge screen. Icon frames and action badges are grouped into cards, with colors that stay easy to read in both light and dark mode.")}</p>
-        </div>
-        <div>
-          <img src="/images/badge-detail02.png" class="imgbox" alt={t("ホームの導線バナーとバッジ獲得モーダル", "Home entry banner and badge-earned modal")} />
-          <p class="detail-text" style="margin-top:16px;">{t("ホーム画面の「マイバッジコレクション」バナー（左）と、バッジ獲得時のモーダル（右）。ホームから自然に機能を知ってもらい、獲得の瞬間を印象的に演出しています。", "The “My Badge Collection” banner on the Home screen (left) and the badge-earned modal (right). Users discover the feature naturally from Home, and the moment of earning a badge is made memorable.")}</p>
-        </div>
-      </div>
-
-      <BadgeShowcase
-        title={t("バッジデザイン", "Badge Design")}
-        description={t("充電・おでかけ・口コミなど、アプリでのアクションに応じて獲得できるバッジを、全38種類デザインしました。段階のあるバッジはブロンズ・シルバー・ゴールドと色が変わり、数字とモチーフで獲得条件がひと目でわかるようにしています。", "I designed all 38 badges that users earn through actions in the app — charging, going out, posting reviews and more. Tiered badges change color from bronze to silver to gold, and numbers and motifs show at a glance what each badge is for.")}
-        groups={myBadgeGroups}
-        size={84}
-        spSize={58}
-      />
-
-      <div class="case-mockup">
-        <a href="/images/badge-thedesign3.png" target="_blank" rel="noopener" class="lightbox-trigger" style="display:block;max-width:720px;margin:0 auto;">
-          <img src="/images/badge-thedesign3.png" class="no-shadow" alt={t("THE DESIGN — マイバッジ画面と、デザインしたバッジ", "THE DESIGN — My Badge screens and the badges I designed")} />
-          <span class="expand-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 3H3v6M15 3h6v6M9 21H3v-6M15 21h6v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </span>
-        </a>
-      </div>
-
-      <div class="case-cta" style="text-align:center;margin-top:4px;">
-        <a href="#contact" class="btn">Contact Me</a>
-      </div>
-    </div>
-
-    <!-- ============ CASE 02 ============ -->
-    <div id="case-02" class="case-anchor" style="margin-top:120px;">
-      <div class="case-media-grid">
-        <a
           href="/images/app-full3.jpg"
           target="_blank"
           rel="noopener"
@@ -259,7 +98,7 @@ const top = (caseNo, jaTop) => jaTop + (lang === "en" ? enShift[caseNo - 1] : 0)
           </span>
         </a>
         <div>
-          <div class="case-num">CASE 02</div>
+          <div class="case-num">CASE 01</div>
           <h3 class="disp case-title-lg">{t("EV充電エネチェンジ アプリ改修 — v4.0「ニコラ」メジャーアップデート", "EV Charge ENECHANGE App Redesign — v4.0 “Nikola” Major Update")}</h3>
           <hr class="divider" style="margin:24px 0;max-width:120px;" />
           <div class="meta-label">{t("期間", "Duration")}</div>
@@ -343,291 +182,9 @@ const top = (caseNo, jaTop) => jaTop + (lang === "en" ? enShift[caseNo - 1] : 0)
       </div>
     </div>
 
-    <!-- ============ CASE 03 ============ -->
-    <div id="case-03" class="case-anchor" style="margin-top:120px;">
-      <div class="case-media-grid">
-        <a
-          href="/images/evplus-full.jpg"
-          target="_blank"
-          rel="noopener"
-          class="shot-panel lightbox-trigger"
-          style="display:flex;align-items:center;justify-content:center;"
-        >
-          <img src="/images/evplus-top.jpg" style="width:100%;object-fit:contain;border-radius:10px;" alt={t("EV PLUS トップページ", "EV PLUS top page")} />
-          <span class="expand-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 3H3v6M15 3h6v6M9 21H3v-6M15 21h6v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </span>
-        </a>
-        <div>
-          <div class="case-num">CASE 03</div>
-          <h3 class="disp case-title-lg">{t("EV PLUS — EVオーナー向けライフスタイルメディアの立ち上げ", "EV PLUS — Launching a Lifestyle Media Site for EV Owners")}</h3>
-          <hr class="divider" style="margin:24px 0;max-width:120px;" />
-          <div class="meta-label">{t("期間", "Duration")}</div>
-          <p class="meta-value">{t("約2ヶ月", "About 2 months")}</p>
-          <div class="meta-label">{t("チーム構成", "Team")}</div>
-          <p class="meta-value">{t("デザイナー1（自身）", "1 designer (me)")}<br />{t("ディレクター2", "2 directors")}<br />{t("編集2", "2 editors")}<br />{t("コーダー1", "1 front-end developer")}</p>
-          <a href="https://ev-plus.jp/" target="_blank" rel="noopener" class="btn-ghost" style="font-size:13px;padding:10px 20px;margin-top:8px;display:inline-flex;">{t("Live サイトを見る ↗", "View live site ↗")}</a>
-        </div>
-      </div>
-
-      <div class="ghost-mid">DETAILS</div>
-
-      <div class="grid-3 detail-grid">
-        <div>
-          <h4 class="disp detail-heading">{t("背景・課題", "Background & Challenge")}</h4>
-          <p class="detail-text">{t("EV充電サービスを運営する企業が、EVオーナーに向けておでかけ情報や充電の基礎知識を発信するメディア「EV PLUS」をゼロから立ち上げました。ブランドの世界観がまだ何もない状態から、サイト全体のビジュアルを形にすることが求められました。", "An EV charging company launched “EV PLUS” from scratch — a media site sharing trip ideas and charging basics with EV owners. With no brand identity in place yet, the task was to shape the visuals for the entire site.")}</p>
-          <h4 class="disp detail-heading" style="margin-top:32px;">{t("目的・KPI", "Goals & KPIs")}</h4>
-          <ul class="detail-list">
-            <li>{t("PV数・セッション数の増加", "Increase page views and sessions")}</li>
-            <li>{t("アプリDL数の増加", "Increase app downloads")}</li>
-          </ul>
-          <h4 class="disp detail-heading" style="margin-top:32px;">{t("担当範囲", "My Role")}</h4>
-          <ul class="detail-list">
-            <li>{t("メインビジュアル制作", "Main visual")}</li>
-            <li>{t("記事サムネイルのテンプレート作成", "Article thumbnail templates")}</li>
-            <li>{t("サイト全体のトーン＆マナー設計", "Tone and manner for the whole site")}</li>
-            <li>{t("CTAバナーなどのデザイン", "CTA banners and other graphics")}</li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="disp detail-heading">{t("アプローチ・工夫点", "Approach")}</h4>
-          <p class="detail-text"><b style="color:var(--ink);">{t("1. 「EVでおでかけ」が楽しくなるメインビジュアル", "1. A main visual that makes going out by EV look fun")}</b><br />{t("アイソメトリックの街に観光地・グルメ・充電スポット・キャラクターを散りばめ、中央にロゴを立体的に配置。メディアのテーマである「EVライフをもっと楽しく」をひと目で伝えるビジュアルにしました。", "An isometric town scattered with sights, food, charging spots and characters, with the logo placed in 3D at the center. The visual conveys the site’s theme — “make EV life more fun” — at a glance.")}</p>
-          <p class="detail-text" style="margin-top:14px;"><b style="color:var(--ink);">{t("2. 運用しやすいサムネイルテンプレート", "2. Thumbnail templates that are easy to run")}</b><br />{t("ロゴ・カテゴリラベル・タイトルの配置を揃えたテンプレートを用意し、記事が増えても一覧ページに統一感が出るようにしました。", "I created templates with a consistent placement for the logo, category label and title, so listing pages stay cohesive as more articles are added.")}</p>
-          <p class="detail-text" style="margin-top:14px;"><b style="color:var(--ink);">{t("3. ブランドカラーで統一したトーン＆マナー", "3. A tone and manner unified by the brand color")}</b><br />{t("ブランドの赤を軸に、ピンク〜コーラルのグラデーションでやわらかさを加え、CTAバナーまで一貫した印象に仕上げました。", "Built around the brand red, with pink-to-coral gradients adding softness, the look stays consistent all the way to the CTA banners.")}</p>
-          <h4 class="disp detail-heading" style="margin-top:32px;">{t("キーワード", "Keywords")}</h4>
-          <ul class="detail-list">
-            <li>{t("楽しい・ワクワク", "Fun & exciting")}</li>
-            <li>{t("親しみやすい", "Approachable")}</li>
-            <li>{t("役立つ情報が充実", "Packed with useful info")}</li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="disp detail-heading">{t("メインカラー", "Main Colors")}</h4>
-          <div class="swatch-row">
-            <div class="swatch"><span style="background:#C60D31;"></span>#C60D31</div>
-            <div class="swatch"><span style="background:#B01040;"></span>#B01040</div>
-            <div class="swatch"><span style="background:#333333;"></span>#333333</div>
-            <div class="swatch"><span style="background:#FFFFFF;border:1px solid var(--border);"></span>#FFFFFF</div>
-          </div>
-          <h4 class="disp detail-heading" style="margin-top:32px;">{t("使用ツール・技術", "Tools & Skills")}</h4>
-          <p class="detail-text">{t("Illustrator、Photoshop（メインビジュアル、サムネイル）", "Illustrator, Photoshop (main visual, thumbnails)")}<br />Figma</p>
-          <h4 class="disp detail-heading" style="margin-top:32px;">{t("成果", "Results")}</h4>
-          <p class="detail-text">{t("メディア公開後、アプリDLバナーを起点にアプリのダウンロード数が増加。特に記事下バナーからのダウンロード率が高く、記事を読んだユーザーをアプリ利用へつなげる導線として機能しています。", "After launch, app downloads grew through the app download banners. The banner below each article has a particularly high download rate, working as a path that turns readers into app users.")}</p>
-        </div>
-      </div>
-
-      <div class="case-showcase-2col">
-        <div>
-          <img src="/images/evplus-detail01.png" class="imgbox" alt={t("EV PLUS メインビジュアル", "EV PLUS main visual")} />
-          <p class="detail-text" style="margin-top:16px;">{t("メインビジュアルでは、観光地やグルメ、充電スポットが並ぶ街をアイソメトリックで描き、EVでのおでかけの楽しさを表現しました。", "The main visual depicts, in isometric style, a town lined with sights, restaurants and charging spots to express the fun of getting out and about by EV.")}</p>
-        </div>
-        <div>
-          <img src="/images/evplus-detail02.png" class="imgbox" alt={t("記事サムネイルのテンプレート", "Article thumbnail templates")} />
-          <p class="detail-text" style="margin-top:16px;">{t("記事サムネイルはカテゴリごとにテンプレート化。タイトルを差し替えるだけで、統一感のあるサムネイルを作れるようにしました。", "Article thumbnails are templated by category, so a consistent thumbnail can be made just by swapping the title.")}</p>
-        </div>
-      </div>
-
-      <div style="margin-top:48px;">
-        <img src="/images/evplus-cta.png" class="no-shadow" style="width:100%;max-width:836px;display:block;margin:0 auto;" alt={t("EV充電エネチェンジ公式アプリ CTAバナー", "CTA banner for the official EV Charge ENECHANGE app")} />
-        <p class="detail-text" style="margin:16px auto 0;max-width:836px;">{t("アプリのダウンロードを促すCTAバナー。ブランドカラーのグラデーションにアプリ画面を重ね、ストアへの導線をわかりやすくしました。", "A CTA banner encouraging app downloads. App screens are layered over a brand-color gradient to make the path to the store clear.")}</p>
-      </div>
-
-      <div class="case-mockup">
-        <img src="/images/evplus-thedesign.png" class="no-shadow" alt={t("THE DESIGN — EV PLUS デザイン", "THE DESIGN — EV PLUS")} />
-      </div>
-
-      <div class="case-cta" style="text-align:center;margin-top:4px;">
-        <a href="#contact" class="btn">Contact Me</a>
-      </div>
-    </div>
-
-    <!-- ============ CASE 04 ============ -->
-    <div id="case-04" class="case-anchor" style="margin-top:120px;">
-      <div class="case-media-grid">
-        <a
-          href="/images/stay-full.jpg"
-          target="_blank"
-          rel="noopener"
-          class="shot-panel lightbox-trigger"
-          style="display:flex;align-items:center;justify-content:center;"
-        >
-          <img src="/images/stay-top.jpg" style="width:100%;object-fit:contain;border-radius:10px;" alt={t("EV STAY & CHARGE トップページ", "EV STAY & CHARGE top page")} />
-          <span class="expand-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 3H3v6M15 3h6v6M9 21H3v-6M15 21h6v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </span>
-        </a>
-        <div>
-          <div class="case-num">CASE 04</div>
-          <h3 class="disp case-title-lg">{t("EV STAY & CHARGE — EV充電できる宿泊施設の紹介サイト", "EV STAY & CHARGE — A Guide to Hotels with EV Charging")}</h3>
-          <hr class="divider" style="margin:24px 0;max-width:120px;" />
-          <div class="meta-label">{t("期間", "Duration")}</div>
-          <p class="meta-value">{t("約3ヶ月", "About 3 months")}</p>
-          <div class="meta-label">{t("チーム構成", "Team")}</div>
-          <p class="meta-value">{t("デザイナー1（自身）", "1 designer (me)")}<br />{t("ディレクター2", "2 directors")}<br />{t("コーダー1", "1 front-end developer")}</p>
-          <a href="https://stay-and-charge.com/" target="_blank" rel="noopener" class="btn-ghost" style="font-size:13px;padding:10px 20px;margin-top:8px;display:inline-flex;">{t("Live サイトを見る ↗", "View live site ↗")}</a>
-        </div>
-      </div>
-
-      <div class="ghost-mid">DETAILS</div>
-
-      <div class="grid-3 detail-grid">
-        <div>
-          <h4 class="disp detail-heading">{t("背景・課題", "Background & Challenge")}</h4>
-          <p class="detail-text">{t("EVでの旅行では「旅先で充電できるか」という不安がつきものです。その不安を解消するため、EV充電設備のあるホテル・旅館をまとめて探せるサイトとして立ち上げられました。", "Traveling by EV often comes with the worry “Will I be able to charge at my destination?” To ease that worry, this site was launched so people can find hotels and ryokan (Japanese inns) with EV chargers all in one place.")}</p>
-          <h4 class="disp detail-heading" style="margin-top:32px;">{t("目的・KPI", "Goals & KPIs")}</h4>
-          <ul class="detail-list">
-            <li>{t("宿泊施設ページへの送客", "Drive traffic to accommodation pages")}</li>
-            <li>{t("アプリDL数の増加", "Increase app downloads")}</li>
-          </ul>
-          <h4 class="disp detail-heading" style="margin-top:32px;">{t("担当範囲", "My Role")}</h4>
-          <ul class="detail-list">
-            <li>{t("サイト全体のデザイン", "Design of the entire site")}</li>
-            <li>{t("メインビジュアル制作", "Main visual")}</li>
-            <li>{t("イラスト制作", "Illustrations")}</li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="disp detail-heading">{t("アプローチ・工夫点", "Approach")}</h4>
-          <p class="detail-text"><b style="color:var(--ink);">{t("1. 旅の情景と充電を1枚で伝えるメインビジュアル", "1. A main visual that shows travel scenery and charging together")}</b><br />{t("温泉や景色の写真に、日本地図と充電器を重ねたスライドで構成。「旅先でも充電できる」ことを、ひと目で伝えるビジュアルにしました。", "Slides of hot springs and scenery overlaid with a map of Japan and a charger. The visual shows at a glance that “you can charge at your destination, too.”")}</p>
-          <p class="detail-text" style="margin-top:14px;"><b style="color:var(--ink);">{t("2. 「EV優先」をイラストで直感的に", "2. Making “EV priority” intuitive with illustrations")}</b><br />{t("充電スペースにガソリン車が停まって困るシーンと、「EV優先」の案内板で安心して停められるシーンをBefore/Afterのイラストで比較し、サービスの価値をわかりやすく伝えています。", "Before/After illustrations compare the frustration of a gasoline car parked in a charging space with the peace of mind of parking at a spot marked “EV priority”, making the value of the service easy to understand.")}</p>
-          <p class="detail-text" style="margin-top:14px;"><b style="color:var(--ink);">{t("3. 上質さを感じるトーン＆マナー", "3. A tone and manner that feels refined")}</b><br />{t("細身の書体とゴールドのアクセントで、宿泊施設にふさわしい落ち着きと上質さを表現しました。", "Slender typefaces and gold accents express the calm, refined feel befitting a place to stay.")}</p>
-          <h4 class="disp detail-heading" style="margin-top:32px;">{t("キーワード", "Keywords")}</h4>
-          <ul class="detail-list">
-            <li>{t("安心感", "Reassuring")}</li>
-            <li>{t("上質・高級感", "Refined & premium")}</li>
-            <li>{t("旅のワクワク感", "The excitement of travel")}</li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="disp detail-heading">{t("メインカラー", "Main Colors")}</h4>
-          <div class="swatch-row">
-            <div class="swatch"><span style="background:#C60D31;"></span>#C60D31</div>
-            <div class="swatch"><span style="background:#333333;"></span>#333333</div>
-            <div class="swatch"><span style="background:#F0F0F0;border:1px solid var(--border);"></span>#F0F0F0</div>
-            <div class="swatch"><span style="background:#FFFFFF;border:1px solid var(--border);"></span>#FFFFFF</div>
-          </div>
-          <h4 class="disp detail-heading" style="margin-top:32px;">{t("使用ツール・技術", "Tools & Skills")}</h4>
-          <p class="detail-text">{t("Photoshop・Illustrator（図版作成・編集）", "Photoshop, Illustrator (graphics and editing)")}<br />{t("Figma（全体デザイン）", "Figma (overall design)")}</p>
-          <h4 class="disp detail-heading" style="margin-top:32px;">{t("成果", "Results")}</h4>
-          <p class="detail-text">{t("全国23都道府県・50施設（2026年9月時点）を掲載するサイトに成長。星野リゾートなど大手ホテルブランドにも参画いただき、サービスの信頼感を伝えるブランドサイトとして機能しています。", "The site has grown to list 50 properties in 23 prefectures across Japan (as of September 2026). Major hotel brands such as Hoshino Resorts have joined, and it works as a brand site that conveys the service’s credibility.")}</p>
-        </div>
-      </div>
-
-      <div class="case-showcase-2col">
-        <div>
-          <img src="/images/stay-detail01.png" class="imgbox" alt={t("EV STAY & CHARGE メインビジュアル", "EV STAY & CHARGE main visual")} />
-          <p class="detail-text" style="margin-top:16px;">{t("メインビジュアルはスライドショーで宿の景色を魅力的に見せつつ、日本地図上のピンをスライドと連動させて施設の場所を表示。全国各地の宿が参加していることをアピールし、旅と充電の安心感を同時に伝える構成にしました。", "The main visual is a slideshow showcasing each property’s scenery, with a pin on the map of Japan moving in sync to show where it is. It highlights that hotels all over the country take part, conveying the joy of travel and the reassurance of charging at the same time.")}</p>
-        </div>
-        <div>
-          <img src="/images/stay-detail02.png" class="imgbox" alt={t("宿泊施設一覧ページ", "Accommodation listing page")} />
-          <p class="detail-text" style="margin-top:16px;">{t("エリア別に宿を探せる一覧ページを設置。写真と充電設備の情報をひと目で比較でき、各施設の詳細・公式サイトへの導線を用意することで、宿への送客にもつなげています。", "A listing page lets users search for hotels by area. Photos and charging details can be compared at a glance, and links to each property’s details and official site help send visitors on to the hotels.")}</p>
-        </div>
-      </div>
-
-      <div class="case-mockup">
-        <img src="/images/stay-thedesign.png" class="no-shadow" alt={t("THE DESIGN — EV STAY & CHARGE デザイン", "THE DESIGN — EV STAY & CHARGE")} />
-      </div>
-
-      <div class="case-cta" style="text-align:center;margin-top:4px;">
-        <a href="#contact" class="btn">Contact Me</a>
-      </div>
-    </div>
-
-    <!-- ============ CASE 05 ============ -->
-    <div id="case-05" class="case-anchor" style="margin-top:120px;">
-      <div class="case-media-grid">
-        <a
-          href="/images/hakone-full.jpg"
-          target="_blank"
-          rel="noopener"
-          class="shot-panel lightbox-trigger"
-          style="display:flex;align-items:center;justify-content:center;"
-        >
-          <img src="/images/hakone-top.jpg" style="width:100%;object-fit:contain;border-radius:10px;" alt={t("EVおでかけ推進プロジェクト 箱根キャンペーンページ", "EV Outing Promotion Project Hakone campaign page")} />
-          <span class="expand-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 3H3v6M15 3h6v6M9 21H3v-6M15 21h6v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </span>
-        </a>
-        <div>
-          <div class="case-num">CASE 05</div>
-          <h3 class="disp case-title-lg">{t("「そうだ、箱根に行こう！」— EVおでかけ推進プロジェクト キャンペーンページ", "“Let’s Go to Hakone!” — EV Outing Promotion Project Campaign Page")}</h3>
-          <hr class="divider" style="margin:24px 0;max-width:120px;" />
-          <div class="meta-label">{t("期間", "Duration")}</div>
-          <p class="meta-value">{t("約1週間", "About 1 week")}</p>
-          <div class="meta-label">{t("チーム構成", "Team")}</div>
-          <p class="meta-value">{t("デザイナー1（自身）", "1 designer (me)")}<br />{t("ディレクター1", "1 director")}<br />{t("コーダー1", "1 front-end developer")}</p>
-          <a href="https://ev-charge-enechange.jp/for_drivers/campaigns/miraene_emp_poc/hakone2025-autumn/" target="_blank" rel="noopener" class="btn-ghost" style="font-size:13px;padding:10px 20px;margin-top:8px;display:inline-flex;">{t("Live サイトを見る ↗", "View live site ↗")}</a>
-        </div>
-      </div>
-
-      <div class="ghost-mid">DETAILS</div>
-
-      <div class="grid-3 detail-grid">
-        <div>
-          <h4 class="disp detail-heading">{t("背景・課題", "Background & Challenge")}</h4>
-          <p class="detail-text">{t("EV・PHEVユーザーが「もっと気軽に遠出を楽しめる未来」を目指す「EVおでかけ推進プロジェクト」の企画として、2025年11月22日〜24日の3日間、箱根へのおでかけを後押しするキャンペーンを実施。急速充電の割引や現地イベントの内容を、わかりやすく伝えて参加につなげるページが求められました。", "As part of the “EV Outing Promotion Project”, which aims for a future where EV and PHEV drivers can enjoy long trips more easily, a three-day campaign from November 22 to 24, 2025 encouraged people to visit Hakone. The page needed to clearly explain the fast-charging discount and the on-site event, and turn interest into participation.")}</p>
-          <h4 class="disp detail-heading" style="margin-top:32px;">{t("目的・KPI", "Goals & KPIs")}</h4>
-          <ul class="detail-list">
-            <li>{t("イベントへの事前エントリー数の獲得", "Gain pre-registrations for the event")}</li>
-            <li>{t("割引対象の急速充電の利用促進", "Promote use of the discounted fast chargers")}</li>
-          </ul>
-          <h4 class="disp detail-heading" style="margin-top:32px;">{t("担当範囲", "My Role")}</h4>
-          <ul class="detail-list">
-            <li>{t("ページ全体のデザイン", "Design of the entire page")}</li>
-            <li>{t("メインビジュアル制作", "Main visual")}</li>
-            <li>{t("イラスト制作", "Illustrations")}</li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="disp detail-heading">{t("アプローチ・工夫点", "Approach")}</h4>
-          <p class="detail-text"><b style="color:var(--ink);">{t("1. 「行ってみたい」を引き出すメインビジュアル", "1. A main visual that makes people want to go")}</b><br />{t("富士山・温泉・鳥居・遊覧船など箱根の名所と充電スポットを、道でつないだアイソメトリックのイラストで表現。EVで箱根を巡る楽しさがひと目で伝わるビジュアルにしました。", "An isometric illustration connects Hakone’s landmarks — Mt. Fuji, hot springs, a torii gate, a sightseeing boat — and charging spots with roads, so the fun of touring Hakone by EV comes across at a glance.")}</p>
-          <p class="detail-text" style="margin-top:14px;"><b style="color:var(--ink);">{t("2. 特典を「3つの工夫」で整理", "2. Organizing the perks as “three highlights”")}</b><br />{t("充電の割引・お役立ち情報・会場でのプレゼントという3つの特典を、イラスト付きのカードで並べ、キャンペーンの内容を短時間で理解できる構成にしました。", "The three perks — a charging discount, helpful tips and gifts at the venue — are laid out as illustrated cards so the campaign can be understood quickly.")}</p>
-          <p class="detail-text" style="margin-top:14px;"><b style="color:var(--ink);">{t("3. 2社のブランドを両立した配色", "3. A color scheme that balances two brands")}</b><br />{t("ミライズエネチェンジの赤とe-Mobility Powerのティールを組み合わせ、共同企画であることが自然に伝わるトーン＆マナーにしました。", "Combining MIRAIZ ENECHANGE’s red with e-Mobility Power’s teal, the tone and manner naturally conveys that this is a joint project.")}</p>
-          <h4 class="disp detail-heading" style="margin-top:32px;">{t("キーワード", "Keywords")}</h4>
-          <ul class="detail-list">
-            <li>{t("明るい", "Bright")}</li>
-            <li>{t("わかりやすさ", "Clear")}</li>
-            <li>{t("おでかけのワクワク感", "The excitement of a day out")}</li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="disp detail-heading">{t("メインカラー", "Main Colors")}</h4>
-          <div class="swatch-row">
-            <div class="swatch"><span style="background:#C60D31;"></span>#C60D31</div>
-            <div class="swatch"><span style="background:#01BCC5;"></span>#01BCC5</div>
-            <div class="swatch"><span style="background:#1A2E35;"></span>#1A2E35</div>
-            <div class="swatch"><span style="background:#E5EFEF;border:1px solid var(--border);"></span>#E5EFEF</div>
-          </div>
-          <h4 class="disp detail-heading" style="margin-top:32px;">{t("使用ツール・技術", "Tools & Skills")}</h4>
-          <p class="detail-text">{t("Illustrator（イラスト）", "Illustrator (illustrations)")}<br />{t("Figma（UIデザイン）", "Figma (UI design)")}</p>
-          <h4 class="disp detail-heading" style="margin-top:32px;">{t("成果", "Results")}</h4>
-          <p class="detail-text">{t("現地イベントを通じて、ユーザーと直接交流し生の声を聞く機会を創出。共同企画を成功させたことで、e-Mobility Powerとの信頼関係の強化にもつながりました。", "The on-site event created a chance to meet users in person and hear their feedback directly. The success of the joint project also strengthened our relationship with e-Mobility Power.")}</p>
-        </div>
-      </div>
-
-      <div class="case-showcase-2col">
-        <div>
-          <img src="/images/hakone-detail01.png" class="imgbox" alt={t("箱根キャンペーン メインビジュアル", "Hakone campaign main visual")} />
-          <p class="detail-text" style="margin-top:16px;">{t("箱根の名所と充電スポットを道でつないだメインビジュアル。EVで巡る旅のルートを想像できるようにしました。", "The main visual connects Hakone’s landmarks and charging spots with roads, helping visitors picture a route for an EV trip.")}</p>
-        </div>
-        <div>
-          <img src="/images/hakone-detail02.png" class="imgbox" alt={t("3つの工夫セクション", "Three highlights section")} />
-          <p class="detail-text" style="margin-top:16px;">{t("キャンペーンの特典を「3つの工夫」としてイラスト付きで紹介し、参加するメリットがすぐに伝わる構成にしています。", "The campaign perks are introduced as “three highlights” with illustrations, so the benefits of joining come across right away.")}</p>
-        </div>
-      </div>
-
-      <div class="case-mockup">
-        <img src="/images/hakone-thedesign.png" class="no-shadow" alt={t("THE DESIGN — 箱根キャンペーンページ", "THE DESIGN — Hakone campaign page")} />
-      </div>
-
-      <div class="case-cta" style="text-align:center;margin-top:4px;">
-        <a href="#contact" class="btn">Contact Me</a>
-      </div>
-    </div>
-
-    <!-- ============ CASE 06 ============ -->
+    <!-- ============ CASE 02 ============ -->
     <!-- v5 full redesign (cancelled before release). Screens: v4 file uNmcvS0CxlLMOhBfVYs94N (before), v5 file jf5THs0AD0FSUwk1oxZIsR (after) -->
-    <div id="case-06" class="case-anchor" style="margin-top:120px;">
+    <div id="case-02" class="case-anchor" style="margin-top:120px;">
       <div class="case-media-grid">
         <a
           href="/images/lg-top.webp"
@@ -642,7 +199,7 @@ const top = (caseNo, jaTop) => jaTop + (lang === "en" ? enShift[caseNo - 1] : 0)
           </span>
         </a>
         <div>
-          <div class="case-num">CASE 06 <span class="lg-badge">{t("リリース前に中止", "Cancelled before release")}</span></div>
+          <div class="case-num">CASE 02 <span class="lg-badge">{t("リリース前に中止", "Cancelled before release")}</span></div>
           <h3 class="disp case-title-lg">{t("EV充電エネチェンジ アプリ 全体リニューアル", "EV Charge ENECHANGE App Redesign")}</h3>
           <hr class="divider" style="margin:24px 0;max-width:120px;" />
           <div class="meta-label">{t("期間", "Duration")}</div>
@@ -798,99 +355,97 @@ const top = (caseNo, jaTop) => jaTop + (lang === "en" ? enShift[caseNo - 1] : 0)
       </div>
     </div>
 
-    <!-- ============ CASE 07 ============ -->
-    <div id="case-07" class="case-anchor" style="margin-top:120px;">
+    <!-- ============ CASE 03 ============ -->
+    <div id="case-03" class="case-anchor" style="margin-top:120px;">
       <div class="case-media-grid">
         <a
-          href="/images/case1-full.jpg"
+          href="/images/evplus-full.jpg"
           target="_blank"
           rel="noopener"
           class="shot-panel lightbox-trigger"
           style="display:flex;align-items:center;justify-content:center;"
         >
-          <img src="/images/case1-top.jpg" style="width:100%;object-fit:contain;border-radius:10px;" alt={t("AI検出サービス LP", "AI detection service LP")} />
+          <img src="/images/evplus-top.jpg" style="width:100%;object-fit:contain;border-radius:10px;" alt={t("EV PLUS トップページ", "EV PLUS top page")} />
           <span class="expand-icon">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 3H3v6M15 3h6v6M9 21H3v-6M15 21h6v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </span>
         </a>
         <div>
-          <div class="case-num">CASE 07</div>
-          <h3 class="disp case-title-lg">{t("大手企業の新商品特化ページ", "New Product Page for a Major Company")}</h3>
+          <div class="case-num">CASE 03</div>
+          <h3 class="disp case-title-lg">{t("EV PLUS — EVオーナー向けライフスタイルメディアの立ち上げ", "EV PLUS — Launching a Lifestyle Media Site for EV Owners")}</h3>
           <hr class="divider" style="margin:24px 0;max-width:120px;" />
           <div class="meta-label">{t("期間", "Duration")}</div>
           <p class="meta-value">{t("約2ヶ月", "About 2 months")}</p>
           <div class="meta-label">{t("チーム構成", "Team")}</div>
-          <p class="meta-value">{t("デザイナー1（自身）", "1 designer (me)")}<br />{t("コーダー1", "1 front-end developer")}<br />{t("ディレクター1", "1 director")}</p>
+          <p class="meta-value">{t("デザイナー1（自身）", "1 designer (me)")}<br />{t("ディレクター2", "2 directors")}<br />{t("編集2", "2 editors")}<br />{t("コーダー1", "1 front-end developer")}</p>
+          <a href="https://ev-plus.jp/" target="_blank" rel="noopener" class="btn-ghost" style="font-size:13px;padding:10px 20px;margin-top:8px;display:inline-flex;">{t("Live サイトを見る ↗", "View live site ↗")}</a>
         </div>
       </div>
-      <div style="font-size:11.5px;color:var(--ink-faint);margin-top:10px;">{t("※ iPhoneモックアップ: Designed by Freepik", "* iPhone mockup: Designed by Freepik")}</div>
 
       <div class="ghost-mid">DETAILS</div>
 
       <div class="grid-3 detail-grid">
         <div>
           <h4 class="disp detail-heading">{t("背景・課題", "Background & Challenge")}</h4>
-          <p class="detail-text">{t("クライアントの新商品リリースにあたり、その製品に特化したランディングページ（LP）を新規制作しました。製品は第4世代となる進化型モデルであり、新たに搭載された「AI機能」を強みとして、新規顧客への魅力訴求・獲得と、既存ユーザーへのバージョンアップ促進というニーズに応える構成が求められました。", "For a client’s new product release, I created a new landing page (LP) dedicated to that product. The product was an evolved fourth-generation model, and the page needed to use its newly added “AI features” as a selling point — appealing to and winning new customers while encouraging existing users to upgrade.")}</p>
+          <p class="detail-text">{t("EV充電サービスを運営する企業が、EVオーナーに向けておでかけ情報や充電の基礎知識を発信するメディア「EV PLUS」をゼロから立ち上げました。ブランドの世界観がまだ何もない状態から、サイト全体のビジュアルを形にすることが求められました。", "An EV charging company launched “EV PLUS” from scratch — a media site sharing trip ideas and charging basics with EV owners. With no brand identity in place yet, the task was to shape the visuals for the entire site.")}</p>
           <h4 class="disp detail-heading" style="margin-top:32px;">{t("目的・KPI", "Goals & KPIs")}</h4>
           <ul class="detail-list">
-            <li>{t("カタログダウンロード数の増加", "Increase catalog downloads")}</li>
-            <li>{t("お問い合わせ件数の向上", "Increase inquiries")}</li>
-            <li>{t("製品の進化・AI機能を明確に伝えること", "Clearly communicate the product’s evolution and AI features")}</li>
+            <li>{t("PV数・セッション数の増加", "Increase page views and sessions")}</li>
+            <li>{t("アプリDL数の増加", "Increase app downloads")}</li>
           </ul>
           <h4 class="disp detail-heading" style="margin-top:32px;">{t("担当範囲", "My Role")}</h4>
           <ul class="detail-list">
-            <li>{t("情報設計（構成・導線）", "Information architecture (structure and user flow)")}</li>
-            <li>{t("UIデザイン（デザインカンプ）", "UI design (design comps)")}</li>
-            <li>{t("ファーストビュー動画演出", "Hero video direction")}</li>
+            <li>{t("メインビジュアル制作", "Main visual")}</li>
+            <li>{t("記事サムネイルのテンプレート作成", "Article thumbnail templates")}</li>
+            <li>{t("サイト全体のトーン＆マナー設計", "Tone and manner for the whole site")}</li>
+            <li>{t("CTAバナーなどのデザイン", "CTA banners and other graphics")}</li>
           </ul>
         </div>
         <div>
           <h4 class="disp detail-heading">{t("アプローチ・工夫点", "Approach")}</h4>
-          <p class="detail-text"><b style="color:var(--ink);">{t("1. 情報設計：論理 × 行動導線", "1. Information architecture: logic × user flow")}</b><br />{t("ファーストビューに背景動画＋メッセージで製品の進化を視覚的に印象付け、特徴や利点を段階的に紹介。CTA（ダウンロード・問い合わせ）を適切な間隔で挿入し、スムーズな行動導線を構築しました。", "A background video and message in the hero section make the product’s evolution visually memorable, followed by a step-by-step introduction of its features and benefits. CTAs (download and inquiry) are placed at regular intervals to create a smooth path to action.")}</p>
-          <p class="detail-text" style="margin-top:14px;"><b style="color:var(--ink);">{t("2. ビジュアルデザインの工夫", "2. Visual design")}</b><br />{t("自動再生動画により「プロフェッショナルな印象」と「技術力の高さ」を強調。前作LPとの差別化を意識し、明るめの配色とAI感のあるグラデーションで未来感と視認性を両立しました（前バージョンの緑系から、青に近い色へ変更）。", "An autoplay video emphasizes a professional impression and technical excellence. To set it apart from the previous LP, a brighter palette and AI-inspired gradients balance a futuristic feel with readability (shifting from the previous version’s greens to colors closer to blue).")}</p>
+          <p class="detail-text"><b style="color:var(--ink);">{t("1. 「EVでおでかけ」が楽しくなるメインビジュアル", "1. A main visual that makes going out by EV look fun")}</b><br />{t("アイソメトリックの街に観光地・グルメ・充電スポット・キャラクターを散りばめ、中央にロゴを立体的に配置。メディアのテーマである「EVライフをもっと楽しく」をひと目で伝えるビジュアルにしました。", "An isometric town scattered with sights, food, charging spots and characters, with the logo placed in 3D at the center. The visual conveys the site’s theme — “make EV life more fun” — at a glance.")}</p>
+          <p class="detail-text" style="margin-top:14px;"><b style="color:var(--ink);">{t("2. 運用しやすいサムネイルテンプレート", "2. Thumbnail templates that are easy to run")}</b><br />{t("ロゴ・カテゴリラベル・タイトルの配置を揃えたテンプレートを用意し、記事が増えても一覧ページに統一感が出るようにしました。", "I created templates with a consistent placement for the logo, category label and title, so listing pages stay cohesive as more articles are added.")}</p>
+          <p class="detail-text" style="margin-top:14px;"><b style="color:var(--ink);">{t("3. ブランドカラーで統一したトーン＆マナー", "3. A tone and manner unified by the brand color")}</b><br />{t("ブランドの赤を軸に、ピンク〜コーラルのグラデーションでやわらかさを加え、CTAバナーまで一貫した印象に仕上げました。", "Built around the brand red, with pink-to-coral gradients adding softness, the look stays consistent all the way to the CTA banners.")}</p>
           <h4 class="disp detail-heading" style="margin-top:32px;">{t("キーワード", "Keywords")}</h4>
           <ul class="detail-list">
-            <li>{t("明るい", "Bright")}</li>
-            <li>{t("AI・賢い", "AI & smart")}</li>
-            <li>{t("クール", "Cool")}</li>
+            <li>{t("楽しい・ワクワク", "Fun & exciting")}</li>
+            <li>{t("親しみやすい", "Approachable")}</li>
+            <li>{t("役立つ情報が充実", "Packed with useful info")}</li>
           </ul>
         </div>
         <div>
           <h4 class="disp detail-heading">{t("メインカラー", "Main Colors")}</h4>
           <div class="swatch-row">
-            <div class="swatch"><span style="background:#EAF3FF;border:1px solid var(--border);"></span>#EAF3FF</div>
-            <div class="swatch"><span style="background:#1B3B6F;"></span>#1B3B6F</div>
-            <div class="swatch"><span style="background:#4C8DFF;"></span>#4C8DFF</div>
+            <div class="swatch"><span style="background:#C60D31;"></span>#C60D31</div>
+            <div class="swatch"><span style="background:#B01040;"></span>#B01040</div>
+            <div class="swatch"><span style="background:#333333;"></span>#333333</div>
+            <div class="swatch"><span style="background:#FFFFFF;border:1px solid var(--border);"></span>#FFFFFF</div>
           </div>
           <h4 class="disp detail-heading" style="margin-top:32px;">{t("使用ツール・技術", "Tools & Skills")}</h4>
-          <p class="detail-text">{t("Photoshop（図版作成・画像処理）", "Photoshop (graphics and image editing)")}<br />{t("Adobe XD（UIデザインカンプ）", "Adobe XD (UI design comps)")}<br />{t("After Effects（FVの動画演出）", "After Effects (hero video)")}</p>
+          <p class="detail-text">{t("Illustrator、Photoshop（メインビジュアル、サムネイル）", "Illustrator, Photoshop (main visual, thumbnails)")}<br />Figma</p>
           <h4 class="disp detail-heading" style="margin-top:32px;">{t("成果", "Results")}</h4>
-          <p class="detail-text">{t("リリース後、クライアント社内・エンドユーザー双方からデザイン性・訴求力ともに高い評価。カタログDL数・問い合わせ件数も増加しました。", "After launch, the design and its persuasiveness were highly praised by both the client’s team and end users. Catalog downloads and inquiries also increased.")}</p>
+          <p class="detail-text">{t("メディア公開後、アプリDLバナーを起点にアプリのダウンロード数が増加。特に記事下バナーからのダウンロード率が高く、記事を読んだユーザーをアプリ利用へつなげる導線として機能しています。", "After launch, app downloads grew through the app download banners. The banner below each article has a particularly high download rate, working as a path that turns readers into app users.")}</p>
         </div>
       </div>
 
       <div class="case-showcase-2col">
         <div>
-          <video
-            class="imgbox"
-            style="aspect-ratio:656/430;object-fit:cover;"
-            src="/images/case1-visual2.mp4"
-            autoplay
-            loop
-            muted
-            playsinline
-            aria-label={t("メインビジュアルの背景演出", "Main visual background animation")}
-          ></video>
-          <p class="detail-text" style="margin-top:16px;">{t("メインビジュアルでは、AI搭載という特長を強調するため、テクノロジー感のあるパーティクル・ウェーブの背景を用いて、直感的に先進性を伝える演出を加えました。", "To highlight the built-in AI, the main visual uses a high-tech particle-wave background that conveys innovation intuitively.")}</p>
+          <img src="/images/evplus-detail01.png" class="imgbox" alt={t("EV PLUS メインビジュアル", "EV PLUS main visual")} />
+          <p class="detail-text" style="margin-top:16px;">{t("メインビジュアルでは、観光地やグルメ、充電スポットが並ぶ街をアイソメトリックで描き、EVでのおでかけの楽しさを表現しました。", "The main visual depicts, in isometric style, a town lined with sights, restaurants and charging spots to express the fun of getting out and about by EV.")}</p>
         </div>
         <div>
-          <img src="/images/case1-detail02.png" class="imgbox" alt={t("機能紹介セクションの画面", "Feature section screen")} />
-          <p class="detail-text" style="margin-top:16px;">{t("このセクションでは、従来製品との進化点を直感的に伝えるため、現場での測定シーンを想起させるような動きで紹介しています。", "To show intuitively how the product has evolved from previous models, this section uses motion that evokes measurement scenes in the field.")}</p>
+          <img src="/images/evplus-detail02.png" class="imgbox" alt={t("記事サムネイルのテンプレート", "Article thumbnail templates")} />
+          <p class="detail-text" style="margin-top:16px;">{t("記事サムネイルはカテゴリごとにテンプレート化。タイトルを差し替えるだけで、統一感のあるサムネイルを作れるようにしました。", "Article thumbnails are templated by category, so a consistent thumbnail can be made just by swapping the title.")}</p>
         </div>
       </div>
 
+      <div style="margin-top:48px;">
+        <img src="/images/evplus-cta.png" class="no-shadow" style="width:100%;max-width:836px;display:block;margin:0 auto;" alt={t("EV充電エネチェンジ公式アプリ CTAバナー", "CTA banner for the official EV Charge ENECHANGE app")} />
+        <p class="detail-text" style="margin:16px auto 0;max-width:836px;">{t("アプリのダウンロードを促すCTAバナー。ブランドカラーのグラデーションにアプリ画面を重ね、ストアへの導線をわかりやすくしました。", "A CTA banner encouraging app downloads. App screens are layered over a brand-color gradient to make the path to the store clear.")}</p>
+      </div>
+
       <div class="case-mockup">
-        <img src="/images/case1-thedesign.png" class="no-shadow" alt={t("THE DESIGN — AI検出サービス LP デザイン", "THE DESIGN — AI detection service LP")} />
+        <img src="/images/evplus-thedesign.png" class="no-shadow" alt={t("THE DESIGN — EV PLUS デザイン", "THE DESIGN — EV PLUS")} />
       </div>
 
       <div class="case-cta" style="text-align:center;margin-top:4px;">
@@ -906,7 +461,7 @@ const top = (caseNo, jaTop) => jaTop + (lang === "en" ? enShift[caseNo - 1] : 0)
   /* ヘッダーに隠れないよう、分類一覧から CASE へ飛んだときの止まり位置を下げる */
   .case-anchor { scroll-margin-top: 110px; }
 
-  /* CASE 06 全体リニューアル */
+  /* CASE 02 全体リニューアル */
   .lg-badge {
     display: inline-block;
     padding: 4px 12px;

@@ -1,35 +1,51 @@
 export const otherProjects = [
   {
-    slug: "product-lineup",
+    slug: "my-badge",
     en: {
-      alt: "LED lineup page",
-      label: "Product Lineup Page Redesign for a Major Company",
-      concept: "A redesign of a major company’s product lineup page. I reworked the information architecture so products are easier to compare and users reach what they need faster, designed the UI comps, and produced localized graphics in 30+ languages.",
+      alt: "EV Charge ENECHANGE app — My Badge feature",
+      label: "EV Charge ENECHANGE App v4.1.0 — New “My Badge” Feature",
+      concept: "“My Badge”, a feature added in v4.1.0 of the EV Charge ENECHANGE app that lets users earn and collect badges as they charge, go out and post reviews. I designed the My Badge screen, the badge-earned modal, the Home entry banner and all 38 badges.",
     },
-    src: "/images/case2-top.jpg",
-    alt: "LEDラインアップページ LP",
-    label: "大手企業の既存商品ラインアップページ リニューアル",
-    caseNumber: "08",
-    // 元はトップの WORKS（CASE 08）。WORKS の CASE と同じ詳細フォーマットの専用ページ（src/pages/[...lang]/projects/product-lineup.astro）
+    src: "/images/badge-top.jpg",
+    alt: "EV充電エネチェンジ アプリ マイバッジ機能",
+    label: "EV充電エネチェンジ アプリ v4.1.0 — 新機能「マイバッジ」",
+    caseNumber: "04",
+    // 元はトップの WORKS（CASE 01）。WORKS の CASE と同じ詳細フォーマットの専用ページ（src/pages/[...lang]/projects/my-badge.astro）
     customPage: true,
     concept:
-      "大手企業の既存商品ラインアップページのリニューアル。商品を比較しやすく、目的の情報にすぐたどり着けるよう情報設計を見直し、UIデザインと30言語以上の多言語図版制作を担当しました。",
+      "EV充電エネチェンジ アプリ v4.1.0で追加された、充電・おでかけ・口コミに応じてバッジを獲得・コレクションできる新機能「マイバッジ」。マイバッジ画面、獲得時のモーダル、ホームの導線バナー、全38種類のバッジをデザインしました。",
   },
   {
-    slug: "yes-pay",
+    slug: "stay-and-charge",
     en: {
-      alt: "YES Pay LP",
-      label: "YES Pay — A Credit Card–Linked E-Money Service (Personal Project)",
-      concept: "An LP for “YES Pay”, a fictional e-money service that links to credit cards. I handled UX, UI and the Webflow build, balancing credibility, clear benefits and a strong path to sign-up.",
+      alt: "EV STAY & CHARGE top page",
+      label: "EV STAY & CHARGE — A Guide to Hotels with EV Charging",
+      concept: "A site for finding hotels and ryokan with EV chargers, launched to ease the worry of charging while traveling. I designed the whole site, the main visual and the illustrations.",
     },
-    src: "/images/case3-top.jpg",
-    alt: "YES Pay LP",
-    label: "YES Pay — クレジットカード連携型電子マネーサービス（自主制作）",
-    caseNumber: "09",
-    // 元はトップの WORKS（CASE 08）。WORKS の CASE と同じ詳細フォーマットの専用ページ（src/pages/[...lang]/projects/yes-pay.astro）
+    src: "/images/stay-top.jpg",
+    alt: "EV STAY & CHARGE トップページ",
+    label: "EV STAY & CHARGE — EV充電できる宿泊施設の紹介サイト",
+    caseNumber: "05",
+    // 元はトップの WORKS（CASE 04）。WORKS の CASE と同じ詳細フォーマットの専用ページ（src/pages/[...lang]/projects/stay-and-charge.astro）
     customPage: true,
     concept:
-      "クレジットカードと連携できる架空の電子マネーサービス「YES Pay」のLP。信頼性・メリットのわかりやすさ・登録への導線を意識し、UX設計からUIデザイン、Webflowでの実装までを担当しました。",
+      "「旅先で充電できるか」という不安を解消するため、EV充電設備のあるホテル・旅館をまとめて探せるサイト。サイト全体のデザイン、メインビジュアル、イラストを担当しました。",
+  },
+  {
+    slug: "hakone-campaign",
+    en: {
+      alt: "EV Outing Promotion Project Hakone campaign page",
+      label: "“Let’s Go to Hakone!” — EV Outing Promotion Project Campaign Page",
+      concept: "A campaign page encouraging EV and PHEV drivers to visit Hakone, with a fast-charging discount and an on-site event. I designed the page, the isometric main visual and the illustrations.",
+    },
+    src: "/images/hakone-top.jpg",
+    alt: "EVおでかけ推進プロジェクト 箱根キャンペーンページ",
+    label: "「そうだ、箱根に行こう！」— EVおでかけ推進プロジェクト キャンペーンページ",
+    caseNumber: "06",
+    // 元はトップの WORKS（CASE 05）。WORKS の CASE と同じ詳細フォーマットの専用ページ（src/pages/[...lang]/projects/hakone-campaign.astro）
+    customPage: true,
+    concept:
+      "EV・PHEVでの箱根へのおでかけを後押しする、急速充電の割引と現地イベントのキャンペーンページ。ページ全体のデザイン、アイソメトリックのメインビジュアル、イラストを担当しました。",
   },
   {
     slug: "ev-diagnosis",
@@ -41,7 +57,7 @@ export const otherProjects = [
     src: "/images/diag-card.jpg",
     alt: "おすすめEV診断",
     label: "診断コンテンツ — おすすめEV診断",
-    caseNumber: "10",
+    caseNumber: "07",
     // WORKS の CASE と同じ詳細フォーマットの専用ページ（src/pages/projects/ev-diagnosis.astro）
     customPage: true,
     concept:
@@ -57,7 +73,7 @@ export const otherProjects = [
     src: "/images/elp-card.jpg",
     alt: "EV Life Program LP",
     label: "LP — EV Life Program",
-    caseNumber: "11",
+    caseNumber: "08",
     // WORKS の CASE と同じ詳細フォーマットの専用ページ（src/pages/projects/ev-life-program.astro）
     customPage: true,
     concept:
@@ -73,7 +89,7 @@ export const otherProjects = [
     src: "/images/els-card.jpg",
     alt: "EVライフ応援制度 LP",
     label: "キャンペーンLP — EVライフ応援制度",
-    caseNumber: "12",
+    caseNumber: "09",
     // WORKS の CASE と同じ詳細フォーマットの専用ページ（src/pages/projects/ev-life-support-program.astro）
     customPage: true,
     concept:
@@ -89,7 +105,7 @@ export const otherProjects = [
     src: "/images/odm-card.jpg",
     alt: "EVsmart Park おでかけマップ",
     label: "コミュニティ機能 — おでかけマップ",
-    caseNumber: "13",
+    caseNumber: "10",
     // WORKS の CASE と同じ詳細フォーマットの専用ページ（src/pages/projects/odekake-map.astro）
     customPage: true,
     concept:
@@ -105,7 +121,7 @@ export const otherProjects = [
     src: "/images/sf-card.jpg",
     alt: "検索フィルタ リニューアル",
     label: "アプリ機能改善 — 検索フィルタ リニューアル",
-    caseNumber: "14",
+    caseNumber: "11",
     // WORKS の CASE と同じ詳細フォーマットの専用ページ（src/pages/[...lang]/projects/search-filter.astro）
     customPage: true,
     concept:
@@ -126,7 +142,7 @@ export const otherProjects = [
     src: "/images/proj-howtocharge.jpg",
     alt: "6kW普通充電器の3Dコンセプトページ",
     label: "EV充電エネチェンジ 6kW普通充電器 — 3Dコンセプトページ（自主制作）",
-    caseNumber: "15",
+    caseNumber: "12",
     liveUrl: "/howtocharge/",
     linkLabel: "ページを見る ↗",
     period: "1日",
@@ -151,7 +167,7 @@ export const otherProjects = [
     src: "/images/proj-site-renewal.jpg",
     alt: "ミライズエネチェンジ コーポレートサイト リニューアル案",
     label: "コーポレートサイト リニューアル案 — ミライズエネチェンジ（自主制作）",
-    caseNumber: "16",
+    caseNumber: "13",
     liveUrl: "/works/site-renewal/index.html",
     linkLabel: "サイトを見る ↗",
     period: "2週間",
@@ -166,6 +182,54 @@ export const otherProjects = [
       sp: ["/images/sr-before-sp.jpg", "/images/sr-after-sp.jpg"],
       full: ["/images/sr-before-full.jpg", "/images/sr-after-full.jpg"],
     },
+  },
+  {
+    slug: "new-product",
+    en: {
+      alt: "AI detection service LP",
+      label: "New Product Page for a Major Company",
+      concept: "A landing page dedicated to a major company’s fourth-generation product, using its new AI features as the selling point. I handled the information architecture, the UI design comps and the hero video.",
+    },
+    src: "/images/case1-top.jpg",
+    alt: "AI検出サービス LP",
+    label: "大手企業の新商品特化ページ",
+    caseNumber: "14",
+    // 元はトップの WORKS（CASE 07）。WORKS の CASE と同じ詳細フォーマットの専用ページ（src/pages/[...lang]/projects/new-product.astro）
+    customPage: true,
+    concept:
+      "大手企業の第4世代となる新商品に特化したLP。新たに搭載された「AI機能」を強みとして訴求できるよう、情報設計、UIデザインカンプ、ファーストビューの動画演出を担当しました。",
+  },
+  {
+    slug: "product-lineup",
+    en: {
+      alt: "LED lineup page",
+      label: "Product Lineup Page Redesign for a Major Company",
+      concept: "A redesign of a major company’s product lineup page. I reworked the information architecture so products are easier to compare and users reach what they need faster, designed the UI comps, and produced localized graphics in 30+ languages.",
+    },
+    src: "/images/case2-top.jpg",
+    alt: "LEDラインアップページ LP",
+    label: "大手企業の既存商品ラインアップページ リニューアル",
+    caseNumber: "15",
+    // 元はトップの WORKS（CASE 08）。WORKS の CASE と同じ詳細フォーマットの専用ページ（src/pages/[...lang]/projects/product-lineup.astro）
+    customPage: true,
+    concept:
+      "大手企業の既存商品ラインアップページのリニューアル。商品を比較しやすく、目的の情報にすぐたどり着けるよう情報設計を見直し、UIデザインと30言語以上の多言語図版制作を担当しました。",
+  },
+  {
+    slug: "yes-pay",
+    en: {
+      alt: "YES Pay LP",
+      label: "YES Pay — A Credit Card–Linked E-Money Service (Personal Project)",
+      concept: "An LP for “YES Pay”, a fictional e-money service that links to credit cards. I handled UX, UI and the Webflow build, balancing credibility, clear benefits and a strong path to sign-up.",
+    },
+    src: "/images/case3-top.jpg",
+    alt: "YES Pay LP",
+    label: "YES Pay — クレジットカード連携型電子マネーサービス（自主制作）",
+    caseNumber: "16",
+    // 元はトップの WORKS（CASE 08）。WORKS の CASE と同じ詳細フォーマットの専用ページ（src/pages/[...lang]/projects/yes-pay.astro）
+    customPage: true,
+    concept:
+      "クレジットカードと連携できる架空の電子マネーサービス「YES Pay」のLP。信頼性・メリットのわかりやすさ・登録への導線を意識し、UX設計からUIデザイン、Webflowでの実装までを担当しました。",
   },
   {
     slug: "smart-speaker",

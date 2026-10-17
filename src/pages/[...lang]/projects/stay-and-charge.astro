@@ -1,0 +1,133 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Contact from "../../../components/Contact.astro";
+import ProjectNav from "../../../components/ProjectNav.astro";
+import ToolStickers from "../../../components/ToolStickers.astro";
+import { otherProjects, localize } from "../../../data/otherProjects.js";
+import { langParams, getLang, useT, localePath } from "../../../i18n.js";
+
+export function getStaticPaths() {
+  return langParams.map((params) => ({ params }));
+}
+
+const lang = getLang(Astro.params.lang);
+const t = useT(lang);
+const project = localize(otherProjects.find((p) => p.slug === "stay-and-charge"), lang);
+
+---
+
+<Layout lang={lang} title={`${project.label} — Kai Usui Portfolio`} description={project.concept}>
+  <div style="min-height:100vh;position:relative;background:#eef4fb;">
+    <ProjectNav lang={lang} />
+
+    <section class="section" style="padding-top:80px;padding-bottom:50px;position:relative;">
+      <ToolStickers tools={"Figma Photoshop Illustrator"} />
+      <div
+        class="ghost"
+        style="position:absolute;top:20px;left:50%;transform:translateX(-50%);font-size:clamp(60px,10vw,150px);z-index:0;opacity:.7;white-space:nowrap;"
+      >
+        MY WORKS
+      </div>
+      <div class="wrap" style="position:relative;z-index:1;">
+        <div style="text-align:center;">
+          <div class="eyebrow" style="justify-content:center;">Portfolio</div>
+          <h1 class="disp" style="font-size:clamp(34px,4.6vw,52px);font-weight:800;color:var(--ink);">CASE {project.caseNumber}</h1>
+          <a href={localePath(lang, "/") + "#other"} style="font-size:13.5px;color:var(--accent-2);display:inline-block;margin-top:10px;">← Back to home</a>
+        </div>
+
+        <div style="margin-top:56px;">
+          <div class="case-media-grid">
+            <a
+              href="/images/stay-full.jpg"
+              target="_blank"
+              rel="noopener"
+              class="shot-panel lightbox-trigger"
+              style="display:flex;align-items:center;justify-content:center;"
+            >
+              <img src="/images/stay-top.jpg" style="width:100%;object-fit:contain;border-radius:10px;" alt={t("EV STAY & CHARGE トップページ", "EV STAY & CHARGE top page")} />
+              <span class="expand-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 3H3v6M15 3h6v6M9 21H3v-6M15 21h6v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </a>
+            <div>
+              <div class="case-num">CASE {project.caseNumber}</div>
+              <h2 class="disp case-title-lg">{t("EV STAY & CHARGE — EV充電できる宿泊施設の紹介サイト", "EV STAY & CHARGE — A Guide to Hotels with EV Charging")}</h2>
+              <hr class="divider" style="margin:24px 0;max-width:120px;" />
+              <div class="meta-label">{t("期間", "Duration")}</div>
+              <p class="meta-value">{t("約3ヶ月", "About 3 months")}</p>
+              <div class="meta-label">{t("チーム構成", "Team")}</div>
+              <p class="meta-value">{t("デザイナー1（自身）", "1 designer (me)")}<br />{t("ディレクター2", "2 directors")}<br />{t("コーダー1", "1 front-end developer")}</p>
+              <a href="https://stay-and-charge.com/" target="_blank" rel="noopener" class="btn-ghost" style="font-size:13px;padding:10px 20px;margin-top:8px;display:inline-flex;">{t("Live サイトを見る ↗", "View live site ↗")}</a>
+            </div>
+          </div>
+
+          <div class="ghost-mid">DETAILS</div>
+
+          <div class="grid-3 detail-grid">
+            <div>
+              <h4 class="disp detail-heading">{t("背景・課題", "Background & Challenge")}</h4>
+              <p class="detail-text">{t("EVでの旅行では「旅先で充電できるか」という不安がつきものです。その不安を解消するため、EV充電設備のあるホテル・旅館をまとめて探せるサイトとして立ち上げられました。", "Traveling by EV often comes with the worry “Will I be able to charge at my destination?” To ease that worry, this site was launched so people can find hotels and ryokan (Japanese inns) with EV chargers all in one place.")}</p>
+              <h4 class="disp detail-heading" style="margin-top:32px;">{t("目的・KPI", "Goals & KPIs")}</h4>
+              <ul class="detail-list">
+                <li>{t("宿泊施設ページへの送客", "Drive traffic to accommodation pages")}</li>
+                <li>{t("アプリDL数の増加", "Increase app downloads")}</li>
+              </ul>
+              <h4 class="disp detail-heading" style="margin-top:32px;">{t("担当範囲", "My Role")}</h4>
+              <ul class="detail-list">
+                <li>{t("サイト全体のデザイン", "Design of the entire site")}</li>
+                <li>{t("メインビジュアル制作", "Main visual")}</li>
+                <li>{t("イラスト制作", "Illustrations")}</li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="disp detail-heading">{t("アプローチ・工夫点", "Approach")}</h4>
+              <p class="detail-text"><b style="color:var(--ink);">{t("1. 旅の情景と充電を1枚で伝えるメインビジュアル", "1. A main visual that shows travel scenery and charging together")}</b><br />{t("温泉や景色の写真に、日本地図と充電器を重ねたスライドで構成。「旅先でも充電できる」ことを、ひと目で伝えるビジュアルにしました。", "Slides of hot springs and scenery overlaid with a map of Japan and a charger. The visual shows at a glance that “you can charge at your destination, too.”")}</p>
+              <p class="detail-text" style="margin-top:14px;"><b style="color:var(--ink);">{t("2. 「EV優先」をイラストで直感的に", "2. Making “EV priority” intuitive with illustrations")}</b><br />{t("充電スペースにガソリン車が停まって困るシーンと、「EV優先」の案内板で安心して停められるシーンをBefore/Afterのイラストで比較し、サービスの価値をわかりやすく伝えています。", "Before/After illustrations compare the frustration of a gasoline car parked in a charging space with the peace of mind of parking at a spot marked “EV priority”, making the value of the service easy to understand.")}</p>
+              <p class="detail-text" style="margin-top:14px;"><b style="color:var(--ink);">{t("3. 上質さを感じるトーン＆マナー", "3. A tone and manner that feels refined")}</b><br />{t("細身の書体とゴールドのアクセントで、宿泊施設にふさわしい落ち着きと上質さを表現しました。", "Slender typefaces and gold accents express the calm, refined feel befitting a place to stay.")}</p>
+              <h4 class="disp detail-heading" style="margin-top:32px;">{t("キーワード", "Keywords")}</h4>
+              <ul class="detail-list">
+                <li>{t("安心感", "Reassuring")}</li>
+                <li>{t("上質・高級感", "Refined & premium")}</li>
+                <li>{t("旅のワクワク感", "The excitement of travel")}</li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="disp detail-heading">{t("メインカラー", "Main Colors")}</h4>
+              <div class="swatch-row">
+                <div class="swatch"><span style="background:#C60D31;"></span>#C60D31</div>
+                <div class="swatch"><span style="background:#333333;"></span>#333333</div>
+                <div class="swatch"><span style="background:#F0F0F0;border:1px solid var(--border);"></span>#F0F0F0</div>
+                <div class="swatch"><span style="background:#FFFFFF;border:1px solid var(--border);"></span>#FFFFFF</div>
+              </div>
+              <h4 class="disp detail-heading" style="margin-top:32px;">{t("使用ツール・技術", "Tools & Skills")}</h4>
+              <p class="detail-text">{t("Photoshop・Illustrator（図版作成・編集）", "Photoshop, Illustrator (graphics and editing)")}<br />{t("Figma（全体デザイン）", "Figma (overall design)")}</p>
+              <h4 class="disp detail-heading" style="margin-top:32px;">{t("成果", "Results")}</h4>
+              <p class="detail-text">{t("全国23都道府県・50施設（2026年9月時点）を掲載するサイトに成長。星野リゾートなど大手ホテルブランドにも参画いただき、サービスの信頼感を伝えるブランドサイトとして機能しています。", "The site has grown to list 50 properties in 23 prefectures across Japan (as of September 2026). Major hotel brands such as Hoshino Resorts have joined, and it works as a brand site that conveys the service’s credibility.")}</p>
+            </div>
+          </div>
+
+          <div class="case-showcase-2col">
+            <div>
+              <img src="/images/stay-detail01.png" class="imgbox" alt={t("EV STAY & CHARGE メインビジュアル", "EV STAY & CHARGE main visual")} />
+              <p class="detail-text" style="margin-top:16px;">{t("メインビジュアルはスライドショーで宿の景色を魅力的に見せつつ、日本地図上のピンをスライドと連動させて施設の場所を表示。全国各地の宿が参加していることをアピールし、旅と充電の安心感を同時に伝える構成にしました。", "The main visual is a slideshow showcasing each property’s scenery, with a pin on the map of Japan moving in sync to show where it is. It highlights that hotels all over the country take part, conveying the joy of travel and the reassurance of charging at the same time.")}</p>
+            </div>
+            <div>
+              <img src="/images/stay-detail02.png" class="imgbox" alt={t("宿泊施設一覧ページ", "Accommodation listing page")} />
+              <p class="detail-text" style="margin-top:16px;">{t("エリア別に宿を探せる一覧ページを設置。写真と充電設備の情報をひと目で比較でき、各施設の詳細・公式サイトへの導線を用意することで、宿への送客にもつなげています。", "A listing page lets users search for hotels by area. Photos and charging details can be compared at a glance, and links to each property’s details and official site help send visitors on to the hotels.")}</p>
+            </div>
+          </div>
+
+          <div class="case-mockup">
+            <img src="/images/stay-thedesign.png" class="no-shadow" alt={t("THE DESIGN — EV STAY & CHARGE デザイン", "THE DESIGN — EV STAY & CHARGE")} />
+          </div>
+
+          <div class="case-cta" style="text-align:center;margin-top:4px;">
+            <a href="#contact" class="btn">Contact Me</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <Contact lang={lang} />
+  </div>
+</Layout>
