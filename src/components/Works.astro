@@ -46,10 +46,6 @@ const points = [
   [t("入力済みと未入力を色で分ける", "Filled vs. empty fields"), t("「選択してください」などの未入力の表示と、ユーザーが入力した内容の色をはっきり分け、入力漏れに気づきやすくしました。", "Placeholder text like “Please select” and user-entered values use clearly different colors, so missing fields are easy to spot.")],
 ];
 
-// サイドのタグは「日本語版での top（px）＋ 英語版で各 CASE がずれる量」で配置
-// （英語は文章が長く CASE の位置が下がるため。CASE の高さが変わったら測り直す）
-const enShift = [0, 173, 293];
-const top = (caseNo, jaTop) => jaTop + (lang === "en" ? enShift[caseNo - 1] : 0);
 ---
 
 <section id="works" class="section">
@@ -61,17 +57,17 @@ const top = (caseNo, jaTop) => jaTop + (lang === "en" ? enShift[caseNo - 1] : 0)
   </div>
 
   <!-- CASE 01 tool tags -->
-  <div class="sticker" style={`top:${top(1, 280)}px;right:2%;transform:rotate(-6deg);`}>FIGMA</div>
-  <div class="sticker" style={`top:${top(1, 400)}px;left:3.5%;transform:rotate(5deg);`}>ILLUSTRATOR</div>
-  <div class="sticker" style={`top:${top(1, 520)}px;right:1%;transform:rotate(7deg);`}>PHOTOSHOP</div>
+  <div class="sticker works-sticker" data-case="case-01" data-offset="-32" style="top:280px;right:2%;transform:rotate(-6deg);">FIGMA</div>
+  <div class="sticker works-sticker" data-case="case-01" data-offset="88" style="top:400px;left:3.5%;transform:rotate(5deg);">ILLUSTRATOR</div>
+  <div class="sticker works-sticker" data-case="case-01" data-offset="208" style="top:520px;right:1%;transform:rotate(7deg);">PHOTOSHOP</div>
 
   <!-- CASE 02 tool tags -->
-  <div class="sticker" style={`top:${top(2, 3363)}px;right:2%;transform:rotate(-6deg);`}>FIGMA</div>
+  <div class="sticker works-sticker" data-case="case-02" data-offset="-32" style="top:1003px;right:2%;transform:rotate(-6deg);">FIGMA</div>
 
   <!-- CASE 03 tool tags -->
-  <div class="sticker" style={`top:${top(3, 10805)}px;right:2%;transform:rotate(-6deg);`}>ILLUSTRATOR</div>
-  <div class="sticker" style={`top:${top(3, 10925)}px;left:3.5%;transform:rotate(5deg);`}>PHOTOSHOP</div>
-  <div class="sticker" style={`top:${top(3, 11045)}px;right:1%;transform:rotate(7deg);`}>FIGMA</div>
+  <div class="sticker works-sticker" data-case="case-03" data-offset="-34" style="top:1643px;right:2%;transform:rotate(-6deg);">ILLUSTRATOR</div>
+  <div class="sticker works-sticker" data-case="case-03" data-offset="86" style="top:1763px;left:3.5%;transform:rotate(5deg);">PHOTOSHOP</div>
+  <div class="sticker works-sticker" data-case="case-03" data-offset="206" style="top:1883px;right:1%;transform:rotate(7deg);">FIGMA</div>
 
   <div class="wrap">
     <div class="works-head">
@@ -114,6 +110,8 @@ const top = (caseNo, jaTop) => jaTop + (lang === "en" ? enShift[caseNo - 1] : 0)
         </div>
       </div>
 
+      <details class="case-more">
+        <summary class="case-more-btn"><span class="when-closed">{t("詳しく見る", "View details")}</span><span class="when-open">{t("閉じる", "Close")}</span></summary>
       <div class="ghost-mid">DETAILS</div>
 
       <div class="grid-3 detail-grid">
@@ -180,6 +178,8 @@ const top = (caseNo, jaTop) => jaTop + (lang === "en" ? enShift[caseNo - 1] : 0)
       <div class="case-cta" style="text-align:center;margin-top:4px;">
         <a href="#contact" class="btn">Contact Me</a>
       </div>
+        <button type="button" class="case-more-btn case-more-close">{t("閉じる", "Close")}</button>
+      </details>
     </div>
 
     <!-- ============ CASE 02 ============ -->
@@ -209,6 +209,8 @@ const top = (caseNo, jaTop) => jaTop + (lang === "en" ? enShift[caseNo - 1] : 0)
         </div>
       </div>
 
+      <details class="case-more">
+        <summary class="case-more-btn"><span class="when-closed">{t("詳しく見る", "View details")}</span><span class="when-open">{t("閉じる", "Close")}</span></summary>
       <div class="ghost-mid">DETAILS</div>
 
       <div class="grid-3 detail-grid">
@@ -353,6 +355,8 @@ const top = (caseNo, jaTop) => jaTop + (lang === "en" ? enShift[caseNo - 1] : 0)
       <div class="case-cta" style="text-align:center;margin-top:4px;">
         <a href="#contact" class="btn">Contact Me</a>
       </div>
+        <button type="button" class="case-more-btn case-more-close">{t("閉じる", "Close")}</button>
+      </details>
     </div>
 
     <!-- ============ CASE 03 ============ -->
@@ -382,6 +386,8 @@ const top = (caseNo, jaTop) => jaTop + (lang === "en" ? enShift[caseNo - 1] : 0)
         </div>
       </div>
 
+      <details class="case-more">
+        <summary class="case-more-btn"><span class="when-closed">{t("詳しく見る", "View details")}</span><span class="when-open">{t("閉じる", "Close")}</span></summary>
       <div class="ghost-mid">DETAILS</div>
 
       <div class="grid-3 detail-grid">
@@ -451,11 +457,82 @@ const top = (caseNo, jaTop) => jaTop + (lang === "en" ? enShift[caseNo - 1] : 0)
       <div class="case-cta" style="text-align:center;margin-top:4px;">
         <a href="#contact" class="btn">Contact Me</a>
       </div>
+        <button type="button" class="case-more-btn case-more-close">{t("閉じる", "Close")}</button>
+      </details>
     </div>
   </div>
 </section>
 
+<script>
+  // 横のツールタグは各 CASE の位置＋data-offset に置く（DETAILS の開閉で CASE の位置が変わるため）
+  const section = document.getElementById("works");
+  const place = () => {
+    if (!section) return;
+    const base = section.getBoundingClientRect().top;
+    section.querySelectorAll<HTMLElement>(".works-sticker").forEach((el) => {
+      const c = document.getElementById(el.dataset.case || "");
+      if (c) el.style.top = `${c.getBoundingClientRect().top - base + Number(el.dataset.offset || 0)}px`;
+    });
+  };
+  place();
+  window.addEventListener("load", place);
+  window.addEventListener("resize", place);
+  document.querySelectorAll<HTMLDetailsElement>("#works .case-more").forEach((d) => {
+    d.addEventListener("toggle", () => {
+      place();
+      // 閉じたときに CASE が画面より上に行ってしまったら、その CASE の頭まで戻す
+      const c = d.closest(".case-anchor");
+      if (!d.open && c && c.getBoundingClientRect().top < 0) c.scrollIntoView();
+    });
+  });
+  document.querySelectorAll<HTMLButtonElement>("#works .case-more-close").forEach((b) => {
+    b.addEventListener("click", () => {
+      const d = b.closest("details");
+      if (d) d.open = false;
+    });
+  });
+  // 分類一覧などから #case-0x で来たときも位置を合わせる
+  window.addEventListener("hashchange", place);
+</script>
+
 <style>
+  .case-more { margin-top: 40px; }
+  .case-more > summary { list-style: none; }
+  .case-more > summary::-webkit-details-marker { display: none; }
+  .case-more-btn {
+    display: flex;
+    width: fit-content;
+    margin: 0 auto;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 28px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--glass-2);
+    color: var(--ink);
+    font-family: "Sora", sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .case-more-btn:hover { background: #fff; }
+  .case-more-btn::after {
+    content: "";
+    width: 7px;
+    height: 7px;
+    margin-top: -4px;
+    border: solid currentColor;
+    border-width: 0 1.8px 1.8px 0;
+    transform: rotate(45deg);
+    transition: transform 0.2s;
+  }
+  .case-more[open] > .case-more-btn::after { transform: rotate(225deg); margin-top: 4px; }
+  .case-more .when-open,
+  .case-more[open] .when-closed { display: none; }
+  .case-more[open] .when-open { display: inline; }
+  .case-more-close { margin-top: 28px; }
+  .case-more-close::after { transform: rotate(225deg); margin-top: 4px; }
   .works-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 20px 32px; }
   .works-head :global(.category-tabs) { padding-bottom: 8px; }
   /* ヘッダーに隠れないよう、分類一覧から CASE へ飛んだときの止まり位置を下げる */
