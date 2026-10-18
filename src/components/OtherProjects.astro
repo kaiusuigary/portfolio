@@ -1,9 +1,14 @@
 ---
 import { otherProjects, localize } from "../data/otherProjects.js";
+import { categories, categoryOf } from "../data/categories.js";
 import { localePath } from "../i18n.js";
 
 const { lang = "ja" } = Astro.props;
 const projects = otherProjects.map((p) => localize(p, lang));
+// 所属ごとに見出しを付けて並べる（見出し名は WORKS の分類タブと共通）
+const groups = categories
+  .map((c) => ({ ...c, items: projects.filter((p) => categoryOf(p.caseNumber) === c.id) }))
+  .filter((g) => g.items.length);
 ---
 
 <section id="other" class="section">
@@ -22,19 +27,34 @@ const projects = otherProjects.map((p) => localize(p, lang));
       }
     </p>
 
-    <div class="projects-grid" style="margin-top:44px;">
-      {
-        projects.map((p) => (
-          <a href={localePath(lang, `/projects/${p.slug}`)} class="project-card" style="padding:14px;display:block;">
-            <img
-              src={p.src}
-              style="width:100%;display:block;aspect-ratio:4/5;object-fit:cover;border-radius:16px;"
-              alt={p.alt}
-            />
-            <div style="padding:14px 4px 4px 4px;font-size:12.5px;font-weight:600;color:var(--ink-soft);">{p.label}</div>
-          </a>
-        ))
-      }
-    </div>
+    {
+      groups.map((g) => (
+        <div class="projects-group">
+          <h3 class="projects-group-title">{lang === "en" ? g.en : g.ja}</h3>
+          <div class="projects-grid">
+            {g.items.map((p) => (
+              <a href={localePath(lang, `/projects/${p.slug}`)} class="project-card" style="padding:14px;display:block;">
+                <img
+                  src={p.src}
+                  style="width:100%;display:block;aspect-ratio:4/5;object-fit:cover;border-radius:16px;"
+                  alt={p.alt}
+                />
+                <div style="padding:14px 4px 4px 4px;font-size:12.5px;font-weight:600;color:var(--ink-soft);">{p.label}</div>
+              </a>
+            ))}
+          </div>
+        </div>
+      ))
+    }
   </div>
 </section>
+
+<style>
+  .projects-group { margin-top: 56px; }
+  p + .projects-group { margin-top: 44px; }
+  .projects-group-title {
+    display: flex; align-items: center; gap: 14px; margin: 0 0 22px;
+    font-size: 17px; font-weight: 700; color: var(--ink); letter-spacing: .02em;
+  }
+  .projects-group-title::after { content: ""; flex: 1; height: 1px; background: var(--border); }
+</style>
