@@ -14,16 +14,17 @@ const pairs = [
     note: t("ヘッダーとナビは、アプリ全体の世界観と一体感のある半透明のテクスチャに。ナビは「ホーム・探す・充電・知る・マイページ」に組み直し、「充電」を中央の赤いボタンとして独立させました。", "The header and tab bar use a translucent texture that ties in with the look and feel of the whole app. The tab bar was rebuilt as Home / Search / Charge / Learn / My Page, with “Charge” pulled out as a red button in the center."),
   },
   {
-    before: "/images/lg-before-history.webp",
-    after: "/images/lg-after-history.webp",
-    label: t("検索（履歴）", "Search (history)"),
-    note: t("検索バーとフィルタをガラスの丸ボタンにまとめ、見出しとリストは左揃えに統一しました。", "The search bar and filter became round glass controls, and headings and lists are consistently left-aligned."),
+    before: "/images/lg-before-charge.webp",
+    after: "/images/lg-after-charge.webp",
+    label: t("チャージ", "Top-up"),
+    note: t("金額を大きく左揃えで見せ、現在の残高とチャージできる範囲をそのすぐ近くに表示しました。ボタンにも「10,000円をチャージする」と金額を入れ、押す前に内容を確かめられるようにしています。", "The amount is shown large and left-aligned, with the current balance and the allowed top-up range right next to it. The button also states the amount (“Top up ¥10,000”), so users can check what they are about to do before tapping."),
   },
   {
-    before: "/images/lg-before-results.webp",
-    after: "/images/lg-after-results.webp",
-    label: t("検索（結果）", "Search (results)"),
-    note: t("見出しとテキストの大きさ・太さにメリハリをつけて強弱をはっきりさせ、情報の優先順位を調整しました。コントラストも上げ、屋外でも読みやすくしています。", "Headings and body text got clearer contrast in size and weight to rebalance the priority of information, and higher color contrast keeps it readable outdoors."),
+    before: "/images/lg-before-wallet.webp",
+    after: "/images/lg-after-wallet.webp",
+    label: t("クレジットカード（登録済み）", "Saved credit card"),
+    full: true,
+    note: t("登録済みのカードを、入力フォームのような見た目から実物のカードに近いビジュアルに変更し、どのカードが登録されているかひと目でわかるようにしました。番号と有効期限は一覧で読みやすく整理し、「変更する」「削除する」の操作もひとまとめにして見つけやすくしています。", "The saved card used to look like a form; now it is shown as a card-like visual, so users can tell at a glance which card is registered. The number and expiry date are laid out as an easy-to-read list, and the change and delete actions are grouped together so they are easy to find."),
   },
 ];
 
@@ -266,11 +267,11 @@ const points = [
         {pairs.map((p) => (
           <div class="lg-ba-row">
             <figure>
-              <img src={p.before} loading="lazy" alt={`${p.label} — BEFORE`} />
+              <img src={p.before} class:list={{ "is-full": p.full }} loading="lazy" alt={`${p.label} — BEFORE`} />
               <figcaption class="lg-label lg-label--before">BEFORE</figcaption>
             </figure>
             <figure>
-              <img src={p.after} loading="lazy" alt={`${p.label} — AFTER`} />
+              <img src={p.after} class:list={{ "is-full": p.full }} loading="lazy" alt={`${p.label} — AFTER`} />
               <figcaption class="lg-label lg-label--after">AFTER</figcaption>
             </figure>
             <div class="lg-ba-note">
@@ -627,6 +628,21 @@ const points = [
     object-fit: cover;
     object-position: top;
     border-radius: 0 0 24px 24px;
+  }
+  /* full-height screens (no crop); transparent corners already round them */
+  .lg-ba-row img.is-full {
+    aspect-ratio: auto;
+    border-radius: 0;
+  }
+  /* screens of different heights: top-align the screens, keep the labels on one line at the bottom */
+  .lg-ba-row figure:has(img.is-full) {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+  }
+  .lg-ba-row figure:has(img.is-full) figcaption {
+    margin-top: auto;
+    padding-top: 12px;
   }
   .lg-ba-note h5,
   .lg-points h5 {
