@@ -36,15 +36,34 @@ const sfScreens = [
   { id: "facility", label: t("施設の種類", "Facility types") },
 ];
 
-const points = [
-  [t("iOS・Android共通のガラス表現", "A glass style for iOS and Android"), t("長く止まっていたUIの更新を体験全体の見直しとして行い、変化がひと目で伝わるよう、ガラスのような半透明の素材をデザインシステムに取り入れました。iOSのLiquid Glassを参考にしつつ、Androidでも同じ見た目と使い心地になるよう、OSに依存しない共通の表現として設計。ヘッダーや主要ボタンに使い、EVにふさわしい先進的でプレミアムな印象を目指しました。", "UI updates had stalled, so this was a full review of the experience. To make the change obvious at a glance, I added a translucent, glass-like material to the design system. It takes cues from iOS’s Liquid Glass but was designed as a shared style that looks and feels the same on Android. Used on headers and key buttons, it gives the premium, forward-looking feel an EV brand needs.")],
-  [t("フォントの選定", "Choosing the typeface"), t("RobotoからInterに変更しました。屋外の日差しの下や暗い駐車場でも、「90kW」「85%」「25分」のような数字と単位をすぐ読めるように。1・I・lの区別がはっきりしていて、マップ上の小さな文字（10〜12px）もつぶれません。", "I switched from Roboto to Inter, so numbers and units like “90kW”, “85%” and “25 min” read instantly in sunlight or a dark car park. Inter clearly separates 1, I and l, and small map labels (10–12px) stay crisp.")],
-  [t("コントラストと色の見直し", "Contrast and color"), t("文字と背景のコントラスト比を高めるよう色を調整し、ライト／ダークの両モードで対になる色を定義しました。色覚の多様性にも配慮し、色だけに頼らずに状態を示します。", "Colors were adjusted for higher text contrast and defined as light/dark pairs. States never rely on color alone, so they also work for people with color vision differences.")],
-  [t("左揃えを最優先に", "Left alignment first"), t("iOS・Androidどちらでも自然に読めるよう、見出し・本文・ダイアログを左揃えに統一しました。視線の動きに沿うため、「どこから読むか」で迷わず、内容をすばやく拾えます。", "Headings, body text and dialogs are left-aligned so they read naturally on both iOS and Android. It follows how the eye moves, so users never wonder where to start and can scan content quickly.")],
-  [t("「充電」を主役のボタンに", "Charge as the primary action"), t("充電開始はアプリでいちばん大切な行動。ナビのほかの項目から独立させ、ブランドカラーの赤で目立たせ、片手でも押しやすい位置に置きました。", "Starting a charge is the app’s most important action, so it is separated from the other tabs, highlighted in the brand red and placed where a thumb reaches it easily.")],
-  [t("ダイナミックアイランドと充電画面", "Dynamic Island and charging screens"), t("ロック画面とダイナミックアイランドで充電の経過時間を見られるようにし、アプリ内の充電画面も同じイラストとアニメーションでそろえ、「ちゃんと充電できている」ことが伝わるようにしました。", "Elapsed charging time now shows on the Lock Screen and Dynamic Island, and the in-app charging screens share the same illustration and animation, so users can see that charging is really working.")],
-  [t("ライトモードとダークモード", "Light and dark mode"), t("すべての画面をライト／ダークの両方で設計。白すぎない背景（bgPrimary）を基本にして、長い時間見ても目が疲れにくくしました。", "Every screen was designed in both light and dark. The base background is a soft off-white (bgPrimary) rather than pure white, to be easier on the eyes.")],
-  [t("入力済みと未入力を色で分ける", "Filled vs. empty fields"), t("「選択してください」などの未入力の表示と、ユーザーが入力した内容の色をはっきり分け、入力漏れに気づきやすくしました。", "Placeholder text like “Please select” and user-entered values use clearly different colors, so missing fields are easy to spot.")],
+// 主な変更点：冒頭のコンセプト3つ（方針）ごとに具体策をまとめる
+const pointGroups = [
+  {
+    name: "Inspired",
+    lead: t("充電をもっと身近に、スマートな移動体験を", "Make charging feel closer and smarter"),
+    items: [
+      [t("iOS・Android共通のガラス表現", "A glass style for iOS and Android"), t("長く止まっていたUIの更新を体験全体の見直しとして行い、変化がひと目で伝わるよう、ガラスのような半透明の素材をデザインシステムに取り入れました。iOSのLiquid Glassを参考にしつつ、Androidでも同じ見た目と使い心地になるよう、OSに依存しない共通の表現として設計。近年のOSの見た目となじむため、OSとアプリを行き来しても違和感がなく、画面の切り替わりもスムーズに感じられます。ヘッダーや主要ボタンに使い、EVにふさわしい先進的でプレミアムな印象を目指しました。", "UI updates had stalled, so this was a full review of the experience. To make the change obvious at a glance, I added a translucent, glass-like material to the design system. It takes cues from iOS’s Liquid Glass but was designed as a shared style that looks and feels the same on Android. Because it matches the look of recent operating systems, moving between the OS and the app feels seamless and screen transitions feel smooth. Used on headers and key buttons, it gives the premium, forward-looking feel an EV brand needs.")],
+      [t("ライトモードとダークモード", "Light and dark mode"), t("昼の屋外でも夜の車内でも、使う環境に合わせてストレスなく使えるよう、すべての画面をライト／ダークの両方で設計。白すぎない背景（bgPrimary）を基本にして、長い時間見ても目が疲れにくくしました。", "So the app is comfortable to use in any setting — outdoors by day or in the car at night — every screen was designed in both light and dark. The base background is a soft off-white (bgPrimary) rather than pure white, to be easier on the eyes.")],
+    ],
+  },
+  {
+    name: "Reliable",
+    lead: t("誰でも、どんな状況でも、迷わず確実に使える", "Anyone, anywhere, without hesitation"),
+    items: [
+      [t("「充電」を主役のボタンに", "Charge as the primary action"), t("充電開始はアプリでいちばん大切な行動。ナビのほかの項目から独立させ、ブランドカラーの赤で目立たせ、片手でも押しやすい位置に置きました。", "Starting a charge is the app’s most important action, so it is separated from the other tabs, highlighted in the brand red and placed where a thumb reaches it easily.")],
+      [t("ダイナミックアイランドと充電画面", "Dynamic Island and charging screens"), t("ロック画面とダイナミックアイランドで充電の経過時間を見られるようにし、アプリ内の充電画面も同じイラストとアニメーションでそろえ、「ちゃんと充電できている」ことが伝わるようにしました。", "Elapsed charging time now shows on the Lock Screen and Dynamic Island, and the in-app charging screens share the same illustration and animation, so users can see that charging is really working.")],
+    ],
+  },
+  {
+    name: "Universal",
+    lead: t("年齢や環境に関わらず、すべてのドライバーへ", "For every driver, whatever their age or situation"),
+    items: [
+      [t("フォントの選定", "Choosing the typeface"), t("RobotoからInterに変更しました。屋外の日差しの下や暗い駐車場でも、「90kW」「85%」「25分」のような数字と単位をすぐ読めるように。1・I・lの区別がはっきりしていて、マップ上の小さな文字（10〜12px）もつぶれません。", "I switched from Roboto to Inter, so numbers and units like “90kW”, “85%” and “25 min” read instantly in sunlight or a dark car park. Inter clearly separates 1, I and l, and small map labels (10–12px) stay crisp.")],
+      [t("コントラストと色の見直し", "Contrast and color"), t("文字と背景のコントラスト比を高めるよう色を調整し、ライト／ダークの両モードで対になる色を定義しました。色覚の多様性にも配慮し、色だけに頼らずに状態を示します。", "Colors were adjusted for higher text contrast and defined as light/dark pairs. States never rely on color alone, so they also work for people with color vision differences.")],
+      [t("左揃えを最優先に", "Left alignment first"), t("iOS・Androidどちらでも自然に読めるよう、見出し・本文・ダイアログを左揃えに統一しました。視線の動きに沿うため、「どこから読むか」で迷わず、内容をすばやく拾えます。", "Headings, body text and dialogs are left-aligned so they read naturally on both iOS and Android. It follows how the eye moves, so users never wonder where to start and can scan content quickly.")],
+      [t("入力済みと未入力を色で分ける", "Filled vs. empty fields"), t("「選択してください」などの未入力の表示と、ユーザーが入力した内容の色をはっきり分け、入力漏れに気づきやすくしました。", "Placeholder text like “Please select” and user-entered values use clearly different colors, so missing fields are easy to spot.")],
+    ],
+  },
 ];
 
 ---
@@ -218,7 +237,7 @@ const points = [
         <div>
           <h4 class="disp detail-heading">{t("背景・課題", "Background & Challenge")}</h4>
           <p class="detail-text">{t("EV充電エネチェンジ アプリは機能追加を重ねる一方で、見た目や操作の土台となるUIの更新が長く止まっていました。毎日使われるアプリだからこそ、変わったことがすぐ伝わり、屋外や車内でも迷わず使えるよう、デザインシステムから画面まで全体を作り直す計画でした。", "Features kept being added to the EV Charge ENECHANGE app, but the underlying UI hadn’t been updated in a long time. Because people use it every day, the plan was to rebuild everything from the design system to each screen — so the change is obvious and the app is easy to use outdoors or in the car.")}</p>
-          <p class="detail-text" style="margin-top:14px;">{t("EVドライバーは50〜60代が多く、小さな文字や薄い色が見えにくい方も少なくありません。そこで今回のリニューアルでは、コントラストやフォントサイズを見直して読みやすさを改善することを大きな目的にしました。あわせて、より幅広い世代にも使ってもらえるよう、UI全体のデザインもアップデートしています。", "Many EV drivers are in their 50s and 60s, and quite a few find small text and pale colors hard to read. A key goal of this redesign was to improve readability by revisiting contrast and font sizes. At the same time, I updated the look of the whole UI so the app appeals to a wider range of generations.")}</p>
+          <p class="detail-text" style="margin-top:14px;">{t("社内のユーザーデータから、EVドライバーは50〜60代が多いことがわかっていました。この年代では、小さな文字や薄い色が見えにくい方も少なくありません。そこで今回のリニューアルでは、コントラストやフォントサイズを見直して読みやすさを改善することを大きな目的にしました。あわせて、より幅広い世代にも使ってもらえるよう、UI全体のデザインもアップデートしています。", "Our internal user data showed that many EV drivers are in their 50s and 60s, an age group in which quite a few people find small text and pale colors hard to read. A key goal of this redesign was to improve readability by revisiting contrast and font sizes. At the same time, I updated the look of the whole UI so the app appeals to a wider range of generations.")}</p>
           <p class="detail-text" style="margin-top:14px;">{t("デザインはほぼ完成していましたが、会社の事情によりアプリ自体の提供終了が決まったため、リリース前に中止となりました。", "The design was nearly finished, but the project was cancelled before release when the company decided to discontinue the app.")}</p>
         </div>
         <div>
@@ -303,14 +322,22 @@ const points = [
       <!-- KEY CHANGES -->
       <div class="lg-points">
         <h4 class="disp detail-heading" style="text-align:center;">{t("主な変更点", "Key Changes")}</h4>
-        <ol>
-          {points.map(([title, body]) => (
-            <li>
-              <h5 class="disp">{title}</h5>
-              <p class="detail-text">{body}</p>
-            </li>
-          ))}
-        </ol>
+        {pointGroups.map((g) => (
+          <div class="lg-points-group">
+            <div class="lg-points-concept">
+              <span class="lg-points-name">{g.name}</span>
+              <span class="lg-points-lead">{g.lead}</span>
+            </div>
+            <ol>
+              {g.items.map(([title, body]) => (
+                <li>
+                  <h5 class="disp">{title}</h5>
+                  <p class="detail-text">{body}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        ))}
       </div>
 
       <!-- LIGHT / DARK -->
@@ -664,11 +691,37 @@ const points = [
   .lg-label--after {
     color: #c60d31;
   }
+  /* numbers run 01–08 across the concept groups */
+  .lg-points {
+    counter-reset: pt;
+  }
+  .lg-points-group {
+    margin-top: 40px;
+  }
+  .lg-points-concept {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 6px 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .lg-points-name {
+    font-family: "Sora", sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    letter-spacing: 0.04em;
+    color: #c60d31;
+  }
+  .lg-points-lead {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink-soft);
+  }
   .lg-points ol {
     list-style: none;
-    counter-reset: pt;
     padding: 0;
-    margin: 32px 0 0;
+    margin: 20px 0 0;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
@@ -732,8 +785,15 @@ const points = [
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
-    /* v4 screens are shorter than v5; bottom-align so the labels line up */
-    align-items: end;
+  }
+  /* v4 screens are shorter than v5: top-align the screens, keep the labels on one line at the bottom */
+  .lg-cmp-pair figure {
+    display: flex;
+    flex-direction: column;
+  }
+  .lg-cmp-pair figcaption {
+    margin-top: auto;
+    padding-top: 12px;
   }
   .lg-cmp-pair img {
     display: block;
