@@ -814,5 +814,12 @@ const enPath = lang === "en" ? here : other;
   <body>
     <slot />
     <PageTop lang={lang} />
+    <script>
+      // 新しいタブで開くリンク（画像の拡大など）はクリック後にフォーカスを外す。戻ってきたときに青い枠が出ないように
+      document.addEventListener("click", (e) => {
+        const a = (e.target as Element).closest?.('a[target="_blank"]');
+        if (a instanceof HTMLElement) a.blur();
+      });
+    </script>
   </body>
 </html>
