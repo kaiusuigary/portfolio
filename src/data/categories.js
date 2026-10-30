@@ -21,7 +21,7 @@ export function categoryOf(caseNumber) {
 // CASE 01–03 はトップページの WORKS 内にあるので、一覧からはトップの各 CASE へリンク
 const featured = [
   { caseNumber: "01", src: "/images/app-top3.jpg", ja: "EV充電エネチェンジ アプリ改修 — v4.0「ニコラ」メジャーアップデート", en: "EV Charge ENECHANGE App Redesign — v4.0 “Nikola” Major Update" },
-  { caseNumber: "02", src: "/images/lg-top.webp", ja: "EV充電エネチェンジ アプリ 全体リニューアル（リリース前に中止）", en: "EV Charge ENECHANGE App Redesign (Cancelled Before Release)" },
+  { caseNumber: "02", src: "/images/lg-top.webp", ja: "EV充電エネチェンジ アプリ 全体リニューアル", en: "EV Charge ENECHANGE App Redesign" },
   { caseNumber: "03", src: "/images/evplus-top.jpg", ja: "EV PLUS — EVオーナー向けライフスタイルメディアの立ち上げ", en: "EV PLUS — Launching a Lifestyle Media Site for EV Owners" },
 ];
 
