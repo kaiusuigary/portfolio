@@ -4,7 +4,7 @@ import { otherProjects } from "./otherProjects.js";
 export const categories = [
   { id: "miraiz-enechange", ja: "ミライズエネチェンジ", en: "MIRAIZ ENECHANGE" },
   { id: "mitsue-links", ja: "ミツエーリンクス", en: "Mitsue-Links" },
-  { id: "other", ja: "有限会社ゲイル・香港・自主制作", en: "Gale Co., Ltd. / Hong Kong / Personal" },
+  { id: "other", ja: "有限会社ゲイル・Creasant Digital Limited（香港）・自主制作", en: "Gale Co., Ltd. / Creasant Digital Limited (Hong Kong) / Personal" },
 ];
 
 // CASE 番号 → 分類（ここにない番号は「その他」）
