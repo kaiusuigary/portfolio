@@ -1,6 +1,7 @@
 ---
 import { useT, switchPath } from "../i18n.js";
 import WorksMenu from "./WorksMenu.astro";
+import ThemeToggle from "./ThemeToggle.astro";
 
 const { lang = "ja" } = Astro.props;
 const t = useT(lang);
@@ -19,6 +20,7 @@ const t = useT(lang);
     </a>
 
     <a href={switchPath(Astro.url.pathname)} class="lang-switch lang-switch--mobile" hreflang={t("en", "ja")} lang={t("en", "ja")}>{t("EN", "JP")}</a>
+    <ThemeToggle lang={lang} class="theme-toggle--mobile" />
     <input type="checkbox" id="nav-toggle" class="nav-toggle-checkbox" />
     <label for="nav-toggle" class="nav-toggle-btn" aria-label={t("メニューを開く", "Open menu")}>
       <span></span><span></span><span></span>
@@ -29,6 +31,7 @@ const t = useT(lang);
       <WorksMenu lang={lang} href="#works" />
       <a href="#other" style="color:var(--ink-soft);">Other Projects</a>
       <a href={switchPath(Astro.url.pathname)} class="lang-switch" hreflang={t("en", "ja")} lang={t("en", "ja")}>{t("EN", "JP")}</a>
+      <ThemeToggle lang={lang} />
       <a href="#contact" class="btn" style="padding:11px 22px;font-size:13px;">Contact Me</a>
     </div>
   </div>

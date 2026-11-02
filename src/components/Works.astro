@@ -591,7 +591,7 @@ const pointGroups = [
     cursor: pointer;
     transition: background 0.2s;
   }
-  .case-more-btn:hover { background: #fff; }
+  .case-more-btn:hover { background: var(--hover-bg); }
   .case-more-btn::after {
     content: "";
     width: 7px;
@@ -688,7 +688,7 @@ const pointGroups = [
     color: #8a93a3;
   }
   .lg-label--after {
-    color: #c60d31;
+    color: var(--red);
   }
   /* numbers run 01–08 across the concept groups */
   .lg-points {
@@ -710,7 +710,7 @@ const pointGroups = [
     font-weight: 800;
     font-size: 18px;
     letter-spacing: 0.04em;
-    color: #c60d31;
+    color: var(--red);
   }
   .lg-points-lead {
     font-size: 14px;
@@ -727,7 +727,7 @@ const pointGroups = [
   }
   .lg-points li {
     counter-increment: pt;
-    background: #fff;
+    background: var(--panel);
     border-radius: 14px;
     padding: 24px 24px 24px 64px;
     position: relative;
@@ -740,7 +740,7 @@ const pointGroups = [
     font-family: "Sora", sans-serif;
     font-weight: 800;
     font-size: 15px;
-    color: #c60d31;
+    color: var(--red);
   }
   .lg-phones {
     display: grid;

@@ -25,7 +25,7 @@ const changes = [
 ---
 
 <Layout lang={lang} title={`${project.label} — Kai Usui Portfolio`} description={project.concept}>
-  <div style="min-height:100vh;position:relative;background:#eef4fb;">
+  <div style="min-height:100vh;position:relative;background:var(--page-bg);">
     <ProjectNav lang={lang} />
 
     <section class="section" style="padding-top:80px;padding-bottom:50px;position:relative;">
@@ -229,7 +229,7 @@ const changes = [
     font-size: 14px;
     line-height: 1.7;
     color: var(--ink-soft);
-    background: #fff;
+    background: var(--panel);
     border-radius: 14px;
     overflow: hidden;
   }
@@ -245,7 +245,7 @@ const changes = [
     font-size: 12px;
     letter-spacing: 0.1em;
     color: var(--ink);
-    background: #f5f8fc;
+    background: var(--bg-2);
   }
   .sf-table tbody th {
     color: var(--ink);

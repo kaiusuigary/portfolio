@@ -44,6 +44,15 @@ const enPath = lang === "en" ? here : other;
       href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Noto+Sans+JP:wght@400;500;700;900&display=swap"
     />
 
+    <script is:inline>
+      // デフォルトはライト。ヘッダーのボタンで選んだテーマだけ保存して使う
+      (function () {
+        var saved = null;
+        try { saved = localStorage.getItem("theme"); } catch (e) {}
+        document.documentElement.dataset.theme = saved === "dark" ? "dark" : "light";
+      })();
+    </script>
+
     <style is:global>
       :root {
         color-scheme: light;
@@ -61,6 +70,66 @@ const enPath = lang === "en" ? here : other;
         --accent-2: #17b8c4;
         --warm: #ff8a5c;
         --panel: #ffffff;
+        --page-bg: #eef4fb;
+        --red: #c60d31;
+        --ghost-1: rgba(16, 27, 52, 0.1);
+        --ghost-2: rgba(16, 27, 52, 0.015);
+        --hero-veil: rgba(255, 255, 255, 0.38);
+        --shot-bg: rgba(255, 255, 255, 0.28);
+        --shot-border: rgba(255, 255, 255, 0.5);
+        --hover-bg: #ffffff;
+      }
+      :root[data-theme="dark"] {
+        color-scheme: dark;
+        --bg-1: #0b1220;
+        --bg-2: #111a2c;
+        --bg-3: #18233a;
+        --glass: rgba(24, 35, 58, 0.6);
+        --glass-2: rgba(30, 43, 70, 0.82);
+        --border: rgba(200, 215, 245, 0.16);
+        --border-soft: rgba(200, 215, 245, 0.09);
+        --ink: #e8eefb;
+        --ink-soft: #aab7d4;
+        --ink-faint: #7f8cab;
+        --accent: #4aa8e0;
+        --accent-2: #36d0db;
+        --panel: #141e33;
+        --page-bg: #0d1526;
+        --red: #ff6b81;
+        --ghost-1: rgba(232, 238, 251, 0.1);
+        --ghost-2: rgba(232, 238, 251, 0.015);
+        --hero-veil: rgba(13, 21, 38, 0.5);
+        --shot-bg: rgba(255, 255, 255, 0.05);
+        --shot-border: rgba(255, 255, 255, 0.1);
+        --hover-bg: #1e2b46;
+      }
+      .theme-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 34px;
+        height: 34px;
+        padding: 0;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: var(--glass-2);
+        color: var(--ink-soft);
+        cursor: pointer;
+        transition: color 0.18s ease, border-color 0.18s ease;
+      }
+      .theme-toggle:hover {
+        border-color: var(--accent-2);
+        color: var(--accent-2);
+      }
+      .theme-toggle-sun,
+      :root[data-theme="dark"] .theme-toggle-moon {
+        display: none;
+      }
+      :root[data-theme="dark"] .theme-toggle-sun {
+        display: block;
+      }
+      .theme-toggle--mobile {
+        display: none;
       }
       * {
         box-sizing: border-box;
@@ -186,6 +255,10 @@ const enPath = lang === "en" ? here : other;
         transform: translateY(-3px);
         box-shadow: 0 22px 46px rgba(76, 141, 255, 0.48);
       }
+      /* ダークモードでは白文字とのコントラスト比 4.5:1 以上になるよう少し暗く */
+      :root[data-theme="dark"] .btn {
+        background: linear-gradient(135deg, #1d78b0, #13808b);
+      }
       .btn:active {
         transform: translateY(-1px);
         filter: brightness(1.02);
@@ -232,7 +305,7 @@ const enPath = lang === "en" ? here : other;
         gap: 10px;
         padding: 14px 28px;
         border-radius: 100px;
-        background: #eef4fb;
+        background: var(--page-bg);
       }
       .btn-outline-text {
         font-family: "Sora", sans-serif;
@@ -264,10 +337,10 @@ const enPath = lang === "en" ? here : other;
         overflow: hidden;
       }
       .shot-panel {
-        background: rgba(255, 255, 255, 0.28);
+        background: var(--shot-bg);
         border-radius: 18px;
         padding: 14px;
-        border: 1px solid rgba(255, 255, 255, 0.5);
+        border: 1px solid var(--shot-border);
         backdrop-filter: blur(18px);
         -webkit-backdrop-filter: blur(18px);
         box-shadow:
@@ -418,8 +491,8 @@ const enPath = lang === "en" ? here : other;
         font-weight: 800;
         background: linear-gradient(
           180deg,
-          rgba(16, 27, 52, 0.1),
-          rgba(16, 27, 52, 0.015)
+          var(--ghost-1),
+          var(--ghost-2)
         );
         -webkit-background-clip: text;
         background-clip: text;
@@ -487,7 +560,7 @@ const enPath = lang === "en" ? here : other;
         position: absolute;
         inset: -140px 0 0 0;
         z-index: 0;
-        background: rgba(255, 255, 255, 0.38);
+        background: var(--hero-veil);
         backdrop-filter: blur(40px);
         -webkit-backdrop-filter: blur(40px);
         pointer-events: none;
@@ -735,8 +808,14 @@ const enPath = lang === "en" ? here : other;
           margin-left: auto;
           margin-right: 10px;
         }
-        .nav-links .lang-switch {
+        .nav-links .lang-switch,
+        .nav-links .theme-toggle {
           display: none;
+        }
+        .theme-toggle--mobile {
+          display: inline-flex;
+          margin-right: 10px;
+          flex: none;
         }
         .project-nav-links {
           gap: 10px !important;
@@ -807,6 +886,11 @@ const enPath = lang === "en" ? here : other;
       @media (max-width: 560px) {
         .projects-grid {
           grid-template-columns: 1fr;
+        }
+      }
+      @media (max-width: 440px) {
+        .project-nav-sub {
+          display: none;
         }
       }
     </style>
