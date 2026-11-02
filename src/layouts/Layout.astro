@@ -587,6 +587,39 @@ const enPath = lang === "en" ? here : other;
         color: var(--ink);
         line-height: 1.4;
       }
+      /* 成果の数字（各CASEの成果欄の先頭） */
+      .result-stats {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px 20px;
+        text-align: left;
+        margin: 0 0 18px;
+      }
+      .result-stat {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .result-stat--full {
+        grid-column: 1 / -1;
+      }
+      .result-num {
+        font-family: "Sora", sans-serif;
+        font-weight: 800;
+        font-size: 30px;
+        line-height: 1.1;
+        letter-spacing: -0.01em;
+        color: var(--ink);
+      }
+      .result-label {
+        font-size: 13px;
+        line-height: 1.5;
+        font-weight: 600;
+        color: var(--ink-soft);
+      }
+      :lang(ja) .result-label {
+        word-break: auto-phrase;
+      }
       .meta-label {
         font-family: "Sora", sans-serif;
         font-weight: 700;
