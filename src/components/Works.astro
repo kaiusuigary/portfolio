@@ -206,7 +206,7 @@ const pointGroups = [
       <div class="case-cta" style="text-align:center;margin-top:4px;">
         <a href="#contact" class="btn">Contact Me</a>
       </div>
-        <button type="button" class="case-more-btn case-more-close">{t("閉じる", "Close")}</button>
+        <button type="button" class="case-more-btn case-more-close"><span>{t("閉じる", "Close")}</span></button>
       </details>
     </div>
 
@@ -244,9 +244,9 @@ const pointGroups = [
       <div class="grid-3 detail-grid">
         <div>
           <h4 class="disp detail-heading">{t("背景・課題", "Background & Challenge")}</h4>
-          <p class="detail-text">{t("EV充電エネチェンジ アプリは機能追加を重ねる一方で、見た目や操作の土台となるUIの更新が長く止まっていました。毎日使われるアプリだからこそ、変わったことがすぐ伝わり、屋外や車内でも迷わず使えるよう、デザインシステムから画面まで全体を作り直す計画でした。", "Features kept being added to the EV Charge ENECHANGE app, but the underlying UI hadn’t been updated in a long time. Because people use it every day, the plan was to rebuild everything from the design system to each screen — so the change is obvious and the app is easy to use outdoors or in the car.")}</p>
+          <p class="detail-text">{t("EV充電エネチェンジ アプリは機能追加を重ねる一方で、見た目や操作の土台となるUIの更新が長く止まっていました。毎日使われるアプリだからこそ、変わったことがすぐ伝わり、屋外や車内でも迷わず使えるよう、デザインシステムから画面まで全体を見直す計画でした。", "Features kept being added to the EV Charge ENECHANGE app, but the underlying UI hadn’t been updated in a long time. Because people use it every day, the plan was to revisit everything, from the design system to each screen — so the change is obvious and the app is easy to use outdoors or in the car.")}</p>
           <p class="detail-text" style="margin-top:14px;">{t("社内のユーザーデータから、EVドライバーは50〜60代が多いことがわかっていました。この年代では、小さな文字や薄い色が見えにくい方も少なくありません。そこで今回のリニューアルでは、コントラストやフォントサイズを見直して読みやすさを改善することを大きな目的にしました。あわせて、より幅広い世代にも使ってもらえるよう、UI全体のデザインもアップデートしています。", "Our internal user data showed that many EV drivers are in their 50s and 60s, an age group in which quite a few people find small text and pale colors hard to read. A key goal of this redesign was to improve readability by revisiting contrast and font sizes. At the same time, I updated the look of the whole UI so the app appeals to a wider range of generations.")}</p>
-          <p class="detail-text" style="margin-top:14px;">{t("デザインシステムと主要画面のデザインを、ほぼ完成まで進めました。その後、事業の判断により、リリースには至っていません。", "I took the design system and key screens to near completion. Due to a business decision, the redesign was not released.")}</p>
+          <p class="detail-text" style="margin-top:14px;">{t("既存のデザインシステムを改善・拡張し、主要画面のデザインをほぼ完成まで進めました。その後、事業の判断により、リリースには至っていません。", "I improved and extended the existing design system and took the key screens to near completion. Due to a business decision, the redesign was not released.")}</p>
         </div>
         <div>
           <h4 class="disp detail-heading">{t("担当範囲", "My Role")}</h4>
@@ -416,7 +416,7 @@ const pointGroups = [
       <div class="case-cta" style="text-align:center;margin-top:72px;">
         <a href="#contact" class="btn">Contact Me</a>
       </div>
-        <button type="button" class="case-more-btn case-more-close">{t("閉じる", "Close")}</button>
+        <button type="button" class="case-more-btn case-more-close"><span>{t("閉じる", "Close")}</span></button>
       </details>
     </div>
 
@@ -523,7 +523,7 @@ const pointGroups = [
       <div class="case-cta" style="text-align:center;margin-top:4px;">
         <a href="#contact" class="btn">Contact Me</a>
       </div>
-        <button type="button" class="case-more-btn case-more-close">{t("閉じる", "Close")}</button>
+        <button type="button" class="case-more-btn case-more-close"><span>{t("閉じる", "Close")}</span></button>
       </details>
     </div>
   </div>
@@ -586,26 +586,38 @@ const pointGroups = [
     gap: 10px;
     padding: 12px 28px;
     border-radius: 999px;
-    border: 1px solid var(--border);
-    background: var(--glass-2);
-    color: var(--ink);
+    /* ヒーローの「実績を見る」(.btn-outline) と同じグラデーション枠・グラデーション文字 */
+    border: 2px solid transparent;
+    background:
+      linear-gradient(var(--btn-bg), var(--btn-bg)) padding-box,
+      linear-gradient(135deg, var(--accent), var(--accent-2)) border-box;
     font-family: "Sora", sans-serif;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 14px;
     cursor: pointer;
-    transition: background 0.2s;
   }
-  .case-more-btn:hover { background: var(--hover-bg); }
+  .case-more-btn > span {
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+  /* ホバー時は反転：グラデーションで塗り、文字は背景色 */
+  .case-more-btn:hover {
+    background: linear-gradient(135deg, var(--accent), var(--accent-2)) border-box;
+  }
+  .case-more-btn:hover > span { background: none; color: var(--bg-1); }
   .case-more-btn::after {
     content: "";
     width: 7px;
     height: 7px;
     margin-top: -4px;
-    border: solid currentColor;
+    border: solid var(--accent-2);
     border-width: 0 1.8px 1.8px 0;
     transform: rotate(45deg);
     transition: transform 0.2s;
   }
+  .case-more-btn:hover::after { border-color: var(--bg-1); }
   .case-more[open] > .case-more-btn::after { transform: rotate(225deg); margin-top: 4px; }
   .case-more .when-open,
   .case-more[open] .when-closed { display: none; }
