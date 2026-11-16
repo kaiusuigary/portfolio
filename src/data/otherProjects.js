@@ -296,7 +296,7 @@ export const otherProjects = [
       alt: "Corporate CSR site redesign",
       label: "Corporate CSR Site Redesign",
       period: "1.5 months",
-      team: "1 designer (me), 1 front-end developer",
+      team: "1 designer (me), 1 director, 1 front-end developer",
       concept: "A redesign of a company’s CSR site. The old site was hard to follow and felt stiff, so I adopted soft, illustration-led visuals to convey the company’s stance in a way stakeholders find approachable. The UI and subpages use a modular design, keeping things consistent while making it easy to add content. I also redefined the brand image and designed a UX that communicates the company’s philosophy accurately. I handled everything from the overall design to the illustrations, and the bounce rate improved compared with before the redesign.",
       keywords: ["Approachable", "Consistent", "Easy to expand"],
       note: "* Due to confidentiality agreements with the client, text, product images, features and logos are blurred.",
@@ -308,7 +308,7 @@ export const otherProjects = [
     caseNumber: "19",
     fullImage: "/images/proj7-csv.jpg",
     period: "1ヶ月半",
-    team: "デザイナー1（自身）・コーダー1",
+    team: "デザイナー1（自身）・ディレクター1・コーダー1",
     concept:
       "企業のCSRサイトのリニューアル。情報がわかりづらく硬い印象だった旧サイトに対し、ステークホルダーに親しみやすく企業の姿勢を伝えるため、イラストを活用したやわらかいビジュアル表現を採用しました。UIや下層ページにはモジュール設計を取り入れ、コンテンツ追加にも柔軟に対応できる一貫性のあるデザインに。さらにブランドイメージを再定義し、企業の理念が正しく伝わるUXを設計しました。全体設計からイラスト制作までを一貫して担当し、離脱率もリニューアル前より改善されました。",
     keywords: ["親しみやすさ", "一貫性", "拡張性"],
